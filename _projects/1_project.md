@@ -35,6 +35,79 @@ Agricultural data flows across farms, labs, advisors, and regulators -- but when
 
 **Connection:** The Express.js backend bridges both layers. Registration writes to both the ledger (fingerprint + metadata hash) and the off-chain store (full metadata). Verification reads the on-chain fingerprint and compares it to the presented file hash.
 
+## Module Design: DV, TI, SI
+
+DEMETER's verification traceability is built on three independent modules. Each handles a distinct aspect of data provenance and can operate standalone or compose together.
+
+### DV -- Data Verification
+
+DV establishes the origin identity of a file. When a provider registers a file, DV computes a SHA-256 fingerprint and writes it to the blockchain along with provider identity, metadata hash, Creative Commons license, and visibility level (public, conditional, or private). Any party that later receives the file can verify it against the on-chain record -- without contacting the original provider.
+
+**What DV answers:** *"Is this file authentic? Who registered it? Under what terms?"*
+
+- On-chain fingerprint anchoring (SHA-256)
+- Provider identity binding via DID
+- License declaration (7 CC license types)
+- Visibility control: public / conditional / private
+- Dispute mechanism: flag a file as untrusted, propagates through downstream traces
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/demeter-dv.png" title="DV module -- file registration and verification" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    DV module: file registration with on-chain fingerprint anchoring and verification flow.
+</div>
+
+---
+
+### TI -- Transformation Integrity
+
+TI tracks how files change as they move through processing stages. When a researcher produces an output from one or more source files (e.g., raw sensor data → normalized analysis, or multiple datasets → combined report), TI records the declared lineage on-chain as a directed graph.
+
+**What TI answers:** *"Where did this derived file come from? What were its inputs? Is the full chain verified?"*
+
+- Transformation declaration: link output file to its source inputs
+- Integration declaration: link output to multiple contributing sources
+- Redistribution tracking: record forwarding across organizations
+- Recursive graph traversal: trace back to origin through any number of hops
+- Integrity check: PASS if all sources are verified, FAIL if any source is missing or disputed
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/demeter-ti.png" title="TI module -- transformation and integration tracing" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    TI module: transformation lineage graph with recursive integrity inspection.
+</div>
+
+---
+
+### SI -- Sharing Infrastructure
+
+SI governs how files move between organizations. It handles the full access lifecycle -- request, approval, fulfillment, and delivery -- with every step recorded on-chain. SI also enforces provider-declared reuse conditions: license type, permitted purpose, expiration, and derivative restrictions.
+
+**What SI answers:** *"Can I use this file for my purpose? Who approved the transfer? What conditions apply?"*
+
+- Access request workflow: Request → Approve → Fulfill → Download
+- On-chain transfer record for every cross-organization movement
+- Reuse evaluation: check purpose against declared license conditions
+- Expiration enforcement and derivative restrictions
+- Decision chain tracing: audit who approved what and when
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/demeter-si.png" title="SI module -- sharing and reuse enforcement" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    SI module: access control workflow and reuse evaluation with license enforcement.
+</div>
+
+---
+
 ## Core Capabilities
 
 | Capability | Implementation |
