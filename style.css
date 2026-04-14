@@ -1,0 +1,288 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #111;
+  background: #fff;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+a {
+  color: #111;
+}
+
+a:hover {
+  color: #555;
+}
+
+/* Header */
+.site-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #111;
+}
+
+.site-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.site-header p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 2.5rem;
+  font-size: 0.9rem;
+}
+
+nav a {
+  margin-right: 1.2rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.3rem;
+}
+
+section h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+/* Entry blocks (experience, education) */
+.entry {
+  margin-bottom: 1.2rem;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-header .date {
+  font-size: 0.9rem;
+  color: #555;
+  white-space: nowrap;
+}
+
+.entry-header h3 {
+  margin-bottom: 0;
+}
+
+.entry-role {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.entry ul {
+  margin-top: 0.3rem;
+  padding-left: 1.2rem;
+}
+
+.entry li {
+  margin-bottom: 0.15rem;
+  font-size: 0.95rem;
+}
+
+/* Project list on index */
+.project-item {
+  margin-bottom: 1.5rem;
+}
+
+.project-item h3 a {
+  text-decoration: none;
+}
+
+.project-item h3 a:hover {
+  text-decoration: underline;
+}
+
+.project-item p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.15rem;
+}
+
+.project-item .meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Project detail pages */
+.project-detail h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.project-detail .meta {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.project-detail h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.project-detail p {
+  margin-bottom: 0.8rem;
+}
+
+.project-detail ul {
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.project-detail li {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.project-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.project-detail th,
+.project-detail td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.project-detail th {
+  font-weight: 700;
+  border-bottom: 2px solid #999;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  border: 1px solid #ccc;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.85rem;
+  margin: 1rem 0;
+  background: #fafafa;
+}
+
+/* Architecture diagram (pre block) */
+.arch-diagram {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  overflow-x: auto;
+  background: #f8f8f8;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  margin: 1rem 0;
+  white-space: pre;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Publications */
+.pub-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pub-list li {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+
+/* Contact */
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contact-list li {
+  margin-bottom: 0.3rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Skills/tags */
+.tech-list {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 1rem 3rem;
+    font-size: 16px;
+  }
+
+  .entry-header {
+    flex-direction: column;
+  }
+
+  .entry-header .date {
+    font-size: 0.85rem;
+  }
+}
