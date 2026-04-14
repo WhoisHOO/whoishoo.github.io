@@ -31,3 +31,5 @@ My primary project, [DEMETER](/projects/#demeter), is a full-stack blockchain-ba
 I also have experience in applied computer vision for production systems, having developed AI-based monitoring and automated feeding systems for marine aquaculture using YOLO, SAM, and OpenCV.
 
 I am looking for roles in data infrastructure, backend/platform engineering, and applied AI where I can build systems that solve real data problems at scale.
+
+{% include explore.html %}
