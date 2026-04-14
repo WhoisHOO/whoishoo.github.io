@@ -1,0 +1,136 @@
+cv:
+  name: Younghoo Henry Cho
+  label: Ph.D. Candidate
+  email: younghoo.cho@ufl.edu
+  location: Gainesville, FL
+  image: ""
+  summary: Ph.D. candidate in Agricultural and Biological Engineering with hands-on experience building data infrastructure, backend services, and verification systems for cross-system data exchange.
+
+  social_networks:
+    - network: GitHub
+      username: WhoisHOO
+    - network: LinkedIn
+      username: younghoo-cho-362161206
+
+  sections:
+    Education:
+      - institution: University of Florida
+        location: Gainesville, FL
+        area: Agricultural and Biological Engineering
+        studyType: Ph.D.
+        start_date: 2022
+        end_date: 2026
+        score: "GPA: 3.95/4.0"
+        highlights: []
+
+      - institution: Texas Tech University
+        location: Lubbock, TX
+        area: Computer Science, Minor in Mathematics
+        studyType: B.S.
+        start_date: 2018
+        end_date: 2022
+        score: "GPA: 3.8/4.0"
+        highlights: []
+
+    Experience:
+      - company: University of Florida
+        position: Graduate Research Assistant
+        location: Gainesville, FL
+        start_date: 2022
+        end_date: 2026
+        highlights:
+          - Develop data infrastructure and verification system prototypes for reusable cross-system data exchange in agriculture.
+          - Build backend services, smart-contract logic, web interfaces, and reproducible technical documentation.
+          - Produce manuscripts, posters, and system artifacts translating research concepts into inspectable and testable prototypes.
+
+      - company: Ministry of Agriculture, Food and Rural Affairs
+        position: Researcher
+        location: South Korea
+        start_date: 2024
+        end_date: 2026
+        highlights:
+          - Contributed to comparative studies on crop mechanization and digital agriculture development in South Korea and the United States.
+          - Synthesized technical, operational, and policy-side information for cross-country agricultural systems analysis.
+
+      - company: Billion21
+        position: Researcher
+        location: South Korea
+        start_date: 2019
+        end_date: 2022
+        highlights:
+          - Contributed to AI and computer vision development for marine production and smart aquaculture systems.
+          - Supported applied system development for monitoring, inspection, and automation-oriented workflows.
+
+      - company: Global BioAg Linkages
+        position: Researcher
+        location: ""
+        start_date: 2020
+        end_date: 2021
+        highlights:
+          - Evaluated technical and data requirements for deploying AI in agricultural production systems.
+
+      - company: Texas Tech University
+        position: Undergraduate Research Assistant
+        location: Lubbock, TX
+        start_date: 2021
+        end_date: 2022
+        highlights:
+          - Supported research projects in computer vision and data visualization.
+
+    Skills:
+      - name: Languages
+        icon: fa-solid fa-code
+        keywords: "Python, Go, JavaScript, C++, C, Java, R"
+
+      - name: Backend & APIs
+        icon: fa-solid fa-server
+        keywords: "Node.js, Express, REST APIs"
+
+      - name: Distributed Systems & Data
+        icon: fa-solid fa-database
+        keywords: "Hyperledger Fabric, Blockchain Systems, CouchDB, Firebase"
+
+      - name: AI & Vision
+        icon: fa-solid fa-eye
+        keywords: "LLM Integration, Machine Learning, YOLO, SAM, OpenCV"
+
+      - name: Cloud & Tools
+        icon: fa-solid fa-cloud
+        keywords: "AWS, Azure, Docker, Git"
+
+    Publications:
+      - title: "DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files"
+        authors:
+          - Younghoo Cho
+          - Zhaohui Yu
+          - Yiannis Ampatzidis
+        releaseDate: 2026
+        summary: "Under review."
+
+      - title: "Facilitating a Future Agricultural Data Ecosystem: A Cross-Sectoral Review of Blockchain Application in Data Sharing"
+        authors:
+          - Younghoo Cho
+          - Zhaohui Yu
+          - Yiannis Ampatzidis
+        releaseDate: 2026
+        summary: "Under review."
+
+      - title: "Bridging carbon markets and agriculture: A comparative study of stakeholder engagement in South Korea and United States"
+        authors:
+          - Younghoo Cho
+          - Zhaohui Yu
+          - Yiannis Ampatzidis
+        publisher: Discover Agriculture
+        releaseDate: 2025
+        summary: "Discover Agriculture, 3, 126."
+
+    Awards:
+      - title: "Patent: Efficient Seaweed Farming Data Management by Utilizing Blockchain and Smart Supply Chain Tracking System"
+        date: 2024
+        awarder: "Patent Application KR10-2024-0011399"
+        summary: ""
+
+      - title: "Patent: Methods for Selecting Spores from Laver Farm Devices"
+        date: 2019
+        awarder: "Patent KR102034354B1"
+        summary: ""
