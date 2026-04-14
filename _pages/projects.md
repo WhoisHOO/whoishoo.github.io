@@ -4,7 +4,7 @@ title: projects
 permalink: /projects/
 description: Systems I designed and built.
 nav: true
-nav_order: 2
+nav_order: 3
 toc:
   sidebar: left
 ---
