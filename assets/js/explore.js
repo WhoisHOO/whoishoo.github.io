@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
       label: "Projects",
       children: [
         {
-          label: "Ag Data Infrastructure",
-          children: ["DV", "TI", "SI", "Smart Contracts", "Backend API", "Frontend", "NLQ", "DID Auth", "Local Agent"],
+          label: "Data Infrastructure",
+          children: ["DEMETER", "NLQ/LLM", "Scalable Traceability", "SI", "TI", "DV", "Seaweed Blockchain", "Ag Machinery", "Carbon Markets"],
         },
         {
-          label: "AI Aquaculture",
-          children: ["YOLO", "SAM"],
+          label: "Applied AI",
+          children: ["AI Aquaculture", "Laver Spores", "Citrus CV", "Bio Modeling", "Food Engineering", "SmartAg"],
         },
       ],
     },
@@ -20,7 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
         { label: "Patents" },
         { label: "Presentations" },
         { label: "Lectures" },
-        { label: "Grants" },
+      ],
+    },
+    {
+      label: "Teaching",
+      children: [
+        { label: "Supervised Teaching" },
+        { label: "PUSH4IT" },
+        { label: "Mentoring" },
+        { label: "Blog" },
       ],
     },
     {
@@ -29,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { label: "UF Research" },
         { label: "MAFRA" },
         { label: "Billion21" },
-        { label: "Teaching" },
+        { label: "Global BioAg" },
+        { label: "Texas Tech" },
       ],
     },
     {
@@ -43,37 +52,51 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   var entries = [
-    { keywords: ["projects", "ag data infrastructure"], title: "DEMETER: Data Sharing and Verification Platform", desc: "Blockchain- and LLM-enabled platform for cross-system data exchange, origin verification, and traceable file history.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "dv"], title: "DV — Data Verification Module", desc: "SHA-256 fingerprint anchoring on-chain, provider identity binding via DID, Creative Commons license declaration.", link: "#dv", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "ti"], title: "TI — Transformation Integrity Module", desc: "Tracks file lineage through processing stages. Recursive graph traversal, PASS/FAIL integrity check.", link: "#ti", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "si"], title: "SI — Sharing Infrastructure Module", desc: "Access request workflow, on-chain transfer records, reuse evaluation with 7 CC license types.", link: "#si", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "nlq"], title: "Natural Language Query Interface", desc: "15 intents, deterministic keyword routing + Phi-3 LLM fallback via Ollama. 100% routing accuracy.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "smart contracts"], title: "Smart Contracts (Go Chaincode)", desc: "3 Go contracts with 19 exported functions: Dataset, Transform, Reuse.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "backend api"], title: "Backend API (Node.js / Express)", desc: "37 REST endpoints across 8 route modules.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "frontend"], title: "Frontend (Next.js / React)", desc: "7 pages built with Next.js 15 App Router, TypeScript, React Flow.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "did auth"], title: "DID Authentication", desc: "ECDSA P-256 key pair, Web Crypto API, challenge-response login.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ag data infrastructure", "local agent"], title: "Local File Agent", desc: "Auto-detects provenance type, registers files on-chain.", link: "#demeter", type: "project" },
-    { keywords: ["projects", "ai aquaculture"], title: "AI Aquaculture System", desc: "Computer vision for marine fish production. YOLO feeding analysis, SAM size estimation.", link: "#aquaculture", type: "project" },
-    { keywords: ["projects", "ai aquaculture", "yolo"], title: "YOLO — Fish Detection & Feeding Analysis", desc: "Population-level movement pattern analysis for olive and stone flounder.", link: "#aquaculture", type: "project" },
-    { keywords: ["projects", "ai aquaculture", "sam"], title: "SAM — Fish Size Estimation", desc: "Segment Anything Model for individual-level size estimation and growth monitoring.", link: "#aquaculture", type: "project" },
-    { keywords: ["publications", "papers"], title: "DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
-    { keywords: ["publications", "papers"], title: "Facilitating a Future Agricultural Data Ecosystem", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
-    { keywords: ["publications", "papers"], title: "Bridging carbon markets and agriculture", desc: "Cho, Y., et al. (2025). Discover Agriculture, 3, 126.", link: "#papers", type: "publication" },
-    { keywords: ["publications", "patents"], title: "Seaweed Farming Data Management via Blockchain", desc: "Patent Application KR10-2024-0011399, 2024.", link: "#patents", type: "publication" },
-    { keywords: ["publications", "patents"], title: "Methods for Selecting Spores from Laver Farm Devices", desc: "Patent KR102034354B1, 2019.", link: "#patents", type: "publication" },
-    { keywords: ["publications", "presentations"], title: "Conference Presentations", desc: "7 presentations at ASABE, CIGR, KSAM, and AI in Agriculture conferences (2023–2025).", link: "#presentations", type: "publication" },
-    { keywords: ["publications", "lectures"], title: "Invited Lectures & Seminars", desc: "10 invited talks at universities and government institutions in South Korea (2024–2025).", link: "#lectures", type: "publication" },
-    { keywords: ["publications", "grants"], title: "Grants & Awards", desc: "8 grants and fellowships from UF, MAFRA, CIGR (2022–2025).", link: "#grants", type: "publication" },
-    { keywords: ["experience", "uf research"], title: "Graduate Research Assistant — University of Florida", desc: "2022–2026. Data infrastructure, verification systems, backend services.", link: "#experience", type: "experience" },
-    { keywords: ["experience", "mafra"], title: "Researcher — Ministry of Agriculture, Food and Rural Affairs", desc: "2024–2026. Crop mechanization and digital agriculture.", link: "#experience", type: "experience" },
+    // Data Infrastructure
+    { keywords: ["projects", "data infrastructure", "demeter"], title: "DEMETER: Data Sharing and Verification Platform", desc: "General-purpose blockchain platform for cross-system data exchange, origin verification, and traceable file history.", link: "#demeter", type: "project" },
+    { keywords: ["projects", "data infrastructure", "nlq/llm"], title: "Natural Language Query Interface", desc: "Phi-3 LLM via Ollama. 15 intents, deterministic routing, 100% accuracy.", link: "#demeter", type: "project" },
+    { keywords: ["projects", "data infrastructure", "scalable traceability"], title: "Scalable Blockchain-Based Traceability", desc: "DV-TI applied to citrus drone imagery. Dynamic hashing ID, IPFS integration.", link: "#projects", type: "project" },
+    { keywords: ["projects", "data infrastructure", "si"], title: "SI — Source Integration", desc: "Governs how files move between organizations. Access workflow, reuse evaluation, license enforcement.", link: "#si", type: "project" },
+    { keywords: ["projects", "data infrastructure", "ti"], title: "TI — Transformation Integrity", desc: "Determines declared input and operation for transformed files without contacting producer.", link: "#ti", type: "project" },
+    { keywords: ["projects", "data infrastructure", "dv"], title: "DV — File Origin Verification", desc: "File origin verification and transfer tracing across multiple parties.", link: "#dv", type: "project" },
+    { keywords: ["projects", "data infrastructure", "seaweed blockchain"], title: "Blockchain-Based Seaweed Supply Chain Tracking", desc: "Blockchain data management for seaweed farming. Patent KR10-2024-0011399.", link: "#projects", type: "project" },
+    { keywords: ["projects", "data infrastructure", "ag machinery"], title: "Agricultural Machinery Data Analysis", desc: "Mechanization patterns US vs. South Korea. 3 papers in J. Biosystems Engineering.", link: "#projects", type: "project" },
+    { keywords: ["projects", "data infrastructure", "carbon markets"], title: "Carbon Markets & Agricultural Data Sharing", desc: "Why data sharing perspective is needed. Discover Agriculture, 2025.", link: "#projects", type: "project" },
+    // Applied AI
+    { keywords: ["projects", "applied ai", "ai aquaculture"], title: "AI Aquaculture System", desc: "YOLO feeding analysis, SAM size estimation for marine fish production.", link: "#aquaculture", type: "project" },
+    { keywords: ["projects", "applied ai", "laver spores"], title: "Laver Spore Selection System", desc: "AI-based automated spore selection for aquaculture. Patent KR102034354B1.", link: "#aquaculture", type: "project" },
+    { keywords: ["projects", "applied ai", "citrus cv"], title: "Citrus Tree Trunk Segmentation", desc: "CNN-based image segmentation for agricultural imagery. PyTorch.", link: "#projects", type: "project" },
+    { keywords: ["projects", "applied ai", "bio modeling"], title: "Biological Systems Modeling", desc: "3-course series: dynamic systems, agent-based modeling, advanced simulation. Certificate.", link: "#projects", type: "project" },
+    { keywords: ["projects", "applied ai", "food engineering"], title: "Food & Bioprocess Engineering", desc: "Unit process operations in agro/food industries. AI and data management.", link: "#projects", type: "project" },
+    { keywords: ["projects", "applied ai", "smartag"], title: "Precision Agriculture & SmartAg", desc: "GPS/GIS, remote sensing, UAV, IoT, ML for agricultural applications.", link: "#projects", type: "project" },
+    // Publications
+    { keywords: ["publications", "papers"], title: "DEMETER Platform Paper", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
+    { keywords: ["publications", "papers"], title: "DV — File Origin Verification Paper", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
+    { keywords: ["publications", "papers"], title: "TI — Transformation Integrity Paper", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
+    { keywords: ["publications", "papers"], title: "Cross-Sectoral Blockchain Review", desc: "Cho, Y., Yu, Z., & Ampatzidis, Y. Under review.", link: "#papers", type: "publication" },
+    { keywords: ["publications", "papers"], title: "Bridging Carbon Markets and Agriculture", desc: "Cho, Y., et al. (2025). Discover Agriculture, 3, 126.", link: "#papers", type: "publication" },
+    { keywords: ["publications", "patents"], title: "Seaweed Blockchain Supply Chain", desc: "Patent Application KR10-2024-0011399, 2024.", link: "#patents", type: "publication" },
+    { keywords: ["publications", "patents"], title: "Laver Spore Selection", desc: "Patent KR102034354B1, 2019.", link: "#patents", type: "publication" },
+    { keywords: ["publications", "presentations"], title: "Conference Presentations", desc: "7 presentations at ASABE, CIGR, KSAM, AI in Agriculture (2023–2025).", link: "#presentations", type: "publication" },
+    { keywords: ["publications", "lectures"], title: "Invited Lectures & Seminars", desc: "10 invited talks at universities and institutions in South Korea (2024–2025).", link: "#lectures", type: "publication" },
+    // Teaching
+    { keywords: ["teaching", "supervised teaching"], title: "Supervised Teaching", desc: "ABE 6933 course module (Dr. Kiker), AOM 5456 guest lecture (Dr. Yu).", link: "#teaching", type: "teaching" },
+    { keywords: ["teaching", "push4it"], title: "PUSH4IT Coach", desc: "Peer coaching program, UF OASIS (2025–2026).", link: "#teaching", type: "teaching" },
+    { keywords: ["teaching", "mentoring"], title: "Graduate Student Mentor", desc: "ABE Mentoring Program (2023–2024).", link: "#teaching", type: "teaching" },
+    { keywords: ["teaching", "blog"], title: "Online Developer Mentoring", desc: "HOOAI Blog. 790+ posts. Coding, career guidance, grad school prep.", link: "#teaching", type: "teaching" },
+    // Experience
+    { keywords: ["experience", "uf research"], title: "Graduate Research Assistant — UF", desc: "2022–2026. Data infrastructure, verification systems, DEMETER.", link: "#experience", type: "experience" },
+    { keywords: ["experience", "mafra"], title: "Researcher — MAFRA", desc: "2024–2026. Crop mechanization, digital agriculture.", link: "#experience", type: "experience" },
     { keywords: ["experience", "billion21"], title: "Researcher — Billion21", desc: "2019–2022. AI and computer vision for marine production.", link: "#experience", type: "experience" },
-    { keywords: ["experience", "teaching"], title: "Teaching & Mentoring", desc: "Mentor undergraduates. Support graduate-level courses.", link: "#experience", type: "experience" },
-    { keywords: ["education", "ph.d."], title: "Ph.D. — University of Florida", desc: "Agricultural and Biological Engineering. GPA: 3.95/4.0. 2022–2026.", link: "#education", type: "education" },
-    { keywords: ["education", "b.s."], title: "B.S. — Texas Tech University", desc: "Computer Science, Minor in Mathematics. GPA: 3.8/4.0. 2018–2022.", link: "#education", type: "education" },
+    { keywords: ["experience", "global bioag"], title: "Researcher — Global BioAg Linkages", desc: "2020–2021. AI deployment requirements for agricultural systems.", link: "#experience", type: "experience" },
+    { keywords: ["experience", "texas tech"], title: "Undergraduate Research Assistant — Texas Tech", desc: "2021–2022. Computer vision and data visualization.", link: "#experience", type: "experience" },
+    // Education
+    { keywords: ["education", "ph.d."], title: "Ph.D. — University of Florida", desc: "Agricultural and Biological Engineering. GPA: 3.95/4.0. Certificate in Biological Systems Modeling.", link: "#education", type: "education" },
+    { keywords: ["education", "b.s."], title: "B.S. — Texas Tech University", desc: "Computer Science, Minor in Mathematics. GPA: 3.8/4.0.", link: "#education", type: "education" },
     { keywords: ["education", "skills"], title: "Technical Skills", desc: "Python, Go, JavaScript, C++ · Node.js, Express · Hyperledger Fabric, Docker, AWS · YOLO, SAM, LLM.", link: "#skills", type: "education" },
   ];
 
-  var typeLabels = { project: "Project", publication: "Publication", experience: "Experience", education: "Education" };
+  var typeLabels = { project: "Project", publication: "Publication", teaching: "Teaching", experience: "Experience", education: "Education" };
 
   var topEl = document.getElementById("chip-top");
   var subEl = document.getElementById("chip-sub");

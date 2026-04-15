@@ -49,6 +49,14 @@ img { max-width: 100%; height: auto; display: block; }
   flex-direction: column;
 }
 
+.sidebar-photo {
+  margin-bottom: 0.8rem;
+}
+.sidebar-photo img {
+  width: 100%;
+  border-radius: 8px;
+}
+
 .sidebar-name h1 {
   font-size: 1rem;
   font-weight: 700;
@@ -272,6 +280,11 @@ td:first-child {
   transition: opacity 0.15s;
 }
 .img-row img:hover { opacity: 0.85; }
+.img-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
 .img-row-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -441,8 +454,7 @@ footer {
 
   main { padding: 0 1.5rem; }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo { order: -1; max-width: 140px; }
+  .sidebar-photo { max-width: 80px; }
   .img-row-3 { grid-template-columns: 1fr; }
   .entry-header { flex-direction: column; gap: 0; }
   td:first-child { width: auto; }
