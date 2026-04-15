@@ -82,6 +82,15 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text);
   text-decoration: none;
 }
+.sidebar nav a.nav-sub {
+  font-size: 0.72rem;
+  padding-left: 1.1rem;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+.sidebar nav a.nav-sub:hover {
+  opacity: 1;
+}
 
 /* ── Main ────────────────────────────────────────────────── */
 main {
@@ -133,6 +142,19 @@ li { margin-bottom: 0.3rem; }
 }
 
 /* ── Entries (experience, education) ─────────────────────── */
+.project-category {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed var(--border);
+}
+.project-category:first-of-type { margin-top: 0; }
+
 .entry { margin-bottom: 1.5rem; }
 .entry-header {
   display: flex;
