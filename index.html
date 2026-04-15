@@ -13,6 +13,9 @@
 
     <aside class="sidebar">
       <div class="sidebar-inner">
+        <div class="sidebar-photo">
+          <img src="assets/img/prof_pic.jpeg" alt="Younghoo Henry Cho">
+        </div>
         <div class="sidebar-name">
           <h1>Younghoo Henry Cho</h1>
           <p class="subtitle">Ph.D. Candidate<br>Agricultural &amp; Biological Engineering<br>University of Florida</p>
@@ -27,6 +30,7 @@
           <a href="#publications">Publications</a>
           <a href="#teaching">Teaching</a>
           <a href="#grants">Grants &amp; Awards</a>
+          <a href="#community">Community</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -36,13 +40,12 @@
 
       <!-- About -->
       <section id="about">
-        <div class="about-grid">
-          <div class="about-text">
+        <div class="about-content">
             <h2>About</h2>
-            <p>I design and build infrastructure systems for cross-organizational data exchange in agriculture &mdash; platforms that make shared data verifiable, traceable, and trustworthy without a central authority.</p>
-            <p>My primary project, <a href="#demeter">DEMETER</a>, is a full-stack blockchain-based platform (Hyperledger Fabric + Go + Node.js + Next.js) that records file provenance across organizations with smart contracts, REST APIs, a natural language interface, and DID-based authentication.</p>
-            <p>I also built <a href="#aquaculture">AI-based computer vision systems</a> for marine aquaculture, automating feeding decisions and size estimation using YOLO, SAM, and OpenCV.</p>
-            <p>I am looking for infrastructure engineering roles where I can build systems that solve real data problems at scale.</p>
+            <p>I come from a family of educators and farmers. My grandfather, my mother, and my extended family have spent their careers in education. Our family also runs a farm and a smart agriculture and aquaculture IT company. Growing up between these two worlds, teaching and feeding, I learned early that the work worth doing is work that helps other people.</p>
+            <p>My father, a first-generation computer engineer with a Ph.D. in environmental engineering, showed me early how technology applies to real-world systems. Through his work leading a smart agriculture and aquaculture IT company, I saw how AI was beginning to change food production. That pulled me from a general curiosity about the brain into a specific one: how computers learn from data. I studied computer science, built <a href="#aquaculture">vision systems that automate feeding and growth monitoring</a> in fish farms, and kept asking the same question, if the AI works, what happens to the data it depends on?</p>
+            <p>The answer led me to infrastructure. Agricultural data crosses farms, labs, advisors, and regulators, but once a file leaves one system, its history is lost. No one downstream can confirm where it came from or what happened to it. I spent the next four years building <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls, and the independent research behind each layer: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
+            <p>Eleven years in, the thread has not changed. I build systems that solve real data problems, and now that the skills are ready, I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it. I am grateful to every advisor, mentor, and community that made this path possible.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
               <div class="chip-group" id="chip-sub"></div>
@@ -59,10 +62,6 @@
               <tr><td>Data &amp; Cloud</td><td>AWS, Azure, CouchDB, Firebase</td></tr>
               <tr><td>Frontend</td><td>Next.js, React, TypeScript</td></tr>
             </table>
-          </div>
-          <div class="about-photo">
-            <img src="assets/img/prof_pic.jpeg" alt="Younghoo Henry Cho">
-          </div>
         </div>
       </section>
 
@@ -139,6 +138,15 @@
           <p class="org">Texas Tech University</p>
           <p>Supported research projects in computer vision and data visualization.</p>
         </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Police Officer (Auxiliary)</h3>
+            <span class="date">2018 &ndash; 2019</span>
+          </div>
+          <p class="org">Gyeonggi Nambu Provincial Police Agency, South Korea</p>
+          <p>Personnel and training administration. Recognized at the 74th National Police Day ceremony.</p>
+        </div>
       </section>
 
       <!-- Projects -->
@@ -148,105 +156,176 @@
         <h3 class="project-category">Data Infrastructure</h3>
 
         <details id="demeter" class="project" open>
-          <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">2022&ndash;2026 &middot; Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</span></summary>
+          <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</span></summary>
           <div class="project-body">
-            <p>A general-purpose data infrastructure platform that lets independent organizations share files while keeping a verifiable, traceable history on a shared blockchain. Files stay on each organization's local system. Only fingerprints, provenance declarations, and access decisions are recorded on-chain.</p>
-            <p>I designed and built the full system: chaincode contracts, backend API, off-chain data stores, natural language interface, web frontend, local agent, and deployment pipeline. The working prototype supports 7 operations and trace queries over 8,000 linked records within 5 seconds.</p>
-            <h4>Architecture</h4>
+
+            <h4>Why</h4>
+            <p>Agricultural data has significant value for farm decisions, environmental assessment, and regulatory compliance. But sharing data across independent organizations rarely happens, because no organization can confirm where an outside file came from. A central database would solve this, but no single organization has the infrastructure to collect and maintain all agricultural data. Files get sent directly, and the moment a file leaves one system, its history is lost.</p>
+
+            <h4>What</h4>
+            <p>DEMETER records file history on a shared blockchain while files remain on each organization's local system. Three layers handle what is lost when files cross boundaries: <a href="#dv">where a file came from</a> (origin), <a href="#ti">how it was changed</a> (transformation), and <a href="#si">how it was shared</a> (integration). A natural language interface lets users query and write records through plain-text commands.</p>
             <div class="img-row">
-              <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network architecture"></a><figcaption>Hyperledger Fabric network: 4 organizations with shared ledger</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>Architecture: LLM interface, Origin/Transformation/Integration on-chain, Tracing, files remain off-chain</figcaption></figure>
             </div>
-            <h4>Screenshots</h4>
-            <div class="img-row img-row-3">
-              <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>System flow: LLM interface, Origin/Transformation/Integration modules, Tracing</figcaption></figure>
-              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="DEMETER evaluation results"></a><figcaption>Evaluation: 5 claims, all PASS across 7 operations</figcaption></figure>
-              <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="DEMETER provenance trace"></a><figcaption>Provenance trace: 19-node graph with recursive integrity check</figcaption></figure>
+
+            <h4>How</h4>
+            <p>I designed and built the full system end-to-end.</p>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network"></a><figcaption>Hyperledger Fabric network: 4 organizations, shared ledger, no central authority</figcaption></figure>
             </div>
-            <h4>Implementation</h4>
             <table>
-              <tr><td>Chaincode</td><td>3 contracts, 19 exported functions (Go)</td></tr>
+              <tr><td>Chaincode</td><td>3 Go contracts, 19 exported functions (Dataset, Transform, Reuse)</td></tr>
               <tr><td>Backend API</td><td>37 REST endpoints across 8 route modules (Node.js/Express)</td></tr>
-              <tr><td>Frontend</td><td>7 pages (Next.js 15 App Router, TypeScript, React Flow)</td></tr>
-              <tr><td>NLQ</td><td>15 intents, 3 execution modes, 74-case eval suite (100% accuracy)</td></tr>
-              <tr><td>DID Auth</td><td>ECDSA P-256, Web Crypto API, challenge-response</td></tr>
-              <tr><td>Local Agent</td><td>Auto-detects provenance, registers files on-chain</td></tr>
-              <tr><td>Deployment</td><td>Hyperledger Fabric via Docker Compose</td></tr>
+              <tr><td>Frontend</td><td>7 pages (Next.js 15, TypeScript, React Flow for provenance graphs)</td></tr>
+              <tr><td>NLQ</td><td>15 intents, deterministic routing + Phi-3 LLM fallback via Ollama</td></tr>
+              <tr><td>DID Auth</td><td>ECDSA P-256 key pair, Web Crypto API, challenge-response</td></tr>
+              <tr><td>Local Agent</td><td>Watches a folder, auto-detects provenance type, registers on-chain</td></tr>
+              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Docker Compose, Raft ordering</td></tr>
             </table>
-            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</p>
+
+            <h4>Testing</h4>
+            <p>5 claims tested across 4 independently operated systems. All requirements (R1&ndash;R6) confirmed under functional and failure conditions.</p>
+            <div class="img-row img-row-2">
+              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>All 5 claims PASS: origin inspectable, transformation traceable, integration decomposable, unverified source flagged, NLQ zero false writes</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="Provenance trace"></a><figcaption>19-node trace across 5 depths in 0.84s. Queries under 5s up to 8,000 linked records</figcaption></figure>
+            </div>
+
+            <h4>Vision</h4>
+            <p>DEMETER is a general-purpose bottom layer. Current applications in progress: soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes pagination-based tracing beyond 8,000 records and AI agent interfaces for automated verification workflows.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">2025 &middot; Phi-3 &middot; Ollama &middot; Node.js</span></summary>
+          <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">Phi-3 &middot; Ollama &middot; Node.js</span></summary>
           <div class="project-body">
-            <p>Agricultural data sharing does not require deep reasoning &mdash; it requires accurate intent classification and routing. 15 intents with deterministic keyword routing and Phi-3 (3.8B) LLM fallback via Ollama. Running locally with no external API dependency. 74-case evaluation suite with 100% routing accuracy. Write confirmation gate prevents unintended ledger modifications.</p>
+            <h4>Why</h4>
+            <p>Users interacting with a blockchain-based data system should not need to learn API endpoints or command syntax. But agricultural data sharing does not require deep reasoning from an LLM, it requires accurate intent classification and correct routing to the right operation.</p>
+            <h4>What</h4>
+            <p>A natural language interface that classifies user input into 15 intents and routes each to the correct DEMETER operation. Deterministic keyword matching handles known patterns; Phi-3 (3.8B) via Ollama handles the rest, running locally with no external API dependency.</p>
+            <h4>How</h4>
+            <p>Keyword router checks input against predefined patterns first. If no match, the query falls through to Phi-3 for intent classification. A write confirmation gate prevents unintended ledger modifications, any operation that writes to the blockchain requires explicit user approval.</p>
+            <h4>Testing</h4>
+            <p>74-case evaluation suite covering all 15 intents and edge cases. 100% routing accuracy. Zero false writes confirmed.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">2024 &middot; Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
+          <summary><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
           <div class="project-body">
-            <p>Applied the DV-TI infrastructure to citrus drone imagery (TIFF) from Immokalee, FL. Developed a dynamic hashing ID mechanism that updates when data is transformed (e.g., NDVI analysis, yield estimation), ensuring traceability without redundant on-chain storage. Tested with smart contract-based logging for uploads, transformations, downloads, and access events.</p>
-            <div class="img-row img-row-3">
-              <figure class="fig"><a href="assets/img/scale-1.png" class="lightbox-link"><img src="assets/img/scale-1.png" alt="Data branching and transformation"></a><figcaption>Blockchain-based data branching and transformation tracing</figcaption></figure>
-              <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="IPFS storage and traceability"></a><figcaption>Blockchain-IPFS integration for citrus drone imagery</figcaption></figure>
-              <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed Common Ag-Blockchain API framework</figcaption></figure>
+            <h4>Why</h4>
+            <p>Existing blockchain frameworks store static data references (e.g., IPFS hashes) on-chain. Every transformation generates a new hash, fragmenting the traceability chain and increasing storage redundancy. Agricultural image files, such as drone TIFF and satellite imagery, are large and frequently transformed through NDVI analysis, yield estimation, and crop growth monitoring. Current models cannot handle this volume without excessive on-chain storage.</p>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/scale-1.png" class="lightbox-link"><img src="assets/img/scale-1.png" alt="Data branching and transformation"></a><figcaption>The problem: agricultural data branches and transforms across farmers, storage, transportation, and consumers</figcaption></figure>
+            </div>
+
+            <h4>What</h4>
+            <p>A scalable traceability framework that applies DV-TI infrastructure to citrus drone imagery from Immokalee, FL. Instead of logging every transformation as a new on-chain entry, a dynamic hashing ID mechanism updates when data is transformed, maintaining continuous traceability while reducing storage overhead. IPFS handles large file storage off-chain; the blockchain stores only IDs and metadata.</p>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="Blockchain-IPFS system"></a><figcaption>System architecture: blockchain ledgers + IPFS for citrus drone imagery with NDVI, disease monitoring, irrigation, and crop growth data</figcaption></figure>
+            </div>
+
+            <h4>How</h4>
+            <p>Smart contract logs every data interaction: uploads, access requests, transformations, downloads, and usage events. Each interaction generates a unique hashing ID that optimizes transaction speed and prevents redundant on-chain storage. Tested using citrus farm imagery applying predefined criteria: data type, size, timestamp, and geolocation.</p>
+
+            <h4>Testing</h4>
+            <p>All user activities successfully recorded on-chain with timestamps, user IDs, and access roles converted into secure hash values. The hashing ID update mechanism significantly reduced redundant storage compared to conventional blockchain-IPFS models, confirming the system handles real-world scalability demands while preserving data integrity.</p>
+
+            <h4>Vision</h4>
+            <p>A common Ag-Blockchain API enabling data transformation and interoperability across farm management, food traceability, and sustainability applications. Zero-Knowledge Proofs (ZKP) to verify and track off-chain data modifications while maintaining privacy.</p>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed framework: Common API connecting blockchain operator, auditors, Hyperledger Fabric, Node.js server, and end users</figcaption></figure>
             </div>
           </div>
         </details>
 
         <details id="si" class="project">
-          <summary><span class="project-num">4</span> SI &mdash; Source Integration</summary>
+          <summary><span class="project-num">4</span> SI, Source Integration <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
           <div class="project-body">
-            <p>Governs how files move between organizations. Access request workflow (Request &rarr; Approve &rarr; Fulfill &rarr; Download), on-chain transfer records, reuse evaluation with 7 Creative Commons license types, expiration enforcement, and decision chain tracing.</p>
-            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
+            <h4>Why</h4>
+            <p>When multiple files from different organizations are combined into a single output, the downstream party cannot determine which source files contributed or under what license conditions they were shared.</p>
+            <h4>What</h4>
+            <p>An infrastructure that governs how files move between organizations and how combined outputs relate back to their sources. Records every access request, approval, transfer, and reuse decision on-chain.</p>
+            <h4>How</h4>
+            <p>Access request workflow: Request, Approve, Fulfill, Download. Reuse evaluation checks purpose against 7 Creative Commons license types. Expiration enforcement and derivative restrictions. Decision chain tracing audits who approved what and when.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
           </div>
         </details>
 
         <details id="ti" class="project">
-          <summary><span class="project-num">5</span> TI &mdash; Transformation Integrity</summary>
+          <summary><span class="project-num">5</span> TI, Transformation Integrity <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
-            <p>After a file is produced from a registered input and sent to a downstream party, the downstream party can determine which registered input was used and what operation was declared &mdash; without contacting the producing environment. Prototype validated with a two-stage chain returning resolved, resolved with gap, or no declaration.</p>
-            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
+            <h4>Why</h4>
+            <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The downstream party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
+            <h4>What</h4>
+            <p>An infrastructure that lets a downstream party determine the declared registered input and declared operation for a transformed file, using only the shared ledger, without contacting the producing environment.</p>
+            <h4>How</h4>
+            <p>The processor writes a declaration to the ledger linking input File ID to output File ID with an operation label. Declarations referencing unregistered inputs are rejected. Inspection follows the chain backward and returns: resolved, resolved with gap, or no declaration.</p>
+            <h4>Testing</h4>
+            <p>Validated with a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). Downstream party retrieves full chain in one query. Declaration-time validation confirmed: unregistered inputs rejected.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
           </div>
         </details>
 
         <details id="dv" class="project">
-          <summary><span class="project-num">6</span> DV &mdash; File Origin Verification</summary>
+          <summary><span class="project-num">6</span> DV, File Origin Verification <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
-            <p>After a file has been sent through multiple parties, a downstream receiver can determine whether the file has the same content as the version recorded before the first transfer, and reconstruct the sequence of senders and receivers &mdash; using only a shared external record, without contacting any earlier computer.</p>
-            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
+            <h4>Why</h4>
+            <p>When a farmer sends a file to an advisor, and the advisor sends it to a certifier, the certifier has no way to check whether the file matches what the farmer originally recorded. The farmer's computer may be off. No shared record connects them.</p>
+            <h4>What</h4>
+            <p>An infrastructure that lets any downstream receiver verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
+            <h4>How</h4>
+            <p>SHA-256 fingerprint computed at registration and stored on the shared ledger. Each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares against the ledger. Transfer tracing follows linked records backward to the origin.</p>
+            <h4>Testing</h4>
+            <p>Verified across multi-hop transfers. Modified files correctly fail verification (different fingerprint, no matching record). Tracing reconstructs the full path regardless of whether intermediate parties are online.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-dv-infrastructure">github.com/WhoisHOO/demeter-dv-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing</summary>
+          <summary><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing <span class="meta-inline">Agriculture &middot; Healthcare &middot; Finance</span></summary>
           <div class="project-body">
-            <p>Analyzed blockchain applications in data sharing across agriculture, healthcare, and finance. Established the conceptual foundation for DV, TI, and SI as the three necessary layers for verifiable agricultural data exchange.</p>
+            <h4>Why</h4>
+            <p>Before designing the infrastructure, it was necessary to understand what has been done across sectors and what gaps remain. Agriculture is not the only field where data crosses organizational boundaries.</p>
+            <h4>What</h4>
+            <p>A cross-sectoral review analyzing blockchain applications in data sharing across agriculture, healthcare, and finance. Identified what each sector has implemented (origin, transformation, integration) and where gaps exist.</p>
+            <h4>Finding</h4>
+            <p>Agriculture had partial origin verification but no transformation or integration traceability. Healthcare had implemented origin. Finance had implemented origin and transformation. No sector had all three. This review established DV, TI, and SI as the three necessary layers.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">2024 &middot; Patent</span></summary>
+          <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">Blockchain &middot; Smart Contract</span></summary>
           <div class="project-body">
-            <p>Blockchain-based data management system for seaweed farming operations with smart supply chain tracking. Applied distributed ledger technology to aquaculture supply chain traceability, from production through distribution.</p>
+            <h4>Why</h4>
+            <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage generates data, from spore planting completeness to harvest yield, but no shared system connects producers, processors, and distributors. Quality assurance and regulatory compliance depend on traceability that does not exist once products leave one party's system.</p>
+            <h4>What</h4>
+            <p>A blockchain-based data management system for seaweed farming operations with smart supply chain tracking. Records production data, processing events, and distribution transfers on a shared ledger so that any party downstream can trace the full history of a seaweed product from spore cultivation through final delivery.</p>
+            <h4>Context</h4>
+            <p>This project builds on domain knowledge from the laver spore selection patent (KR102034354B1), which established automated image-based quality assessment at the cultivation stage. The supply chain system extends that capability by connecting cultivation data to every subsequent stage through blockchain records.</p>
             <p class="sourced-by">Patent Application KR10-2024-0011399, 2024.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">9</span> Agricultural Machinery Data Analysis <span class="meta-inline">2024&ndash;2025 &middot; MAFRA</span></summary>
+          <summary><span class="project-num">9</span> Agricultural Machinery Data Analysis <span class="meta-inline">Data Analysis &middot; Comparative Study</span></summary>
           <div class="project-body">
-            <p>Comparative studies of mechanization and cultivation patterns between the US and South Korea for potato, sweet potato, and Chinese cabbage. Understanding the data characteristics of modern agricultural machinery is essential for optimizing data infrastructure &mdash; you need to know what the data looks like before you can build systems to share and verify it.</p>
+            <h4>Why</h4>
+            <p>To build data infrastructure for agriculture, you need to understand what the data looks like. Modern agricultural machinery generates field data with specific characteristics, formats, and constraints that vary by crop and region.</p>
+            <h4>What</h4>
+            <p>Comparative studies of mechanization and cultivation patterns between the US and South Korea for potato, sweet potato, and Chinese cabbage. Analyzed how machinery data is produced, structured, and used in practice across different farming systems.</p>
             <p class="sourced-by">Sourced by: Kim, J.H., Cho, Y., et al. (2024&ndash;2025). <em>Journal of Biosystems Engineering</em>. 3 papers.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">10</span> Carbon Markets &amp; Agricultural Data Sharing</summary>
+          <summary><span class="project-num">10</span> Carbon Markets &amp; Agricultural Data Sharing <span class="meta-inline">Stakeholder Analysis &middot; Policy</span></summary>
           <div class="project-body">
-            <p>Established why a data sharing perspective is necessary in agriculture: downstream decisions (carbon credits, insurance indemnity, compliance) depend on verifiable data that crosses organizational boundaries.</p>
+            <h4>Why</h4>
+            <p>Carbon credits, insurance indemnity, and compliance decisions all depend on data that crosses organizational boundaries. If the downstream party cannot verify where the data came from, the decision rests on unverifiable claims.</p>
+            <h4>What</h4>
+            <p>A comparative study of stakeholder engagement in carbon markets between South Korea and the United States. Established why a data sharing perspective is necessary in agriculture and where verifiable infrastructure is missing.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). <em>Discover Agriculture</em>, 3, 126.</p>
           </div>
         </details>
@@ -255,9 +334,9 @@
           <summary>Ongoing DEMETER Applications <span class="meta-inline">In Progress</span></summary>
           <div class="project-body">
             <ul>
-              <li><strong>Soil Spectrum &amp; Soil Mapping</strong> &mdash; Cross-organizational verification and sharing of soil spectrum and mapping data</li>
-              <li><strong>Fresh Food to Waste Management</strong> &mdash; Supply chain data traceability from production to waste</li>
-              <li><strong>Smart Aquaculture &amp; Edge Computing</strong> &mdash; Inland fishery systems with perception, edge computing, and networked data sharing</li>
+              <li><strong>Soil Spectrum &amp; Soil Mapping</strong>, cross-organizational verification and sharing of soil spectrum and mapping data</li>
+              <li><strong>Fresh Food to Waste Management</strong>, supply chain data traceability from production to waste</li>
+              <li><strong>Smart Aquaculture &amp; Edge Computing</strong>, inland fishery systems with perception, edge computing, and networked data sharing</li>
             </ul>
           </div>
         </details>
@@ -265,50 +344,82 @@
         <h3 class="project-category">Applied AI &amp; Data</h3>
 
         <details id="aquaculture" class="project">
-          <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">2019&ndash;2022 &middot; Billion21 &middot; YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
+          <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
           <div class="project-body">
-            <p>Computer vision systems for marine fish production through automated, species-specific feeding optimization for olive flounder and stone flounder.</p>
+            <h4>Why</h4>
+            <p>Marine fish farms rely on manual observation for feeding decisions and growth assessment. This is labor-intensive, inconsistent, and cannot scale across large production environments with multiple species.</p>
+            <h4>What</h4>
+            <p>Computer vision systems for species-specific feeding optimization and growth monitoring for olive flounder and stone flounder in real production environments.</p>
+            <h4>How</h4>
             <ul>
-              <li><strong>YOLO</strong> for whole-population movement pattern analysis &mdash; detecting group feeding behavior and activity levels</li>
-              <li><strong>SAM</strong> for individual-level fish size estimation and growth monitoring</li>
-              <li>Applied to real production environments; contributed to product development and led to a patent</li>
+              <li><strong>YOLO</strong> for whole-population movement pattern analysis, detecting group feeding behavior and activity levels to automate feeding decisions</li>
+              <li><strong>SAM</strong> for individual-level fish size estimation and growth monitoring through image segmentation</li>
             </ul>
+            <h4>Outcome</h4>
+            <p>Deployed in real production environments. Contributed to product development and led to a patent.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">2</span> Laver Spore Selection System <span class="meta-inline">2019 &middot; Patent</span></summary>
+          <summary><span class="project-num">2</span> Laver Spore Selection System <span class="meta-inline">Computer Vision &middot; Machine Learning &middot; Microscopy</span></summary>
           <div class="project-body">
-            <p>AI-based methods for automated selection of spores from laver farm devices. Applied computer vision and image processing to optimize spore quality assessment in aquaculture production.</p>
+            <h4>Why</h4>
+            <p>In Korean laver farming, spores are cultivated in water tanks and implanted onto nets wrapped around rotating frames. Verifying whether enough spores have attached to each net section determines harvest readiness. This was done entirely by hand and eye, limiting efficiency and consistency across large-scale operations.</p>
+
+            <h4>What</h4>
+            <p>An automated spore sorting system that uses a camera device (biological microscope with mercury lamp) mounted on the harvesting apparatus to photograph spores. Images are transmitted to a central control terminal that measures spore density and determines planting completeness. Above threshold: selected for harvest. Below: re-cultivated.</p>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/patent1-1.png" class="lightbox-link"><img src="assets/img/patent1-1.png" alt="Laver harvesting apparatus 3D view"></a><figcaption>Harvesting apparatus: water tank (100), rotating frame with net (10, 20), imaging device (30), shells with spores (1)</figcaption></figure>
+            </div>
+
+            <h4>How</h4>
+            <div class="img-row img-row-2">
+              <figure class="fig"><a href="assets/img/patent1-3.png" class="lightbox-link"><img src="assets/img/patent1-3.png" alt="System architecture"></a><figcaption>System architecture: Harvesting device (100) connects to imaging device (30) with three modules, camera (32), wireless communication (34), and controller (36), which transmits to the central management center (200) for analysis</figcaption></figure>
+              <figure class="fig"><a href="assets/img/patent1-4.png" class="lightbox-link"><img src="assets/img/patent1-4.png" alt="Process flowchart"></a><figcaption>Selection flowchart: S100 Rotate frame → S110 Harvest spores from shells → S120 Photograph spores with imaging device → S130 Transmit image to control center → S140 Spore density above threshold? If yes → S150 Select net section for harvest. If no → return to S100 and re-cultivate</figcaption></figure>
+            </div>
+            <p>The control center database accumulates image data of completed plantings and builds a machine learning model from the accumulated data, automating verification that was previously manual.</p>
+
             <p class="sourced-by">Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">3</span> Citrus Tree Trunk Segmentation <span class="meta-inline">2023 &middot; PyTorch &middot; Deep Learning</span></summary>
+          <summary><span class="project-num">3</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
           <div class="project-body">
-            <p>Image segmentation of citrus tree trunks using CNNs. Implemented end-to-end segmentation pipelines for agricultural imagery as part of engineering applications of computer vision and deep learning (ABE 6933).</p>
+            <h4>Why</h4>
+            <p>Automated identification of tree trunks in citrus groves supports precision spraying, canopy management, and yield estimation, reducing manual field assessment.</p>
+            <h4>What</h4>
+            <p>CNN-based image segmentation pipeline for citrus tree trunks. End-to-end implementation from data preparation through model training and inference using PyTorch (ABE 6933).</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">4</span> Biological Systems Modeling <span class="meta-inline">2023&ndash;2024 &middot; Python &middot; NetLogo &middot; Java</span></summary>
+          <summary><span class="project-num">4</span> Biological Systems Modeling <span class="meta-inline">Python &middot; NetLogo &middot; Java &middot; Agent-Based</span></summary>
           <div class="project-body">
-            <p>Three-course series (ABE 5643C &rarr; ABE 6649C &rarr; ABE 6933) covering dynamic systems modeling, agent-based modeling, and advanced simulation of biological and environmental systems. Predator-prey dynamics, crop growth, ecological processes. Certificate in Biological Systems Modeling.</p>
+            <h4>Why</h4>
+            <p>Understanding how biological and environmental systems behave over time is foundational for building data infrastructure that serves those systems. Models reveal what data matters and how it changes.</p>
+            <h4>What</h4>
+            <p>Three-course series (ABE 5643C, ABE 6649C, ABE 6933) covering dynamic systems modeling, agent-based modeling, and advanced simulation. Built computational models of predator-prey dynamics, crop growth, and ecological processes. Certificate in Biological Systems Modeling.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">5</span> Food &amp; Bioprocess Engineering <span class="meta-inline">2025 &middot; ABE 5815C</span></summary>
+          <summary><span class="project-num">5</span> Food &amp; Bioprocess Engineering <span class="meta-inline">Process Design &middot; Data Management</span></summary>
           <div class="project-body">
-            <p>Engineering design of unit process operations in agro/food and biological industries &mdash; sterilization, drying, evaporation, fermentation. AI and data management applied to food processing systems.</p>
+            <h4>Why</h4>
+            <p>Food processing generates data at every stage, from sterilization temperatures to fermentation rates. Understanding these processes is necessary to design data infrastructure that captures what matters in food supply chains.</p>
+            <h4>What</h4>
+            <p>Engineering design of unit process operations in agro/food, pharmaceutical, and biological industries: sterilization, pasteurization, drying, evaporation, fermentation, and distillation. Connects AI and data management to physical food processing systems.</p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">6</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">2024 &middot; AOM 5435 &middot; AOM 5456</span></summary>
+          <summary><span class="project-num">6</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">GPS/GIS &middot; UAV &middot; IoT &middot; ML</span></summary>
           <div class="project-body">
-            <p>Advanced precision agriculture: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for agricultural applications.</p>
+            <h4>Why</h4>
+            <p>Precision agriculture systems generate high-volume field data from GPS, sensors, drones, and IoT devices. Knowing how this data is produced and used is essential for building infrastructure that can handle it.</p>
+            <h4>What</h4>
+            <p>Advanced precision agriculture methods: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for real agricultural applications.</p>
           </div>
         </details>
       </section>
@@ -411,6 +522,7 @@
           <p class="org"><a href="https://whoishoo.tistory.com/">HOOAI Blog</a></p>
           <p>Technical blog with 790+ posts covering Python, C/C++, AI, blockchain, and algorithms. Mentoring students on graduate school preparation, career guidance, and coding interview prep.</p>
         </div>
+
       </section>
 
       <!-- Grants & Awards -->
@@ -428,6 +540,31 @@
         </ul>
       </section>
 
+      <!-- Community -->
+      <section id="community">
+        <h2>Community</h2>
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Charitable Giving</h3>
+            <span class="date">2024 &ndash; Present</span>
+          </div>
+          <p class="org">via <a href="https://together.kakao.com/">Kakao Together</a></p>
+          <ul class="pub-list">
+            <li><a href="https://together.kakao.com/fundraisings/132294/story">A warm meal for youth preparing for tomorrow</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/125446/story">2025 wildfire damage emergency relief</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/123947/story">A world where anyone can dream</a> (Holt Social Welfare Center)</li>
+            <li><a href="https://together.kakao.com/fundraisings/122606/story">Delivering meals to children at risk of food insecurity</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/116812/story">Kimchi for single-parent families</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/112821/story">School supplies for abused children</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/112268/story">Stepping stone for youth aging out of foster care</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/112349/story">Warmth for a child's first winter without a parent</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/111018/story">Supporting a young person in inadequate housing</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/108817/story">Adding dreams for youth aging out of foster care</a> (Angels Haven)</li>
+            <li><a href="https://together.kakao.com/fundraisings/103233/story">Menstrual product access for schools</a></li>
+            <li><a href="https://together.kakao.com/fundraisings/97829/story">Light the spark of hope for children</a></li>
+          </ul>
+        </div>
+      </section>
 
       <!-- Contact -->
       <section id="contact">
