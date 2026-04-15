@@ -147,134 +147,170 @@
 
         <h3 class="project-category">Data Infrastructure</h3>
 
-        <article id="demeter" class="project">
-          <h3><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform</h3>
-          <p class="meta">2022 &ndash; 2026 &middot; Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</p>
-          <p>A general-purpose data infrastructure platform that lets independent organizations share files while keeping a verifiable, traceable history on a shared blockchain. Files stay on each organization's local system. Only fingerprints, provenance declarations, and access decisions are recorded on-chain.</p>
-          <p>I designed and built the full system: chaincode contracts, backend API, off-chain data stores, natural language interface, web frontend, local agent, and deployment pipeline. The working prototype supports 7 operations and trace queries over 8,000 linked records within 5 seconds.</p>
-          <h4>Architecture</h4>
-          <div class="img-row">
-            <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network architecture"></a><figcaption>Hyperledger Fabric network: 4 organizations with shared ledger</figcaption></figure>
+        <details id="demeter" class="project" open>
+          <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">2022&ndash;2026 &middot; Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</span></summary>
+          <div class="project-body">
+            <p>A general-purpose data infrastructure platform that lets independent organizations share files while keeping a verifiable, traceable history on a shared blockchain. Files stay on each organization's local system. Only fingerprints, provenance declarations, and access decisions are recorded on-chain.</p>
+            <p>I designed and built the full system: chaincode contracts, backend API, off-chain data stores, natural language interface, web frontend, local agent, and deployment pipeline. The working prototype supports 7 operations and trace queries over 8,000 linked records within 5 seconds.</p>
+            <h4>Architecture</h4>
+            <div class="img-row">
+              <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network architecture"></a><figcaption>Hyperledger Fabric network: 4 organizations with shared ledger</figcaption></figure>
+            </div>
+            <h4>Screenshots</h4>
+            <div class="img-row img-row-3">
+              <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>System flow: LLM interface, Origin/Transformation/Integration modules, Tracing</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="DEMETER evaluation results"></a><figcaption>Evaluation: 5 claims, all PASS across 7 operations</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="DEMETER provenance trace"></a><figcaption>Provenance trace: 19-node graph with recursive integrity check</figcaption></figure>
+            </div>
+            <h4>Implementation</h4>
+            <table>
+              <tr><td>Chaincode</td><td>3 contracts, 19 exported functions (Go)</td></tr>
+              <tr><td>Backend API</td><td>37 REST endpoints across 8 route modules (Node.js/Express)</td></tr>
+              <tr><td>Frontend</td><td>7 pages (Next.js 15 App Router, TypeScript, React Flow)</td></tr>
+              <tr><td>NLQ</td><td>15 intents, 3 execution modes, 74-case eval suite (100% accuracy)</td></tr>
+              <tr><td>DID Auth</td><td>ECDSA P-256, Web Crypto API, challenge-response</td></tr>
+              <tr><td>Local Agent</td><td>Auto-detects provenance, registers files on-chain</td></tr>
+              <tr><td>Deployment</td><td>Hyperledger Fabric via Docker Compose</td></tr>
+            </table>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</p>
           </div>
-          <h4>Screenshots</h4>
-          <div class="img-row img-row-3">
-            <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>System flow: LLM interface, Origin/Transformation/Integration modules, Tracing</figcaption></figure>
-            <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="DEMETER evaluation results"></a><figcaption>Evaluation: 5 claims, all PASS across 7 operations</figcaption></figure>
-            <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="DEMETER provenance trace"></a><figcaption>Provenance trace: 19-node graph with recursive integrity check</figcaption></figure>
+        </details>
+
+        <details class="project">
+          <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">2025 &middot; Phi-3 &middot; Ollama &middot; Node.js</span></summary>
+          <div class="project-body">
+            <p>Agricultural data sharing does not require deep reasoning &mdash; it requires accurate intent classification and routing. 15 intents with deterministic keyword routing and Phi-3 (3.8B) LLM fallback via Ollama. Running locally with no external API dependency. 74-case evaluation suite with 100% routing accuracy. Write confirmation gate prevents unintended ledger modifications.</p>
           </div>
-          <h4>Implementation</h4>
-          <table>
-            <tr><td>Chaincode</td><td>3 contracts, 19 exported functions (Go)</td></tr>
-            <tr><td>Backend API</td><td>37 REST endpoints across 8 route modules (Node.js/Express)</td></tr>
-            <tr><td>Frontend</td><td>7 pages (Next.js 15 App Router, TypeScript, React Flow)</td></tr>
-            <tr><td>NLQ</td><td>15 intents, 3 execution modes, 74-case eval suite (100% accuracy)</td></tr>
-            <tr><td>DID Auth</td><td>ECDSA P-256, Web Crypto API, challenge-response</td></tr>
-            <tr><td>Local Agent</td><td>Auto-detects provenance, registers files on-chain</td></tr>
-            <tr><td>Deployment</td><td>Hyperledger Fabric via Docker Compose</td></tr>
-          </table>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</p>
-        </article>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">2</span> Natural Language Query Interface</h3>
-          <p class="meta">2025 &middot; Phi-3 &middot; Ollama &middot; Node.js</p>
-          <p>Agricultural data sharing does not require deep reasoning &mdash; it requires accurate intent classification and routing. 15 intents with deterministic keyword routing and Phi-3 (3.8B) LLM fallback via Ollama. Running locally with no external API dependency. 74-case evaluation suite with 100% routing accuracy. Write confirmation gate prevents unintended ledger modifications.</p>
-        </article>
-
-        <article class="project">
-          <h3><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery</h3>
-          <p class="meta">2024 &middot; Hyperledger Fabric &middot; IPFS &middot; Node.js</p>
-          <p>Applied the DV-TI infrastructure to citrus drone imagery (TIFF) from Immokalee, FL. Developed a dynamic hashing ID mechanism that updates when data is transformed (e.g., NDVI analysis, yield estimation), ensuring traceability without redundant on-chain storage. Tested with smart contract-based logging for uploads, transformations, downloads, and access events.</p>
-          <div class="img-row img-row-3">
-            <figure class="fig"><a href="assets/img/scale-1.png" class="lightbox-link"><img src="assets/img/scale-1.png" alt="Data branching and transformation"></a><figcaption>Blockchain-based data branching and transformation tracing</figcaption></figure>
-            <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="IPFS storage and traceability"></a><figcaption>Blockchain-IPFS integration for citrus drone imagery</figcaption></figure>
-            <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed Common Ag-Blockchain API framework</figcaption></figure>
+        <details class="project">
+          <summary><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">2024 &middot; Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
+          <div class="project-body">
+            <p>Applied the DV-TI infrastructure to citrus drone imagery (TIFF) from Immokalee, FL. Developed a dynamic hashing ID mechanism that updates when data is transformed (e.g., NDVI analysis, yield estimation), ensuring traceability without redundant on-chain storage. Tested with smart contract-based logging for uploads, transformations, downloads, and access events.</p>
+            <div class="img-row img-row-3">
+              <figure class="fig"><a href="assets/img/scale-1.png" class="lightbox-link"><img src="assets/img/scale-1.png" alt="Data branching and transformation"></a><figcaption>Blockchain-based data branching and transformation tracing</figcaption></figure>
+              <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="IPFS storage and traceability"></a><figcaption>Blockchain-IPFS integration for citrus drone imagery</figcaption></figure>
+              <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed Common Ag-Blockchain API framework</figcaption></figure>
+            </div>
           </div>
-        </article>
+        </details>
 
-        <article id="si" class="project">
-          <h3><span class="project-num">4</span> SI &mdash; Sharing Infrastructure</h3>
-          <p>Governs how files move between organizations. Access request workflow (Request &rarr; Approve &rarr; Fulfill &rarr; Download), on-chain transfer records, reuse evaluation with 7 Creative Commons license types, expiration enforcement, and decision chain tracing.</p>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
-        </article>
+        <details id="si" class="project">
+          <summary><span class="project-num">4</span> SI &mdash; Source Integration</summary>
+          <div class="project-body">
+            <p>Governs how files move between organizations. Access request workflow (Request &rarr; Approve &rarr; Fulfill &rarr; Download), on-chain transfer records, reuse evaluation with 7 Creative Commons license types, expiration enforcement, and decision chain tracing.</p>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
+          </div>
+        </details>
 
-        <article id="ti" class="project">
-          <h3><span class="project-num">5</span> TI &mdash; Transformation Integrity</h3>
-          <p>After a file is produced from a registered input and sent to a downstream party, the downstream party can determine which registered input was used and what operation was declared &mdash; without contacting the producing environment. Prototype validated with a two-stage chain returning resolved, resolved with gap, or no declaration.</p>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
-        </article>
+        <details id="ti" class="project">
+          <summary><span class="project-num">5</span> TI &mdash; Transformation Integrity</summary>
+          <div class="project-body">
+            <p>After a file is produced from a registered input and sent to a downstream party, the downstream party can determine which registered input was used and what operation was declared &mdash; without contacting the producing environment. Prototype validated with a two-stage chain returning resolved, resolved with gap, or no declaration.</p>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
+          </div>
+        </details>
 
-        <article id="dv" class="project">
-          <h3><span class="project-num">6</span> DV &mdash; File Origin Verification</h3>
-          <p>After a file has been sent through multiple parties, a downstream receiver can determine whether the file has the same content as the version recorded before the first transfer, and reconstruct the sequence of senders and receivers &mdash; using only a shared external record, without contacting any earlier computer.</p>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
-        </article>
+        <details id="dv" class="project">
+          <summary><span class="project-num">6</span> DV &mdash; File Origin Verification</summary>
+          <div class="project-body">
+            <p>After a file has been sent through multiple parties, a downstream receiver can determine whether the file has the same content as the version recorded before the first transfer, and reconstruct the sequence of senders and receivers &mdash; using only a shared external record, without contacting any earlier computer.</p>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing</h3>
-          <p>Analyzed blockchain applications in data sharing across agriculture, healthcare, and finance. Established the conceptual foundation for DV, TI, and SI as the three necessary layers for verifiable agricultural data exchange.</p>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing</summary>
+          <div class="project-body">
+            <p>Analyzed blockchain applications in data sharing across agriculture, healthcare, and finance. Established the conceptual foundation for DV, TI, and SI as the three necessary layers for verifiable agricultural data exchange.</p>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">8</span> Agricultural Machinery Data Analysis</h3>
-          <p class="meta">2024 &ndash; 2025 &middot; MAFRA</p>
-          <p>Comparative studies of mechanization and cultivation patterns between the US and South Korea for potato, sweet potato, and Chinese cabbage. Understanding the data characteristics of modern agricultural machinery is essential for optimizing data infrastructure &mdash; you need to know what the data looks like before you can build systems to share and verify it.</p>
-          <p class="sourced-by">Sourced by: Kim, J.H., Cho, Y., et al. (2024&ndash;2025). <em>Journal of Biosystems Engineering</em>. 3 papers.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">2024 &middot; Patent</span></summary>
+          <div class="project-body">
+            <p>Blockchain-based data management system for seaweed farming operations with smart supply chain tracking. Applied distributed ledger technology to aquaculture supply chain traceability, from production through distribution.</p>
+            <p class="sourced-by">Patent Application KR10-2024-0011399, 2024.</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">9</span> Carbon Markets &amp; Agricultural Data Sharing</h3>
-          <p>Established why a data sharing perspective is necessary in agriculture: downstream decisions (carbon credits, insurance indemnity, compliance) depend on verifiable data that crosses organizational boundaries.</p>
-          <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). <em>Discover Agriculture</em>, 3, 126.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">9</span> Agricultural Machinery Data Analysis <span class="meta-inline">2024&ndash;2025 &middot; MAFRA</span></summary>
+          <div class="project-body">
+            <p>Comparative studies of mechanization and cultivation patterns between the US and South Korea for potato, sweet potato, and Chinese cabbage. Understanding the data characteristics of modern agricultural machinery is essential for optimizing data infrastructure &mdash; you need to know what the data looks like before you can build systems to share and verify it.</p>
+            <p class="sourced-by">Sourced by: Kim, J.H., Cho, Y., et al. (2024&ndash;2025). <em>Journal of Biosystems Engineering</em>. 3 papers.</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3>Ongoing DEMETER Applications</h3>
-          <p class="meta">In Progress</p>
-          <ul>
-            <li><strong>Soil Spectrum &amp; Soil Mapping</strong> &mdash; Cross-organizational verification and sharing of soil spectrum and mapping data</li>
-            <li><strong>Fresh Food to Waste Management</strong> &mdash; Supply chain data traceability from production to waste</li>
-            <li><strong>Smart Aquaculture &amp; Edge Computing</strong> &mdash; Inland fishery systems with perception, edge computing, and networked data sharing</li>
-          </ul>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">10</span> Carbon Markets &amp; Agricultural Data Sharing</summary>
+          <div class="project-body">
+            <p>Established why a data sharing perspective is necessary in agriculture: downstream decisions (carbon credits, insurance indemnity, compliance) depend on verifiable data that crosses organizational boundaries.</p>
+            <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). <em>Discover Agriculture</em>, 3, 126.</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>Ongoing DEMETER Applications <span class="meta-inline">In Progress</span></summary>
+          <div class="project-body">
+            <ul>
+              <li><strong>Soil Spectrum &amp; Soil Mapping</strong> &mdash; Cross-organizational verification and sharing of soil spectrum and mapping data</li>
+              <li><strong>Fresh Food to Waste Management</strong> &mdash; Supply chain data traceability from production to waste</li>
+              <li><strong>Smart Aquaculture &amp; Edge Computing</strong> &mdash; Inland fishery systems with perception, edge computing, and networked data sharing</li>
+            </ul>
+          </div>
+        </details>
 
         <h3 class="project-category">Applied AI &amp; Data</h3>
 
-        <article id="aquaculture" class="project">
-          <h3><span class="project-num">1</span> AI Aquaculture System</h3>
-          <p class="meta">2019 &ndash; 2022 &middot; Billion21 &middot; YOLO &middot; SAM &middot; Python &middot; OpenCV</p>
-          <p>Computer vision systems for marine fish production through automated, species-specific feeding optimization for olive flounder and stone flounder.</p>
-          <ul>
-            <li><strong>YOLO</strong> for whole-population movement pattern analysis &mdash; detecting group feeding behavior and activity levels</li>
-            <li><strong>SAM</strong> for individual-level fish size estimation and growth monitoring</li>
-            <li>Applied to real production environments; contributed to product development and led to a patent</li>
-          </ul>
-        </article>
+        <details id="aquaculture" class="project">
+          <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">2019&ndash;2022 &middot; Billion21 &middot; YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
+          <div class="project-body">
+            <p>Computer vision systems for marine fish production through automated, species-specific feeding optimization for olive flounder and stone flounder.</p>
+            <ul>
+              <li><strong>YOLO</strong> for whole-population movement pattern analysis &mdash; detecting group feeding behavior and activity levels</li>
+              <li><strong>SAM</strong> for individual-level fish size estimation and growth monitoring</li>
+              <li>Applied to real production environments; contributed to product development and led to a patent</li>
+            </ul>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">2</span> Citrus Tree Trunk Segmentation</h3>
-          <p class="meta">2023 &middot; PyTorch &middot; Deep Learning</p>
-          <p>Image segmentation of citrus tree trunks using CNNs. Implemented end-to-end segmentation pipelines for agricultural imagery as part of engineering applications of computer vision and deep learning (ABE 6933).</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">2</span> Laver Spore Selection System <span class="meta-inline">2019 &middot; Patent</span></summary>
+          <div class="project-body">
+            <p>AI-based methods for automated selection of spores from laver farm devices. Applied computer vision and image processing to optimize spore quality assessment in aquaculture production.</p>
+            <p class="sourced-by">Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">3</span> Biological Systems Modeling</h3>
-          <p class="meta">2023 &ndash; 2024 &middot; Python &middot; NetLogo &middot; Java</p>
-          <p>Three-course series (ABE 5643C &rarr; ABE 6649C &rarr; ABE 6933) covering dynamic systems modeling, agent-based modeling, and advanced simulation of biological and environmental systems. Predator-prey dynamics, crop growth, ecological processes. Certificate in Biological Systems Modeling.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">3</span> Citrus Tree Trunk Segmentation <span class="meta-inline">2023 &middot; PyTorch &middot; Deep Learning</span></summary>
+          <div class="project-body">
+            <p>Image segmentation of citrus tree trunks using CNNs. Implemented end-to-end segmentation pipelines for agricultural imagery as part of engineering applications of computer vision and deep learning (ABE 6933).</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">4</span> Food &amp; Bioprocess Engineering</h3>
-          <p class="meta">2025 &middot; ABE 5815C</p>
-          <p>Engineering design of unit process operations in agro/food and biological industries &mdash; sterilization, drying, evaporation, fermentation. AI and data management applied to food processing systems.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">4</span> Biological Systems Modeling <span class="meta-inline">2023&ndash;2024 &middot; Python &middot; NetLogo &middot; Java</span></summary>
+          <div class="project-body">
+            <p>Three-course series (ABE 5643C &rarr; ABE 6649C &rarr; ABE 6933) covering dynamic systems modeling, agent-based modeling, and advanced simulation of biological and environmental systems. Predator-prey dynamics, crop growth, ecological processes. Certificate in Biological Systems Modeling.</p>
+          </div>
+        </details>
 
-        <article class="project">
-          <h3><span class="project-num">5</span> Precision Agriculture &amp; SmartAg</h3>
-          <p class="meta">2024 &middot; AOM 5435 &middot; AOM 5456</p>
-          <p>Advanced precision agriculture: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for agricultural applications.</p>
-        </article>
+        <details class="project">
+          <summary><span class="project-num">5</span> Food &amp; Bioprocess Engineering <span class="meta-inline">2025 &middot; ABE 5815C</span></summary>
+          <div class="project-body">
+            <p>Engineering design of unit process operations in agro/food and biological industries &mdash; sterilization, drying, evaporation, fermentation. AI and data management applied to food processing systems.</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary><span class="project-num">6</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">2024 &middot; AOM 5435 &middot; AOM 5456</span></summary>
+          <div class="project-body">
+            <p>Advanced precision agriculture: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for agricultural applications.</p>
+          </div>
+        </details>
       </section>
 
       <!-- Publications -->
