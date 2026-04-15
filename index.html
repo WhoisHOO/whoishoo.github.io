@@ -240,7 +240,7 @@
         </details>
 
         <details id="si" class="project">
-          <summary><span class="project-num">4</span> SI, Source Integration <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
+          <summary><span class="project-num">4</span> SI, Source Integration for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
           <div class="project-body">
             <h4>Why</h4>
             <p>When multiple files from different organizations are combined into a single output, the downstream party cannot determine which source files contributed or under what license conditions they were shared.</p>
@@ -253,7 +253,7 @@
         </details>
 
         <details id="ti" class="project">
-          <summary><span class="project-num">5</span> TI, Transformation Integrity <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
+          <summary><span class="project-num">5</span> TI, Transformation Integrity for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
             <h4>Why</h4>
             <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The downstream party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
@@ -268,7 +268,7 @@
         </details>
 
         <details id="dv" class="project">
-          <summary><span class="project-num">6</span> DV, File Origin Verification <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
+          <summary><span class="project-num">6</span> DV, File Origin Verification for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
             <h4>Why</h4>
             <p>When a farmer sends a file to an advisor, and the advisor sends it to a certifier, the certifier has no way to check whether the file matches what the farmer originally recorded. The farmer's computer may be off. No shared record connects them.</p>
@@ -365,36 +365,23 @@
           <div class="project-body">
             <h4>Why</h4>
             <p>In Korean laver farming, spores are cultivated in water tanks and implanted onto nets wrapped around rotating frames. Verifying whether enough spores have attached to each net section determines harvest readiness. This was done entirely by hand and eye, limiting efficiency and consistency across large-scale operations.</p>
-
             <h4>What</h4>
             <p>An automated spore sorting system that uses a camera device (biological microscope with mercury lamp) mounted on the harvesting apparatus to photograph spores. Images are transmitted to a central control terminal that measures spore density and determines planting completeness. Above threshold: selected for harvest. Below: re-cultivated.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/patent1-1.png" class="lightbox-link"><img src="assets/img/patent1-1.png" alt="Laver harvesting apparatus 3D view"></a><figcaption>Harvesting apparatus: water tank (100), rotating frame with net (10, 20), imaging device (30), shells with spores (1)</figcaption></figure>
             </div>
-
             <h4>How</h4>
             <div class="img-row img-row-2">
               <figure class="fig"><a href="assets/img/patent1-3.png" class="lightbox-link"><img src="assets/img/patent1-3.png" alt="System architecture"></a><figcaption>System architecture: Harvesting device (100) connects to imaging device (30) with three modules, camera (32), wireless communication (34), and controller (36), which transmits to the central management center (200) for analysis</figcaption></figure>
               <figure class="fig"><a href="assets/img/patent1-4.png" class="lightbox-link"><img src="assets/img/patent1-4.png" alt="Process flowchart"></a><figcaption>Selection flowchart: S100 Rotate frame → S110 Harvest spores from shells → S120 Photograph spores with imaging device → S130 Transmit image to control center → S140 Spore density above threshold? If yes → S150 Select net section for harvest. If no → return to S100 and re-cultivate</figcaption></figure>
             </div>
             <p>The control center database accumulates image data of completed plantings and builds a machine learning model from the accumulated data, automating verification that was previously manual.</p>
-
             <p class="sourced-by">Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></p>
           </div>
         </details>
 
         <details class="project">
-          <summary><span class="project-num">3</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
-          <div class="project-body">
-            <h4>Why</h4>
-            <p>Automated identification of tree trunks in citrus groves supports precision spraying, canopy management, and yield estimation, reducing manual field assessment.</p>
-            <h4>What</h4>
-            <p>CNN-based image segmentation pipeline for citrus tree trunks. End-to-end implementation from data preparation through model training and inference using PyTorch (ABE 6933).</p>
-          </div>
-        </details>
-
-        <details class="project">
-          <summary><span class="project-num">4</span> Biological Systems Modeling <span class="meta-inline">Python &middot; NetLogo &middot; Java &middot; Agent-Based</span></summary>
+          <summary><span class="project-num">3</span> Biological Systems Modeling <span class="meta-inline">Python &middot; NetLogo &middot; Java &middot; Agent-Based</span></summary>
           <div class="project-body">
             <h4>Why</h4>
             <p>Understanding how biological and environmental systems behave over time is foundational for building data infrastructure that serves those systems. Models reveal what data matters and how it changes.</p>
@@ -404,7 +391,27 @@
         </details>
 
         <details class="project">
-          <summary><span class="project-num">5</span> Food &amp; Bioprocess Engineering <span class="meta-inline">Process Design &middot; Data Management</span></summary>
+          <summary><span class="project-num">4</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
+          <div class="project-body">
+            <h4>Why</h4>
+            <p>Automated identification of tree trunks in citrus groves supports precision spraying, canopy management, and yield estimation, reducing manual field assessment.</p>
+            <h4>What</h4>
+            <p>CNN-based image segmentation pipeline for citrus tree trunks. End-to-end implementation from data preparation through model training and inference using PyTorch (ABE 6933).</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary><span class="project-num">5</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">GPS/GIS &middot; UAV &middot; IoT &middot; ML</span></summary>
+          <div class="project-body">
+            <h4>Why</h4>
+            <p>Precision agriculture systems generate high-volume field data from GPS, sensors, drones, and IoT devices. Knowing how this data is produced and used is essential for building infrastructure that can handle it.</p>
+            <h4>What</h4>
+            <p>Advanced precision agriculture methods: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for real agricultural applications.</p>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary><span class="project-num">6</span> Food &amp; Bioprocess Engineering <span class="meta-inline">Process Design &middot; Data Management</span></summary>
           <div class="project-body">
             <h4>Why</h4>
             <p>Food processing generates data at every stage, from sterilization temperatures to fermentation rates. Understanding these processes is necessary to design data infrastructure that captures what matters in food supply chains.</p>
@@ -414,12 +421,16 @@
         </details>
 
         <details class="project">
-          <summary><span class="project-num">6</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">GPS/GIS &middot; UAV &middot; IoT &middot; ML</span></summary>
+          <summary><span class="project-num">7</span> Applied Detection, Classification &amp; Recognition <span class="meta-inline">TensorFlow &middot; YOLO &middot; CNN &middot; Audio ML</span></summary>
           <div class="project-body">
             <h4>Why</h4>
-            <p>Precision agriculture systems generate high-volume field data from GPS, sensors, drones, and IoT devices. Knowing how this data is produced and used is essential for building infrastructure that can handle it.</p>
+            <p>During undergraduate research at Texas Tech, applied ML models to real-world datasets across different domains to build hands-on experience with end-to-end pipelines for detection, classification, and recognition tasks.</p>
             <h4>What</h4>
-            <p>Advanced precision agriculture methods: GPS/GIS, remote sensing, UAV, variable rate technology, IoT sensor networks. Applied methods in SmartAg systems covering instrumentation, machine learning, and control methods for real agricultural applications.</p>
+            <ul>
+              <li><a href="https://www.kaggle.com/competitions/tensorflow-great-barrier-reef">Underwater Object Detection</a>, detecting crown-of-thorns starfish in underwater video to protect coral reefs (TensorFlow)</li>
+              <li><a href="https://www.kaggle.com/competitions/paddy-disease-classification">Agricultural Disease Classification</a>, classifying rice paddy diseases from field photographs (CNN)</li>
+              <li><a href="https://www.kaggle.com/competitions/birdclef-2022/data">Audio Species Identification</a>, identifying bird species from soundscape recordings (Audio ML)</li>
+            </ul>
           </div>
         </details>
       </section>
