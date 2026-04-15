@@ -169,6 +169,49 @@ li { margin-bottom: 0.3rem; }
   margin-right: 0.4em;
   vertical-align: middle;
 }
+/* Details/Summary accordion */
+details.project {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+details.project summary {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  transition: background 0.15s;
+}
+details.project summary::-webkit-details-marker { display: none; }
+details.project summary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-light);
+  transition: transform 0.2s;
+}
+details.project[open] summary::after {
+  content: "\2212";
+}
+details.project summary:hover {
+  background: var(--bg-alt);
+}
+.meta-inline {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+.project-body {
+  padding: 0 0.8rem 0.8rem;
+}
+
 .sourced-by {
   font-size: 0.76rem;
   color: var(--text-light);
