@@ -155,6 +155,28 @@ li { margin-bottom: 0.3rem; }
 }
 .project-category:first-of-type { margin-top: 0; }
 
+.project-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 0.7em;
+  font-weight: 700;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+.sourced-by {
+  font-size: 0.76rem;
+  color: var(--text-light);
+  border-top: 1px dashed var(--border);
+  padding-top: 0.4rem;
+  margin-top: 0.6rem;
+}
+
 .entry { margin-bottom: 1.5rem; }
 .entry-header {
   display: flex;
@@ -203,11 +225,46 @@ td:first-child {
 .img-row img {
   border-radius: 6px;
   border: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity 0.15s;
 }
+.img-row img:hover { opacity: 0.85; }
 .img-row-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
+}
+.fig {
+  margin: 0;
+}
+.fig figcaption {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+  line-height: 1.35;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: lbFadeIn 0.2s ease;
+}
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.5);
 }
 
 /* ── Publications ────────────────────────────────────────── */
