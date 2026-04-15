@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Younghoo Henry Cho</title>
+  <meta name="description" content="Infrastructure Engineer. Building data infrastructure, verification systems, and applied AI for agriculture.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-name">
+          <h1>Younghoo Henry Cho</h1>
+          <p class="subtitle">Ph.D. Candidate<br>Agricultural &amp; Biological Engineering<br>University of Florida</p>
+        </div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#service">Service</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main>
+
+      <!-- About -->
+      <section id="about">
+        <div class="about-grid">
+          <div class="about-text">
+            <h2>About</h2>
+            <p>I design and build infrastructure systems for cross-organizational data exchange in agriculture &mdash; platforms that make shared data verifiable, traceable, and trustworthy without a central authority.</p>
+            <p>My primary project, <a href="#demeter">DEMETER</a>, is a full-stack blockchain-based platform (Hyperledger Fabric + Go + Node.js + Next.js) that records file provenance across organizations with smart contracts, REST APIs, a natural language interface, and DID-based authentication.</p>
+            <p>I also built <a href="#aquaculture">AI-based computer vision systems</a> for marine aquaculture, automating feeding decisions and size estimation using YOLO, SAM, and OpenCV.</p>
+            <p>I am looking for infrastructure engineering roles where I can build systems that solve real data problems at scale.</p>
+            <div class="explore-widget">
+              <div class="chip-group" id="chip-top"></div>
+              <div class="chip-group" id="chip-sub"></div>
+              <div class="chip-group" id="chip-leaf"></div>
+              <div id="explore-results"></div>
+            </div>
+          </div>
+          <div class="about-photo">
+            <img src="assets/img/prof_pic.jpeg" alt="Younghoo Henry Cho">
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>University of Florida</h3>
+            <span class="date">2022 &ndash; 2026</span>
+          </div>
+          <p>Ph.D. in Agricultural and Biological Engineering &middot; GPA: 3.95/4.0</p>
+          <p class="meta">Data Infrastructure, Distributed Ledger Systems, Verification Architectures, Reusable Data Assets, LLM Interfaces</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Texas Tech University</h3>
+            <span class="date">2018 &ndash; 2022</span>
+          </div>
+          <p>B.S. in Computer Science, Minor in Mathematics &middot; GPA: 3.8/4.0</p>
+          <p class="meta">Computer Vision, Object Detection, Image Segmentation, Data Visualization</p>
+        </div>
+
+        <h3 id="skills">Technical Skills</h3>
+        <table>
+          <tr><td>Languages</td><td>Python, C++, Go, JavaScript, C, Java, R</td></tr>
+          <tr><td>Backend &amp; APIs</td><td>Node.js, Express, REST APIs</td></tr>
+          <tr><td>AI &amp; Vision</td><td>YOLO, SAM, OpenCV, Machine Learning, LLM Integration</td></tr>
+          <tr><td>Distributed Systems</td><td>Hyperledger Fabric, Blockchain Systems</td></tr>
+          <tr><td>Data &amp; Cloud</td><td>AWS, Azure, CouchDB, Firebase</td></tr>
+          <tr><td>Frontend</td><td>Next.js, React, TypeScript</td></tr>
+        </table>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2>Experience</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Graduate Research Assistant</h3>
+            <span class="date">2022 &ndash; 2026</span>
+          </div>
+          <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
+          <p>Conduct doctoral research on data infrastructure, provenance, and verification systems. Develop prototypes, manuscripts, and reproducible documentation. Designed and built DEMETER platform end-to-end.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Researcher</h3>
+            <span class="date">2024 &ndash; 2026</span>
+          </div>
+          <p class="org">Ministry of Agriculture, Food and Rural Affairs (MAFRA), South Korea</p>
+          <p>Contributed to comparative studies of crop mechanization and digital agriculture development between South Korea and the United States.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Researcher</h3>
+            <span class="date">2019 &ndash; 2022</span>
+          </div>
+          <p class="org">Billion21</p>
+          <p>Contributed to AI and computer vision development for marine production and smart aquaculture systems. Built YOLO-based feeding analysis and SAM-based size estimation systems.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Researcher</h3>
+            <span class="date">2020 &ndash; 2021</span>
+          </div>
+          <p class="org">Global BioAg Linkages</p>
+          <p>Evaluated technical and data requirements for AI deployment in agricultural production systems.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Undergraduate Research Assistant</h3>
+            <span class="date">2021 &ndash; 2022</span>
+          </div>
+          <p class="org">Texas Tech University</p>
+          <p>Supported research projects in computer vision and data visualization.</p>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2>Projects</h2>
+
+        <article id="demeter" class="project">
+          <h3>DEMETER: Data Sharing and Verification Platform</h3>
+          <p class="meta">2022 &ndash; 2026 &middot; University of Florida &middot; Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</p>
+
+          <h4>Overview</h4>
+          <p>DEMETER is a data infrastructure platform that lets independent organizations share files while keeping a verifiable, traceable history on a shared blockchain. Files stay on each organization's local system. Only fingerprints, provenance declarations, and access decisions are recorded on-chain.</p>
+          <p>I designed and built the full system: chaincode contracts, backend API, off-chain data stores, natural language interface, web frontend, local agent, and deployment pipeline. The working prototype supports 7 operations and trace queries over 8,000 linked records within 5 seconds.</p>
+
+          <h4>Architecture</h4>
+          <div class="img-row">
+            <img src="assets/img/demeter-1.png" alt="DEMETER architecture">
+          </div>
+
+          <h4 id="dv">DV &mdash; Data Verification</h4>
+          <p>Establishes origin identity of a file. SHA-256 fingerprint anchoring on-chain, provider identity binding via DID, Creative Commons license declaration (7 types), visibility control (public/conditional/private), dispute mechanism.</p>
+
+          <h4 id="ti">TI &mdash; Transformation Integrity</h4>
+          <p>Tracks how files change through processing stages. Transformation/integration declaration, recursive graph traversal, PASS/FAIL integrity check per source.</p>
+
+          <h4 id="si">SI &mdash; Sharing Infrastructure</h4>
+          <p>Governs how files move between organizations. Access request workflow (Request &rarr; Approve &rarr; Fulfill &rarr; Download), on-chain transfer records, reuse evaluation, expiration enforcement.</p>
+
+          <h4>Screenshots</h4>
+          <div class="img-row img-row-3">
+            <img src="assets/img/demeter-2.png" alt="DEMETER screenshot 1">
+            <img src="assets/img/demeter-3.png" alt="DEMETER screenshot 2">
+            <img src="assets/img/demeter-4.png" alt="DEMETER screenshot 3">
+          </div>
+
+          <h4>Implementation</h4>
+          <table>
+            <tr><td>Chaincode</td><td>3 contracts, 19 exported functions (Go)</td></tr>
+            <tr><td>Backend API</td><td>37 REST endpoints across 8 route modules (Node.js/Express)</td></tr>
+            <tr><td>Frontend</td><td>7 pages (Next.js 15 App Router, TypeScript, React Flow)</td></tr>
+            <tr><td>NLQ</td><td>15 intents, 3 execution modes, 74-case eval suite (100% accuracy)</td></tr>
+            <tr><td>DID Auth</td><td>ECDSA P-256, Web Crypto API, challenge-response</td></tr>
+            <tr><td>Local Agent</td><td>Auto-detects provenance, registers files on-chain</td></tr>
+            <tr><td>Deployment</td><td>Hyperledger Fabric via Docker Compose</td></tr>
+          </table>
+        </article>
+
+        <article id="aquaculture" class="project">
+          <h3>AI Aquaculture System</h3>
+          <p class="meta">2019 &ndash; 2022 &middot; Billion21 &middot; YOLO &middot; SAM &middot; Python &middot; OpenCV</p>
+
+          <h4>Overview</h4>
+          <p>Computer vision systems for improving productivity in marine fish production through automated, species-specific feeding optimization for olive flounder and stone flounder.</p>
+
+          <h4>Approach</h4>
+          <ul>
+            <li><strong>YOLO</strong> for whole-population movement pattern analysis &mdash; detecting group feeding behavior and activity levels</li>
+            <li><strong>SAM</strong> (Segment Anything Model) for individual-level fish size estimation and growth monitoring</li>
+            <li>Applied to real production environments for species-specific feeding protocol optimization</li>
+            <li>Contributed to product development and led to a patent</li>
+          </ul>
+
+          <h4>Screenshots</h4>
+          <div class="img-row img-row-3">
+            <img src="assets/img/scale-1.png" alt="Fish detection">
+            <img src="assets/img/scale-2.png" alt="Size estimation">
+            <img src="assets/img/scale-3.png" alt="Production environment">
+          </div>
+        </article>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2>Publications</h2>
+
+        <h3 id="papers">Papers</h3>
+        <ul class="pub-list">
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Companion manuscripts on origin, transformation, and integration traceability.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem: A Cross-Sectoral Review of Blockchain Application in Data Sharing.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). Bridging carbon markets and agriculture: A comparative study of stakeholder engagement in South Korea and United States. <em>Discover Agriculture</em>, 3, 126.</li>
+          <li>Kim, J.H., Lee, C.Y., Cho, Y., et al. (2024). Potato Farming in the United States and South Korea. <em>Journal of Biosystems Engineering</em>, 49(3), 252&ndash;269.</li>
+          <li>Kim, J.H., Cho, Y., et al. (2025). Sweet Potato Farming in the USA and South Korea. <em>Journal of Biosystems Engineering</em>, 50(2), 210&ndash;224.</li>
+          <li>Kim, J.H., Cho, Y., Hwang, I.S., et al. (2025). Mechanization Status and Cultivation Pattern of Chinese Cabbage. <em>Journal of Biosystems Engineering</em>.</li>
+        </ul>
+
+        <h3 id="patents">Patents</h3>
+        <ul class="pub-list">
+          <li>Efficient Seaweed Farming Data Management by Utilizing Blockchain and Smart Supply Chain Tracking System. Patent Application KR10-2024-0011399, 2024.</li>
+          <li>Methods for Selecting Spores from Laver Farm Devices. Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></li>
+        </ul>
+
+        <h3 id="presentations">Conference Presentations</h3>
+        <ul class="pub-list">
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025, July 15). Enhancing trust in agriculture: Addressing data sharing with blockchain technology. <em>ASABE 2025 Annual International Meeting</em>, Toronto, Canada.</li>
+          <li>Cho, Y., Yu, Z., Ampatzidis, Y., &amp; Nam, J. (2025, April 25). Cross-sectoral analysis of data traceability in agriculture, healthcare, and finance. <em>KSAM 2025 Spring Conference</em>, Jeonju, South Korea.</li>
+          <li>Cho, Y., Yu, Z., Ampatzidis, Y., &amp; Nam, J. (2024, May 22). Blockchain-enhanced data management and integrity in smart agriculture. <em>CIGR Conference</em>, Jeju-do, South Korea.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2024, April 15&ndash;17). Blockchain-enhanced data management in AI-driven agriculture. <em>3rd Annual AI in Agriculture and Natural Resources Conference</em>, College Station, TX.</li>
+          <li>Cho, Y., Yu, Z., Ampatzidis, Y., Wu, S., &amp; Zhang, C. (2024, July 28&ndash;31). Blockchain innovation for transparent forest carbon markets. <em>ASABE Annual International Meeting</em>, Anaheim, CA.</li>
+          <li>Cho, Y. (2023, April 17). Solving the trust issue in digital commodity market in agriculture. <em>AI in Agriculture Conference</em>, Orlando, FL.</li>
+          <li>Cho, Y. (2023, July 11). A pathway to address trust issues in digital commodities in agriculture: blockchain. <em>ASABE 2023 Annual International Meeting</em>, Omaha, NE.</li>
+        </ul>
+
+        <h3 id="lectures">Invited Lectures &amp; Seminars</h3>
+        <ul class="pub-list">
+          <li>Cho, Y. (2025, May 28). Designing research pathways from real-world problems. <em>Kangwon National University</em>, Chuncheon, South Korea.</li>
+          <li>Cho, Y. (2025, May 21). Building trustworthy data infrastructure for digital agriculture. <em>Kangwon National University</em>, Chuncheon, South Korea.</li>
+          <li>Cho, Y. (2025, June 21). Digital agriculture and aquaculture enabled by blockchain technology. <em>BILLION21 Inc.</em>, Gunpo, South Korea.</li>
+          <li>Cho, Y. (2024, May 16). Data trends in agriculture and aquaculture in the United States. <em>Korea National University of Agriculture and Fisheries</em>, Jeonju, South Korea.</li>
+          <li>Cho, Y. (2024, June 10). Emerging trends in digital and smart agriculture for greenhouse systems. <em>Jeonju University</em>, Jeonju, South Korea.</li>
+          <li>Cho, Y. (2024, June 12). Emerging trends in digital and smart agriculture using blockchain technology. <em>Rural Development Administration</em>, Jeonju, South Korea.</li>
+          <li>Cho, Y. (2024, June 14). Emerging trends in digital and smart agriculture for agricultural machinery. <em>Kangwon National University</em>, Chuncheon, South Korea.</li>
+          <li>Cho, Y. (2024, June 14). Emerging trends in digital and smart agriculture. <em>Seoul National University</em>, Seoul, South Korea.</li>
+          <li>Cho, Y. (2024, June 20). Digital and smart agriculture for open-field production systems. <em>Chungbuk National University</em>, Cheongju, South Korea.</li>
+          <li>Cho, Y. (2024, June 24). Smart agriculture trends for upland crop production. <em>Chungnam National University</em>, Daejeon, South Korea.</li>
+        </ul>
+
+        <h3 id="grants">Grants &amp; Awards</h3>
+        <ul class="pub-list">
+          <li>2025. University of Florida, IFAS, Department of Agricultural and Biological Engineering. Top-up Grant.</li>
+          <li>2025. University of Florida, IFAS, Department of Agricultural and Biological Engineering. Travel Grant.</li>
+          <li>2025. Ministry of Agriculture, Food and Rural Affairs (Republic of Korea). International Research Travel Grant.</li>
+          <li>2024. Ministry of Agriculture, Food and Rural Affairs (Republic of Korea). International Research Travel Grant.</li>
+          <li>2024. International Commission of Agricultural and Biosystems Engineering (CIGR). Travel Grant.</li>
+          <li>2024. University of Florida, IFAS, Department of Agricultural and Biological Engineering. Top-up Grant.</li>
+          <li>2023. University of Florida Graduate Student Council. Travel Grant.</li>
+          <li>2022. Research Fellowship. Enhancing Trust in Partnerships within Digital Farming.</li>
+        </ul>
+      </section>
+
+      <!-- Service -->
+      <section id="service">
+        <h2>Service &amp; Leadership</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Peer Reviewer</h3>
+            <span class="date">2024 &ndash; Present</span>
+          </div>
+          <p>18 reviews for 3 journals:</p>
+          <ul>
+            <li><em>Environment, Development and Sustainability</em> (Springer Nature) &mdash; 13 reviews</li>
+            <li><em>Sustainable Futures</em> (Elsevier) &mdash; 3 reviews</li>
+            <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature) &mdash; 2 reviews</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>PUSH4IT Coach</h3>
+            <span class="date">2025 &ndash; 2026</span>
+          </div>
+          <p class="org">Office of Academic Support (OASIS), University of Florida</p>
+          <p>Coach in the PUSH4IT peer coaching program, helping students develop academic strategies, time management, and goal-setting skills to support on-time graduation.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Graduate Student Mentor</h3>
+            <span class="date">2023 &ndash; 2024</span>
+          </div>
+          <p class="org">ABE Mentoring Program, University of Florida</p>
+          <p>Mentored undergraduate students in data-driven agriculture through the ABE department's peer mentoring program.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <h3>Supervised Teaching</h3>
+            <span class="date">2024 &ndash; 2026</span>
+          </div>
+          <p class="org">University of Florida &middot; Department of Agricultural and Biological Engineering</p>
+          <ul>
+            <li>Developed course modules on AI and data systems for ABE 6933 Agent-Based Modeling for Biological Systems, Dr. Gregory Kiker (Summer 2024)</li>
+            <li>Guest lecture for AOM 5456 Applied Methods in SmartAg Systems, Dr. Ziwen Yu (2026)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li>Email: <a href="mailto:younghoo.cho@ufl.edu">younghoo.cho@ufl.edu</a></li>
+          <li>GitHub: <a href="https://github.com/WhoisHOO">WhoisHOO</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/younghoo-cho-362161206/">Younghoo Cho</a></li>
+          <li>ORCID: <a href="https://orcid.org/0009-0009-7406-1782">0009-0009-7406-1782</a></li>
+          <li>CV: <a href="assets/pdf/CV_Yc.pdf">Download (PDF)</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer>
+    &copy; 2026 Younghoo Henry Cho
+  </footer>
+
+  <script src="assets/js/explore.js"></script>
+</body>
+</html>
