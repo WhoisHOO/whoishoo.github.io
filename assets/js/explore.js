@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
         { label: "Papers" },
         { label: "Patents" },
         { label: "Presentations" },
-        { label: "Lectures" },
       ],
     },
     {
       label: "Teaching",
       children: [
         { label: "Supervised Teaching" },
+        { label: "Invited Lectures" },
         { label: "PUSH4IT" },
         { label: "Mentoring" },
         { label: "Blog" },
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { keywords: ["publications", "patents"], title: "Seaweed Blockchain Supply Chain", desc: "Patent Application KR10-2024-0011399, 2024.", link: "#patents", type: "publication" },
     { keywords: ["publications", "patents"], title: "Laver Spore Selection", desc: "Patent KR102034354B1, 2019.", link: "#patents", type: "publication" },
     { keywords: ["publications", "presentations"], title: "Conference Presentations", desc: "7 presentations at ASABE, CIGR, KSAM, AI in Agriculture (2023–2025).", link: "#presentations", type: "publication" },
-    { keywords: ["publications", "lectures"], title: "Invited Lectures & Seminars", desc: "10 invited talks at universities and institutions in South Korea (2024–2025).", link: "#lectures", type: "publication" },
+    { keywords: ["teaching", "invited lectures"], title: "Invited Lectures & Seminars", desc: "Invited talks at universities and institutions in South Korea (2024–2025).", link: "#lectures", type: "teaching" },
     // Teaching
     { keywords: ["teaching", "supervised teaching"], title: "Supervised Teaching", desc: "ABE 6933 course module (Dr. Kiker), AOM 5456 guest lecture (Dr. Yu).", link: "#teaching", type: "teaching" },
     { keywords: ["teaching", "push4it"], title: "PUSH4IT Coach", desc: "Peer coaching program, UF OASIS (2025–2026).", link: "#teaching", type: "teaching" },

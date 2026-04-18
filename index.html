@@ -4,7 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Younghoo Henry Cho</title>
-  <meta name="description" content="Infrastructure Engineer. Building data infrastructure, verification systems, and applied AI for agriculture.">
+  <meta name="description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing. DEMETER, blockchain-based data platform for cross-organizational traceability.">
+  <meta name="author" content="Younghoo Henry Cho">
+  <meta name="keywords" content="data infrastructure, blockchain, verification, agricultural engineering, DEMETER, Hyperledger Fabric, infrastructure engineer">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Younghoo Henry Cho">
+  <meta property="og:description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing. DEMETER, blockchain-based data platform for cross-organizational traceability.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://whoishoo.github.io/">
+  <meta property="og:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Younghoo Henry Cho">
+  <meta name="twitter:description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing.">
+  <meta name="twitter:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
+  <link rel="apple-touch-icon" href="assets/img/prof_pic.jpeg">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,7 +65,7 @@
             <p>I come from a family of educators and farmers. My grandfather, my mother, and my extended family have spent their careers in education. Our family also runs a farm and a smart agriculture and aquaculture IT company. Growing up between these two worlds, teaching and feeding, I learned early that the work worth doing is work that helps other people.</p>
             <p>My father, a first-generation computer engineer with a Ph.D. in environmental engineering, showed me early how technology applies to real-world systems. Through his work leading a smart agriculture and aquaculture IT company, I saw how AI was beginning to change food production. That pulled me from a general curiosity about the brain into a specific one: how computers learn from data. I studied computer science, built <a href="#aquaculture">vision systems that automate feeding and growth monitoring</a> in fish farms, and kept asking the same question, if the AI works, what happens to the data it depends on?</p>
             <p>The answer led me to infrastructure. Agricultural data crosses farms, labs, advisors, and regulators, but once a file leaves one system, its history is lost. No one downstream can confirm where it came from or what happened to it. I spent the next four years building <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls, and the independent research behind each layer: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
-            <p>Eleven years in, the thread has not changed. I build systems that solve real data problems, and now that the skills are ready, I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it. I am grateful to every advisor, mentor, and community that made this path possible.</p>
+            <p>Eleven years in, the thread has not changed. I build systems that solve real data problems, and now that the skills are ready, I am looking for roles, in industry or academia, where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it. I am grateful to every advisor, mentor, and community that made this path possible.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
               <div class="chip-group" id="chip-sub"></div>
@@ -192,7 +212,7 @@
 
             <h4>Vision</h4>
             <p>DEMETER is a general-purpose bottom layer. Current applications in progress: soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes pagination-based tracing beyond 8,000 records and AI agent interfaces for automated verification workflows.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</p>
           </div>
         </details>
 
@@ -261,6 +281,8 @@
             <p>An infrastructure that lets a downstream party determine the declared registered input and declared operation for a transformed file, using only the shared ledger, without contacting the producing environment.</p>
             <h4>How</h4>
             <p>The processor writes a declaration to the ledger linking input File ID to output File ID with an operation label. Declarations referencing unregistered inputs are rejected. Inspection follows the chain backward and returns: resolved, resolved with gap, or no declaration.</p>
+            <h4>Scope</h4>
+            <p>TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. This boundary keeps infrastructure-level claims honest: the system records what was declared, not whether the operation produced a semantically correct result.</p>
             <h4>Testing</h4>
             <p>Validated with a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). Downstream party retrieves full chain in one query. Declaration-time validation confirmed: unregistered inputs rejected.</p>
             <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
@@ -289,6 +311,8 @@
             <p>Before designing the infrastructure, it was necessary to understand what has been done across sectors and what gaps remain. Agriculture is not the only field where data crosses organizational boundaries.</p>
             <h4>What</h4>
             <p>A cross-sectoral review analyzing blockchain applications in data sharing across agriculture, healthcare, and finance. Identified what each sector has implemented (origin, transformation, integration) and where gaps exist.</p>
+            <h4>Key Distinction</h4>
+            <p>The review clarified a distinction often conflated in the agricultural blockchain literature: supply-chain traceability tracks <em>products</em>, while data-file traceability tracks the <em>origin, transfer, and transformation of data objects</em>. Identifying this distinction was essential for defining the scope of verification infrastructure.</p>
             <h4>Finding</h4>
             <p>Agriculture had partial origin verification but no transformation or integration traceability. Healthcare had implemented origin. Finance had implemented origin and transformation. No sector had all three. This review established DV, TI, and SI as the three necessary layers.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
@@ -357,6 +381,7 @@
             </ul>
             <h4>Outcome</h4>
             <p>Deployed in real production environments. Contributed to product development and led to a patent.</p>
+            <p>This experience shaped a principle that guides my infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
           </div>
         </details>
 
@@ -441,20 +466,23 @@
 
         <h3 id="papers">Papers</h3>
         <ul class="pub-list">
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: A Blockchain-Based Platform for Tracking the History of Shared Agricultural Data Files.</em> Under review.</li>
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</li>
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</li>
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem: A Cross-Sectoral Review of Blockchain Application in Data Sharing.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An infrastructure for agricultural file origin verification and transfer tracing.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An infrastructure for determining the declared registered input and operation for a transformed agricultural file.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a future agricultural data ecosystem: A cross-sectoral review of blockchain application in data sharing.</em> Under review.</li>
+          <li>Zhang, C., Guzman, S., Judge, J., Zhuang, Y., Zhao, C., Cho, Y., &amp; Yu, Z. (2026). Event-based decentralized approach of root zone soil moisture increase dynamics. <em>Air, Soil and Water Research</em>, 19, 1&ndash;23.</li>
           <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). Bridging carbon markets and agriculture: A comparative study of stakeholder engagement in South Korea and United States. <em>Discover Agriculture</em>, 3, 126.</li>
-          <li>Kim, J.H., Lee, C.Y., Cho, Y., et al. (2024). Potato Farming in the United States and South Korea. <em>Journal of Biosystems Engineering</em>, 49(3), 252&ndash;269.</li>
-          <li>Kim, J.H., Cho, Y., et al. (2025). Sweet Potato Farming in the USA and South Korea. <em>Journal of Biosystems Engineering</em>, 50(2), 210&ndash;224.</li>
-          <li>Kim, J.H., Cho, Y., Hwang, I.S., et al. (2025). Mechanization Status and Cultivation Pattern of Chinese Cabbage. <em>Journal of Biosystems Engineering</em>.</li>
+          <li>Kim, J.H.&dagger;, Cho, Y.H.&dagger;, Hwang, I.S., Shin, C.S., &amp; Nam, J.S. (2025). A comparative review of mechanization status and cultivation pattern of Chinese cabbage in the USA and South Korea. <em>Journal of Biosystems Engineering</em>, 50, 393&ndash;409.</li>
+          <li>Kim, J.H.&dagger;, Cho, Y.H.&dagger;, Kim, K.M., Lee, C.Y., Lee, W.S., &amp; Nam, J.S. (2025). Sweet potato farming in the USA and South Korea: A comparative study of cultivation pattern and mechanization status. <em>Journal of Biosystems Engineering</em>, 50(2), 210&ndash;224.</li>
+          <li>Jang, M.K., Kim, S.J., Cho, Y.H., &amp; Nam, J.S. (2025). Prediction model of PTO shaft fatigue damage considering sandy loam and loam in rotary-tillage operation. <em>Journal of Agricultural Engineering</em>, 56(2).</li>
+          <li>Kim, J.H.&dagger;, Lee, C.Y.&dagger;, Cho, Y.H.&dagger;, Yu, Z., Kim, K.M., Yang, Y.J., &amp; Nam, J.S. (2024). Potato farming in the United States and South Korea: Status comparison of cultivation patterns and agricultural machinery use. <em>Journal of Biosystems Engineering</em>, 49(3), 252&ndash;269.</li>
         </ul>
+        <p style="font-size:0.76rem;color:var(--text-light);">&dagger; Equal contribution</p>
 
         <h3 id="patents">Patents</h3>
         <ul class="pub-list">
-          <li>Efficient Seaweed Farming Data Management by Utilizing Blockchain and Smart Supply Chain Tracking System. Patent Application KR10-2024-0011399, 2024.</li>
-          <li>Methods for Selecting Spores from Laver Farm Devices. Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></li>
+          <li>Cho, B., &amp; Cho, Y. (2024). <em>Efficient seaweed farming data management by utilizing blockchain and smart supply chain tracking system for seaweed products using the same.</em> Korean Patent Application KR10-2024-0011399, filed January 25, 2024.</li>
+          <li>Cho, B., &amp; Cho, Y. (2019). <em>Methods for selecting spores from laver farm devices.</em> Korean Patent KR102034354B1. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></li>
         </ul>
 
         <h3 id="presentations">Conference Presentations</h3>
@@ -469,17 +497,21 @@
         </ul>
 
         <h3 id="reviewing">Peer Review</h3>
-        <p>18 reviews for 3 journals (2024&ndash;Present):</p>
+        <p>Reviewer for 5 journals (2024&ndash;Present):</p>
         <ul class="pub-list">
-          <li><em>Environment, Development and Sustainability</em> (Springer Nature) &mdash; 13 reviews</li>
-          <li><em>Sustainable Futures</em> (Elsevier) &mdash; 3 reviews</li>
-          <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature) &mdash; 2 reviews</li>
+          <li><em>Environmental, Development and Sustainability</em> (Springer Nature)</li>
+          <li><em>Humanities and Social Sciences Communications</em> (Springer Nature)</li>
+          <li><em>Discover Agriculture</em> (Springer Nature)</li>
+          <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature)</li>
+          <li><em>Sustainable Futures</em> (Elsevier)</li>
         </ul>
       </section>
 
       <!-- Teaching -->
       <section id="teaching">
         <h2>Teaching</h2>
+
+        <p>My teaching approach is problem-first: start with an operational scenario in plain language, then introduce the tools needed to address it. Students build intuition before formalism, and learn to identify what is missing, design what is needed, and evaluate whether it works.</p>
 
         <div class="entry">
           <div class="entry-header">
@@ -500,9 +532,7 @@
           <li>Cho, Y. (2025, June 21). Digital agriculture and aquaculture enabled by blockchain technology. <em>BILLION21 Inc.</em>, Gunpo, South Korea.</li>
           <li>Cho, Y. (2024, May 16). Data trends in agriculture and aquaculture in the United States. <em>Korea National University of Agriculture and Fisheries</em>, Jeonju, South Korea.</li>
           <li>Cho, Y. (2024, June 10). Emerging trends in digital and smart agriculture for greenhouse systems. <em>Jeonju University</em>, Jeonju, South Korea.</li>
-          <li>Cho, Y. (2024, June 12). Emerging trends in digital and smart agriculture using blockchain technology. <em>Rural Development Administration</em>, Jeonju, South Korea.</li>
           <li>Cho, Y. (2024, June 14). Emerging trends in digital and smart agriculture for agricultural machinery. <em>Kangwon National University</em>, Chuncheon, South Korea.</li>
-          <li>Cho, Y. (2024, June 14). Emerging trends in digital and smart agriculture. <em>Seoul National University</em>, Seoul, South Korea.</li>
           <li>Cho, Y. (2024, June 20). Digital and smart agriculture for open-field production systems. <em>Chungbuk National University</em>, Cheongju, South Korea.</li>
           <li>Cho, Y. (2024, June 24). Smart agriculture trends for upland crop production. <em>Chungnam National University</em>, Daejeon, South Korea.</li>
         </ul>
@@ -534,6 +564,16 @@
           <p>Technical blog with 790+ posts covering Python, C/C++, AI, blockchain, and algorithms. Mentoring students on graduate school preparation, career guidance, and coding interview prep.</p>
         </div>
 
+        <h3 id="courses">Proposed Courses</h3>
+        <ul>
+          <li><strong>Data Infrastructure for Agricultural Systems</strong> &mdash; Verification, traceability, and governance in cross-organizational data sharing. Designing systems that track data origin, transfer, and transformation using distributed ledger technology and APIs.</li>
+          <li><strong>Applied Blockchain and Smart Contracts for Agriculture</strong> &mdash; Blockchain architecture, smart contract design (Hyperledger Fabric), and applications in supply chain transparency, carbon credit verification, and data provenance.</li>
+          <li><strong>AI and Machine Learning for Agricultural Applications</strong> &mdash; Hands-on course covering computer vision (YOLO, SAM, OpenCV), applied ML, and LLM integration for agricultural monitoring and decision support under real production constraints.</li>
+          <li><strong>Data Science and Programming for Agricultural Engineering</strong> &mdash; Python-based course on data manipulation, statistical analysis, API development, database management, and data visualization.</li>
+          <li><strong>Smart Agriculture Systems Engineering</strong> &mdash; IoT architectures, sensor networks, edge computing, and cloud platforms (AWS, Azure) for agricultural monitoring, from field-level sensors to decision support systems.</li>
+          <li><strong>Digital Agriculture Seminar</strong> &mdash; Graduate seminar on data governance, cross-sectoral interoperability, trustworthy AI pipelines, and infrastructure challenges in scaling digital systems across diverse agricultural contexts.</li>
+        </ul>
+
       </section>
 
       <!-- Grants & Awards -->
@@ -560,6 +600,7 @@
             <span class="date">2024 &ndash; Present</span>
           </div>
           <p class="org">via <a href="https://together.kakao.com/">Kakao Together</a></p>
+          <p>Supporting programs for vulnerable children, youth aging out of foster care, and communities affected by crisis in South Korea.</p>
           <ul class="pub-list">
             <li><a href="https://together.kakao.com/fundraisings/132294/story">A warm meal for youth preparing for tomorrow</a></li>
             <li><a href="https://together.kakao.com/fundraisings/125446/story">2025 wildfire damage emergency relief</a></li>
@@ -586,6 +627,7 @@
           <li>LinkedIn: <a href="https://www.linkedin.com/in/younghoo-cho-362161206/">Younghoo Cho</a></li>
           <li>ORCID: <a href="https://orcid.org/0009-0009-7406-1782">0009-0009-7406-1782</a></li>
           <li>CV: <a href="assets/pdf/CV_Yc.pdf">Download (PDF)</a></li>
+          <li>Work Authorization: F-1 student visa. Eligible for 12-month OPT plus 24-month STEM OPT extension (36 months total) upon graduation in 2026.</li>
         </ul>
 
         <h3>Advisors</h3>
