@@ -75,12 +75,12 @@
 
             <h3 id="skills">Technical Skills</h3>
             <table>
-              <tr><td>Languages</td><td>Python, C++, Go, JavaScript, C, Java, R</td></tr>
-              <tr><td>Backend &amp; APIs</td><td>Node.js, Express, REST APIs</td></tr>
-              <tr><td>AI &amp; Vision</td><td>YOLO, SAM, OpenCV, Machine Learning, LLM Integration</td></tr>
-              <tr><td>Distributed Systems</td><td>Hyperledger Fabric, Blockchain Systems</td></tr>
-              <tr><td>Data &amp; Cloud</td><td>AWS, Azure, CouchDB, Firebase</td></tr>
+              <tr><td>Backend &amp; Distributed</td><td>Hyperledger Fabric, Go, Node.js, Express, REST APIs, gRPC</td></tr>
+              <tr><td>Data &amp; Pipelines</td><td>Apache Airflow, Apache Spark, Apache Kafka, PostgreSQL, MySQL, MongoDB, CouchDB, Firebase</td></tr>
+              <tr><td>Cloud &amp; DevOps</td><td>AWS, Azure, Docker, Kubernetes, CI/CD (GitHub Actions), Git, Linux</td></tr>
+              <tr><td>Applied AI &amp; Vision</td><td>LLM Integration, PyTorch, YOLO, SAM, OpenCV</td></tr>
               <tr><td>Frontend</td><td>Next.js, React, TypeScript</td></tr>
+              <tr><td>Languages</td><td>Python, Go, JavaScript, Java, C, C++, R</td></tr>
             </table>
         </div>
       </section>
@@ -92,7 +92,7 @@
         <div class="entry">
           <div class="entry-header">
             <h3>University of Florida</h3>
-            <span class="date">2022 &ndash; 2026</span>
+            <span class="date">Aug 2022 &ndash; Expected Aug 2026</span>
           </div>
           <p>Ph.D. in Agricultural and Biological Engineering &middot; GPA: 3.95/4.0</p>
           <p class="meta">Certificate in Biological Systems Modeling</p>
@@ -102,7 +102,7 @@
         <div class="entry">
           <div class="entry-header">
             <h3>Texas Tech University</h3>
-            <span class="date">2018 &ndash; 2022</span>
+            <span class="date">Aug 2015 &ndash; Jul 2022</span>
           </div>
           <p>B.S. in Computer Science, Minor in Mathematics &middot; GPA: 3.8/4.0</p>
           <p class="meta">Computer Vision, Object Detection, Image Segmentation, Data Visualization</p>
@@ -117,19 +117,24 @@
         <div class="entry">
           <div class="entry-header">
             <h3>Graduate Research Assistant</h3>
-            <span class="date">2022 &ndash; 2026</span>
+            <span class="date">Aug 2022 &ndash; Aug 2026</span>
           </div>
           <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
-          <p>Conduct doctoral research on data infrastructure, provenance, and verification systems. Develop prototypes, manuscripts, and reproducible documentation. Designed and built DEMETER platform end-to-end.</p>
+          <ul>
+            <li>Own the full stack of a cross-system agricultural data platform, smart contracts, REST APIs, data pipelines, web UI, shipped solo and used in funded-project demonstrations.</li>
+            <li>Built distributed-ledger backends on Hyperledger Fabric (Go) with Node.js/Express service layers, delivering sub-5s trace queries across 8,000+ linked records.</li>
+            <li>Designed ingestion and verification pipelines using Airflow jobs, Kafka event streams, and Spark batch aggregations over file-level metadata.</li>
+            <li>Delivered reproducible documentation and demo code adopted by external collaborators without direct handoff.</li>
+          </ul>
         </div>
 
         <div class="entry">
           <div class="entry-header">
             <h3>Researcher</h3>
-            <span class="date">2024 &ndash; 2026</span>
+            <span class="date">2024 &ndash; 2025</span>
           </div>
           <p class="org">Ministry of Agriculture, Food and Rural Affairs (MAFRA), South Korea</p>
-          <p>Contributed to comparative studies of crop mechanization and digital agriculture development between South Korea and the United States.</p>
+          <p>Delivered a comparative analysis of crop mechanization and digital-agriculture adoption between South Korea and the United States, used for cross-country technology and policy benchmarking.</p>
         </div>
 
         <div class="entry">
@@ -138,7 +143,10 @@
             <span class="date">2019 &ndash; 2022</span>
           </div>
           <p class="org">Billion21</p>
-          <p>Contributed to AI and computer vision development for marine production and smart aquaculture systems. Built YOLO-based feeding analysis and SAM-based size estimation systems.</p>
+          <ul>
+            <li>Built production-facing computer-vision pipelines (YOLO, SAM, OpenCV) for marine monitoring and automated feeding, reducing manual inspection effort in live aquaculture operations.</li>
+            <li>Contributed detection and segmentation components that fed into two filed patents on blockchain-tracked seaweed farming and spore selection.</li>
+          </ul>
         </div>
 
         <div class="entry">
@@ -147,7 +155,7 @@
             <span class="date">2020 &ndash; 2021</span>
           </div>
           <p class="org">Global BioAg Linkages</p>
-          <p>Evaluated technical and data requirements for AI deployment in agricultural production systems.</p>
+          <p>Scoped technical and data requirements for AI deployment in agricultural production systems, informing design decisions for downstream pilot projects.</p>
         </div>
 
         <div class="entry">
@@ -156,7 +164,7 @@
             <span class="date">2021 &ndash; 2022</span>
           </div>
           <p class="org">Texas Tech University</p>
-          <p>Supported research projects in computer vision and data visualization.</p>
+          <p>Shipped reusable computer-vision and data-visualization components adopted by subsequent lab projects.</p>
         </div>
 
         <div class="entry">
@@ -176,7 +184,7 @@
         <h3 class="project-category">Data Infrastructure</h3>
 
         <details id="demeter" class="project" open>
-          <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Next.js &middot; LLM</span></summary>
+          <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Airflow &middot; Kafka &middot; Spark &middot; Docker &middot; LLM</span></summary>
           <div class="project-body">
 
             <p>Agricultural data has significant value for farm decisions, environmental assessment, and regulatory compliance, but sharing it across independent organizations rarely happens because no organization can confirm where an outside file came from. A central database would solve this, but no single organization has the infrastructure to collect and maintain all agricultural data. Files get sent directly, and the moment a file leaves one system, its history is lost.</p>
@@ -197,7 +205,8 @@
               <tr><td>NLQ</td><td>15 intents, deterministic routing + Phi-3 LLM fallback via Ollama</td></tr>
               <tr><td>DID Auth</td><td>ECDSA P-256 key pair, Web Crypto API, challenge-response</td></tr>
               <tr><td>Local Agent</td><td>Watches a folder, auto-detects provenance type, registers on-chain</td></tr>
-              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Docker Compose, Raft ordering</td></tr>
+              <tr><td>Data Pipelines</td><td>Airflow jobs, Kafka event streams, Spark batch aggregations over ledger history</td></tr>
+              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Docker Compose, Raft ordering, CI-driven build and test</td></tr>
             </table>
 
             <p>Evaluation tested 5 claims across 4 independently operated systems, confirming all requirements (R1&ndash;R6) under both functional and failure conditions.</p>
@@ -295,7 +304,7 @@
             <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage generates distinct data, spore density judgments at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers, yet no shared system connects producers, processors, and distributors. Once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
             <p>This blockchain-based data management system records production data, processing events, and distribution transfers on a shared ledger so that any downstream party can trace the full history of a seaweed product from spore cultivation through final delivery. Applying blockchain at this layer guarantees three properties the supply chain previously lacked: diversity across participating parties, security against tampering, and transparency for auditors and regulators.</p>
             <p>The system builds directly on the laver spore selection patent (KR102034354B1), which established automated image-based quality assessment at the cultivation stage. Spore density judgments produced by that imaging pipeline become the first verifiable record on the ledger, and each downstream stage (harvest, processing, distribution) appends linked records referencing that origin.</p>
-            <p class="sourced-by">Patent Application KR10-2024-0011399, 2024.</p>
+            <p class="sourced-by">Patent Application KR10-2024-0011399, 2024. Status: Pending.</p>
           </div>
         </details>
 
@@ -354,7 +363,7 @@
               <figure class="fig"><a href="assets/img/patent1-4.png" class="lightbox-link"><img src="assets/img/patent1-4.png" alt="Process flowchart"></a><figcaption>Selection flowchart: S100 Rotate frame → S110 Harvest spores from shells → S120 Photograph spores with imaging device → S130 Transmit image to control center → S140 Spore density above threshold? If yes → S150 Select net section for harvest. If no → return to S100 and re-cultivate</figcaption></figure>
             </div>
             <p>The control center database accumulates image data of completed plantings and builds a machine learning model from that data, automating verification that was previously manual.</p>
-            <p class="sourced-by">Patent KR102034354B1, 2019. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></p>
+            <p class="sourced-by">Patent KR102034354B1, 2019. Status: Granted. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></p>
           </div>
         </details>
 
@@ -424,8 +433,8 @@
 
         <h3 id="patents">Patents</h3>
         <ul class="pub-list">
-          <li>Cho, B., &amp; Cho, Y. (2024). <em>Efficient seaweed farming data management by utilizing blockchain and smart supply chain tracking system for seaweed products using the same.</em> Korean Patent Application KR10-2024-0011399, filed January 25, 2024.</li>
-          <li>Cho, B., &amp; Cho, Y. (2019). <em>Methods for selecting spores from laver farm devices.</em> Korean Patent KR102034354B1. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></li>
+          <li>Cho, B., &amp; Cho, Y. (2024). <em>Efficient seaweed farming data management by utilizing blockchain and smart supply chain tracking system for seaweed products using the same.</em> Korean Patent Application KR10-2024-0011399, filed January 25, 2024. Status: Pending.</li>
+          <li>Cho, B., &amp; Cho, Y. (2019). <em>Methods for selecting spores from laver farm devices.</em> Korean Patent KR102034354B1. Status: Granted. <a href="https://patents.google.com/patent/KR20190055413A/en">Google Patents</a></li>
         </ul>
 
         <h3 id="presentations">Conference Presentations</h3>
