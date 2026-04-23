@@ -216,7 +216,7 @@
             </div>
 
             <p>As a general-purpose bottom layer, DEMETER is currently being extended to soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes pagination-based tracing beyond 8,000 records and AI agent interfaces for automated verification workflows.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</p>
           </div>
         </details>
 
@@ -260,7 +260,7 @@
             <p>When multiple files from different organizations are combined into a single output, the downstream party cannot determine which source files contributed or under what license conditions they were shared.</p>
             <p>This infrastructure governs how files move between organizations and how combined outputs relate back to their sources, recording every access request, approval, transfer, and reuse decision on-chain.</p>
             <p>The access request workflow runs through Request, Approve, Fulfill, and Download, while reuse evaluation checks purpose against 7 Creative Commons license types with expiration enforcement and derivative restrictions. A decision chain tracing audits who approved what and when.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
           </div>
         </details>
 
@@ -272,7 +272,7 @@
             <p>The processor writes a declaration to the ledger linking input File ID to output File ID with an operation label, and declarations referencing unregistered inputs are rejected. Inspection follows the chain backward and returns one of three states: resolved, resolved with gap, or no declaration.</p>
             <p>Importantly, TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. This boundary keeps infrastructure-level claims honest: the system records what was declared, not whether the operation produced a semantically correct result.</p>
             <p>Validation used a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). The downstream party retrieves the full chain in one query, and declaration-time validation correctly rejects unregistered inputs.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
           </div>
         </details>
 
@@ -283,7 +283,7 @@
             <p>This infrastructure lets any downstream receiver verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
             <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
             <p>Verification was confirmed across multi-hop transfers: modified files correctly fail verification (different fingerprint, no matching record), and tracing reconstructs the full path regardless of whether intermediate parties are online.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-dv-infrastructure">github.com/WhoisHOO/demeter-dv-infrastructure</a> (private during review)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-dv-infrastructure">github.com/WhoisHOO/demeter-dv-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
           </div>
         </details>
 
