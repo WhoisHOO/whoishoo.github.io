@@ -318,6 +318,13 @@ td:first-child {
   font-size: 0.85rem;
   color: var(--text-light);
 }
+.privacy-note {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 0.3rem;
+  line-height: 1.45;
+}
 .hub-marker {
   position: relative;
 }

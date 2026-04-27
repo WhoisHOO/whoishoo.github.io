@@ -71,7 +71,7 @@ function renderVisitor(key, v) {
     weight: 1,
     fillOpacity: 0.9,
   })
-    .bindTooltip(`${v.city || "Unknown"}, ${v.country || ""}`)
+    .bindTooltip(v.country || "Unknown")
     .addTo(visitorLayer);
 }
 
@@ -106,11 +106,14 @@ async function submitVisitor() {
     const data = await res.json();
     if (typeof data.latitude !== "number" || typeof data.longitude !== "number") return;
 
+    // Obfuscate location: ~30km random offset to prevent reidentification
+    const offsetLat = (Math.random() - 0.5) * 0.6;
+    const offsetLng = (Math.random() - 0.5) * 0.6;
+
     push(ref(db, "visitors"), {
-      lat: data.latitude,
-      lng: data.longitude,
+      lat: data.latitude + offsetLat,
+      lng: data.longitude + offsetLng,
       country: data.country_name || "",
-      city: data.city || "",
       timestamp: now,
     });
     localStorage.setItem("whoishoo_last_submit", now.toString());
