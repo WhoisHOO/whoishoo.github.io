@@ -65,7 +65,7 @@
         <div class="about-content">
             <h2>About</h2>
             <p>I work on data infrastructure that allows agricultural files to remain verifiable after they cross organizational boundaries.</p>
-            <p>Healthcare addressed a version of this problem with shared ledger-based record coordination; finance addressed it with append-only audit trails. Agriculture has neither. When a certifier receives a dataset from a third-party lab, the receiving party has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand.</p>
+            <p>Healthcare addressed a version of this problem with shared ledger-based record coordination; finance addressed it with append-only audit trails. Agriculture has neither. After a file moves between organizations, the receiving party cannot verify whether it matches what was originally recorded, because the originating system may be inaccessible and no shared reference survives the transfer.</p>
             <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization, a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
             <p>Earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> established a principle that now guides this infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
             <p>I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it.</p>
@@ -188,14 +188,13 @@
               <figcaption>DEMETER project introduction</figcaption>
             </figure>
 
-            <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand. DEMETER addresses this by recording file history on a shared blockchain while files remain on each organization's local system.</p>
+            <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand.</p>
 
-            <p>DEMETER addresses this by recording file history on a shared blockchain while files remain on each organization's local system. Three layers handle what is lost when files cross boundaries: <a href="#dv">where a file came from</a> (origin), <a href="#ti">how it was changed</a> (transformation), and <a href="#si">how it was shared</a> (integration). A natural language interface lets users query and write records through plain-text commands.</p>
+            <p>DEMETER records file history on a shared blockchain while files remain on each organization's local system. Three layers handle what is lost when files cross boundaries: <a href="#dv">where a file came from</a> (origin), <a href="#ti">how it was changed</a> (transformation), and <a href="#si">how it was shared</a> (integration). A natural language interface lets users query and write records through plain-text commands.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>Architecture: LLM interface, Origin/Transformation/Integration on-chain, Tracing, files remain off-chain</figcaption></figure>
             </div>
 
-            <p>The full system was designed and built end-to-end.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network"></a><figcaption>Hyperledger Fabric network: 4 organizations, shared ledger, no central authority</figcaption></figure>
             </div>
@@ -254,7 +253,7 @@
         <details class="project" open>
           <summary><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
           <div class="project-body">
-            <p>Existing blockchain frameworks store static data references (e.g., IPFS hashes) on-chain, but every transformation generates a new hash, fragmenting the traceability chain and increasing storage redundancy. Agricultural image files such as drone TIFF and satellite imagery are large and frequently transformed through NDVI analysis, yield estimation, and crop growth monitoring, and current models cannot handle this volume without excessive on-chain storage.</p>
+            <p>When citrus drone TIFF imagery is repeatedly transformed for NDVI analysis, yield estimation, and disease monitoring, the receiving party cannot follow the chain back to the original capture. Existing blockchain frameworks store a new hash on-chain for every transformation, which fragments the trace and balloons storage costs as image volume grows.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/scale-1.png" class="lightbox-link"><img src="assets/img/scale-1.png" alt="Data branching and transformation"></a><figcaption>The problem: agricultural data branches and transforms across farmers, storage, transportation, and consumers</figcaption></figure>
             </div>
@@ -323,9 +322,7 @@
         <details class="project" open>
           <summary><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing <span class="meta-inline">Agriculture &middot; Healthcare &middot; Finance</span></summary>
           <div class="project-body">
-            <p>Before designing the infrastructure, it was necessary to understand what has been done across sectors and what gaps remain. Agriculture is not the only field where data crosses organizational boundaries.</p>
-            <p>This cross-sectoral review analyzed blockchain applications in data sharing across agriculture, healthcare, and finance, identifying what each sector has implemented (origin, transformation, integration) and where gaps remain.</p>
-            <p>An important distinction often conflated in the agricultural blockchain literature emerged from the review: supply-chain traceability tracks <em>products</em>, while data-file traceability tracks the <em>origin, transfer, and transformation of data objects</em>. Identifying this distinction was essential for defining the scope of verification infrastructure.</p>
+            <p>Across agriculture, healthcare, and finance, blockchain has been applied to data sharing in fundamentally different ways. The agricultural blockchain literature often conflates two distinct things: supply-chain traceability, which tracks <em>products</em>, and data-file traceability, which tracks the <em>origin, transfer, and transformation of data objects</em>. Distinguishing them defined the scope of what verification infrastructure must do.</p>
             <p>Agriculture had partial origin verification but no transformation or integration traceability. Healthcare and finance operate under mandatory regulatory frameworks (HITECH, SEC reporting) that compelled infrastructure investment. Agriculture has no equivalent mandate, which is why the gap persists. Healthcare had implemented origin, and finance had implemented origin and transformation. No sector had all three. Each missing layer maps to a distinct operational failure: without origin verification, a receiving party cannot confirm the file is unmodified; without transformation traceability, a derived output cannot be traced to its input; without integration traceability, a combined file cannot be decomposed to its sources. DV, TI, and SI address each failure independently.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
           </div>
@@ -335,7 +332,7 @@
           <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">Blockchain &middot; Smart Contract</span></summary>
           <div class="project-body">
             <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage generates distinct data, spore density judgments at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers, yet no shared system connects producers, processors, and distributors. Once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
-            <p>This blockchain-based data management system records production data, processing events, and distribution transfers on a shared ledger so that any downstream party can trace the full history of a seaweed product from spore cultivation through final delivery. Applying blockchain at this layer guarantees three properties the supply chain previously lacked: diversity across participating parties, security against tampering, and transparency for auditors and regulators.</p>
+            <p>This blockchain-based data management system records production data, processing events, and distribution transfers on a shared ledger so that any receiving party can trace the full history of a seaweed product from spore cultivation through final delivery. Applying blockchain at this layer guarantees three properties the supply chain previously lacked: diversity across participating parties, security against tampering, and transparency for auditors and regulators.</p>
             <p>The system builds directly on the laver spore selection patent (KR102034354B1), which established automated image-based quality assessment at the cultivation stage. Spore density judgments produced by that imaging pipeline become the first verifiable record on the ledger, and each downstream stage (harvest, processing, distribution) appends linked records referencing that origin.</p>
             <p class="sourced-by">Patent Application KR10-2024-0011399, 2024. Status: Pending.</p>
           </div>
@@ -353,7 +350,7 @@
         <details class="project" open>
           <summary><span class="project-num">10</span> Carbon Markets &amp; Agricultural Data Sharing <span class="meta-inline">Stakeholder Analysis &middot; Policy</span></summary>
           <div class="project-body">
-            <p>Carbon credits, insurance indemnity, and compliance decisions all depend on data that crosses organizational boundaries. If the downstream party cannot verify where the data came from, the decision rests on unverifiable claims.</p>
+            <p>Carbon credits, insurance indemnity, and compliance decisions all depend on data that crosses organizational boundaries. If the receiving party cannot verify where the data came from, the decision rests on unverifiable claims.</p>
             <p>This comparative study of stakeholder engagement in carbon markets between South Korea and the United States established why a data sharing perspective is necessary in agriculture and where verifiable infrastructure is missing.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). <em>Discover Agriculture</em>, 3, 126.</p>
           </div>
@@ -404,32 +401,28 @@
         <details class="project" open>
           <summary><span class="project-num">3</span> Biological Systems Modeling <span class="meta-inline">Python &middot; NetLogo &middot; Java &middot; Agent-Based</span></summary>
           <div class="project-body">
-            <p>Understanding how biological and environmental systems behave over time is foundational for building data infrastructure that serves those systems, since models reveal what data matters and how it changes.</p>
-            <p>A three-course series (ABE 5643C, ABE 6649C, ABE 6933) covered dynamic systems modeling, agent-based modeling, and advanced simulation, producing computational models of predator-prey dynamics, crop growth, and ecological processes. Certificate in Biological Systems Modeling.</p>
+            <p>Three-course series (ABE 5643C, ABE 6649C, ABE 6933) leading to the Certificate in Biological Systems Modeling. Built computational models of predator-prey dynamics, crop growth, and ecological processes &mdash; the kind of systems that produce the data my infrastructure work needs to verify.</p>
           </div>
         </details>
 
         <details class="project" open>
           <summary><span class="project-num">4</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
           <div class="project-body">
-            <p>Automated identification of tree trunks in citrus groves supports precision spraying, canopy management, and yield estimation, reducing manual field assessment.</p>
-            <p>This CNN-based image segmentation pipeline for citrus tree trunks was implemented end-to-end from data preparation through model training and inference using PyTorch (ABE 6933).</p>
+            <p>Manual identification of tree trunks in citrus groves slows precision spraying and canopy management. This CNN-based image segmentation pipeline (PyTorch, ABE 6933) was implemented end-to-end from data preparation through training and inference, producing per-trunk masks usable for downstream precision-ag automation.</p>
           </div>
         </details>
 
         <details class="project" open>
           <summary><span class="project-num">5</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">GPS/GIS &middot; UAV &middot; IoT &middot; ML</span></summary>
           <div class="project-body">
-            <p>Precision agriculture systems generate high-volume field data from GPS, sensors, drones, and IoT devices. Knowing how this data is produced and used is essential for building infrastructure that can handle it.</p>
-            <p>Coursework covered advanced precision agriculture methods, GPS/GIS, remote sensing, UAV, variable rate technology, and IoT sensor networks, and applied them in SmartAg systems spanning instrumentation, machine learning, and control methods for real agricultural applications.</p>
+            <p>Coursework in AOM 5435 Advanced Precision Agriculture (GPS/GIS, remote sensing, UAV, variable rate technology) and AOM 5456 Applied Methods in SmartAg Systems (instrumentation, ML, control methods). Direct exposure to the sensors and field-data sources that my infrastructure work targets.</p>
           </div>
         </details>
 
         <details class="project" open>
           <summary><span class="project-num">6</span> Food &amp; Bioprocess Engineering <span class="meta-inline">Process Design &middot; Data Management</span></summary>
           <div class="project-body">
-            <p>Food processing generates data at every stage, from sterilization temperatures to fermentation rates. Understanding these processes is necessary to design data infrastructure that captures what matters in food supply chains.</p>
-            <p>Coursework covered engineering design of unit process operations in agro/food, pharmaceutical, and biological industries, sterilization, pasteurization, drying, evaporation, fermentation, and distillation, connecting AI and data management to physical food processing systems.</p>
+            <p>Coursework in ABE 5815C covering unit process operations in agro/food and biological industries (sterilization, drying, fermentation, distillation). Domain knowledge for the food-traceability layer DEMETER's ongoing extension is built around.</p>
           </div>
         </details>
 
