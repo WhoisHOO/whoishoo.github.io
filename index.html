@@ -43,7 +43,6 @@
         </div>
         <nav>
           <a href="#about">About</a>
-          <a href="#network">Live Network</a>
           <a href="#education">Education</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
@@ -53,6 +52,7 @@
           <a href="#teaching">Teaching</a>
           <a href="#grants">Grants &amp; Awards</a>
           <a href="#community">Community</a>
+          <a href="#network">Live Network</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -85,15 +85,6 @@
               <tr><td>Languages</td><td>Python, Go, Rust, JavaScript, Java, C, C++, R</td></tr>
             </table>
         </div>
-      </section>
-
-      <!-- Live Network -->
-      <section id="network">
-        <h2>Live Network</h2>
-        <p>Just like <a href="#demeter">DEMETER</a> traces data flows across organizations, this map traces visitors across the world. Each line is a real connection from this site to a real visitor location.</p>
-        <div id="visitor-map"></div>
-        <p class="network-stats"><span id="visitor-count">0</span> connections from <span id="country-count">0</span> countries</p>
-        <p class="privacy-note">Privacy: only country name and obfuscated coordinates (~30km random offset) are stored. No IP address, city, or personal data is recorded. Each browser submits at most once per 24 hours.</p>
       </section>
 
       <!-- Education -->
@@ -185,6 +176,7 @@
         <h2>Projects</h2>
 
         <h3 class="project-category">Data Infrastructure</h3>
+        <p class="category-intro">Each project below addresses a layer of the same problem: making agricultural data verifiable across organizational boundaries. The order moves from the integrated platform (DEMETER), to its independent infrastructure layers (DV, TI, SI), to the foundational research and field studies that motivated them.</p>
 
         <details id="demeter" class="project" open>
           <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Airflow &middot; Kafka &middot; Spark &middot; Docker &middot; LLM</span></summary>
@@ -378,6 +370,7 @@
         </details>
 
         <h3 class="project-category">Applied AI &amp; Data</h3>
+        <p class="category-intro">Computer vision and machine learning projects across aquaculture, citrus production, and food processing. The first two shipped into real production systems and led to filed patents; the rest demonstrate applied skill in agricultural domains relevant to the data infrastructure work above.</p>
 
         <details id="aquaculture" class="project" open>
           <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
@@ -608,6 +601,15 @@
             <li><a href="https://together.kakao.com/fundraisings/97829/story">Light the spark of hope for children</a></li>
           </ul>
         </div>
+      </section>
+
+      <!-- Live Network -->
+      <section id="network">
+        <h2>Live Network</h2>
+        <p>The same problem DEMETER addresses, tracking what crosses organizational boundaries, applies here. Every visitor to this site connects from somewhere, and each connection is recorded as a node on the map below. The infrastructure mirrors what the projects above describe.</p>
+        <div id="visitor-map"></div>
+        <p class="network-stats"><span id="visitor-count">0</span> connections from <span id="country-count">0</span> countries</p>
+        <p class="privacy-note">Privacy: only country name and obfuscated coordinates (~30km random offset) are stored. No IP address, city, or personal data is recorded. Each browser submits at most once per 24 hours.</p>
       </section>
 
       <!-- Contact -->
