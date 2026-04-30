@@ -163,6 +163,15 @@ li { margin-bottom: 0.3rem; }
 }
 .project-category:first-of-type { margin-top: 0; }
 
+.category-intro {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: -0.1rem;
+  margin-bottom: 0.9rem;
+  line-height: 1.55;
+  max-width: 700px;
+}
+
 .project-num {
   display: inline-flex;
   align-items: center;
