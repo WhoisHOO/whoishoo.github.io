@@ -66,8 +66,8 @@
             <h2>About</h2>
             <p>I come from a family of educators and farmers. My grandfather, my mother, and my extended family have spent their careers in education. Our family also runs a farm and a smart agriculture and aquaculture IT company. Growing up between these two worlds, teaching and feeding, I learned early that the work worth doing is work that helps other people.</p>
             <p>My father, a first-generation computer engineer with a Ph.D. in environmental engineering, showed me early how technology applies to real-world systems. Through his work leading a smart agriculture and aquaculture IT company, I saw how AI was beginning to change food production. That pulled me from a general curiosity about the brain into a specific one: how computers learn from data. I studied computer science, built <a href="#aquaculture">vision systems that automate feeding and growth monitoring</a> in fish farms, and kept asking the same question, if the AI works, what happens to the data it depends on?</p>
-            <p>The answer led me to infrastructure. Agricultural data crosses farms, labs, advisors, and regulators, but once a file leaves one system, its history is lost. No one downstream can confirm where it came from or what happened to it. I spent the next four years building <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls, and the independent research behind each layer: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
-            <p>Eleven years in, the thread has not changed. I build systems that solve real data problems and keep them working reliably over time, and now that the skills are ready, I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it. I am grateful to every advisor, mentor, and community that made this path possible.</p>
+            <p>The answer led me to infrastructure. Agricultural data crosses farms, labs, advisors, and regulators, but no one downstream can confirm where it came from or what happened to it. Healthcare addressed a version of this problem with shared ledger-based record coordination; finance addressed it with append-only audit trails. Agriculture has neither. I spent the next four years building <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization &mdash; a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
+            <p>Eleven years in, the thread has not changed. I build systems that solve real data problems and keep them working reliably over time, and now that the skills are ready, I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
               <div class="chip-group" id="chip-sub"></div>
@@ -178,14 +178,6 @@
           <p>Shipped reusable computer-vision and data-visualization components adopted by subsequent lab projects.</p>
         </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <h3>Police Officer (Auxiliary)</h3>
-            <span class="date">2018 &ndash; 2019</span>
-          </div>
-          <p class="org">Gyeonggi Nambu Provincial Police Agency, South Korea</p>
-          <p>Personnel and training administration. Recognized at the 74th National Police Day ceremony.</p>
-        </div>
       </section>
 
       <!-- Projects -->
@@ -203,7 +195,7 @@
               <figcaption>DEMETER project introduction</figcaption>
             </figure>
 
-            <p>Agricultural data has significant value for farm decisions, environmental assessment, and regulatory compliance, but sharing it across independent organizations rarely happens because no organization can confirm where an outside file came from. A central database would solve this, but no single organization has the infrastructure to collect and maintain all agricultural data. Files get sent directly, and the moment a file leaves one system, its history is lost.</p>
+            <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand. DEMETER addresses this by recording file history on a shared blockchain while files remain on each organization's local system.</p>
 
             <p>DEMETER addresses this by recording file history on a shared blockchain while files remain on each organization's local system. Three layers handle what is lost when files cross boundaries: <a href="#dv">where a file came from</a> (origin), <a href="#ti">how it was changed</a> (transformation), and <a href="#si">how it was shared</a> (integration). A natural language interface lets users query and write records through plain-text commands.</p>
             <div class="img-row">
@@ -222,7 +214,7 @@
               <tr><td>DID Auth</td><td>ECDSA P-256 key pair, Web Crypto API, challenge-response</td></tr>
               <tr><td>Local Agent</td><td>Watches a folder, auto-detects provenance type, registers on-chain</td></tr>
               <tr><td>Data Pipelines</td><td>Airflow jobs, Kafka event streams, Spark batch aggregations over ledger history</td></tr>
-              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Docker Compose, Raft ordering, CI-driven build and test</td></tr>
+              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Raft ordering, implemented and evaluated across a four-organization Docker Compose test network with CI-driven build and test</td></tr>
             </table>
 
             <p>Evaluation tested 5 claims across 4 independently operated systems, confirming all requirements (R1&ndash;R6) under both functional and failure conditions.</p>
@@ -262,7 +254,7 @@
             <p>Users interacting with a blockchain-based data system should not need to learn API endpoints or command syntax, but agricultural data sharing does not require deep reasoning from an LLM, it requires accurate intent classification and correct routing to the right operation.</p>
             <p>This natural language interface classifies user input into 15 intents and routes each to the correct DEMETER operation. Deterministic keyword matching handles known patterns; Phi-3 (3.8B) via Ollama handles the rest, running locally with no external API dependency.</p>
             <p>The keyword router checks input against predefined patterns first, and unmatched queries fall through to Phi-3 for intent classification. A write confirmation gate prevents unintended ledger modifications, any operation that writes to the blockchain requires explicit user approval.</p>
-            <p>A 74-case evaluation suite covering all 15 intents and edge cases confirmed 100% routing accuracy and zero false writes.</p>
+            <p>A 74-case evaluation suite covering all 15 intents and edge cases confirmed 100% routing accuracy and zero false writes. Zero false writes means the AI layer cannot modify ledger state without explicit user confirmation &mdash; the correctness of the verification infrastructure does not depend on LLM reliability.</p>
           </div>
         </details>
 
@@ -293,9 +285,9 @@
         <details id="si" class="project" open>
           <summary><span class="project-num">4</span> SI, Source Integration for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
           <div class="project-body">
-            <p>When multiple files from different organizations are combined into a single output, the downstream party cannot determine which source files contributed or under what license conditions they were shared.</p>
+            <p>When multiple files from different organizations are combined into a single output, the receiving party cannot determine which source files contributed or under what license conditions they were shared.</p>
             <p>This infrastructure governs how files move between organizations and how combined outputs relate back to their sources, recording every access request, approval, transfer, and reuse decision on-chain.</p>
-            <p>The access request workflow runs through Request, Approve, Fulfill, and Download, while reuse evaluation checks purpose against 7 Creative Commons license types with expiration enforcement and derivative restrictions. A decision chain tracing audits who approved what and when.</p>
+            <p>The access request workflow runs through Request, Approve, Fulfill, and Download. Each stage produces an on-chain record so that any party can reconstruct who approved which transfer and under which license, without relying on any single party's internal logs. Reuse evaluation checks purpose against 7 Creative Commons license types with expiration enforcement and derivative restrictions. A decision chain tracing audits who approved what and when.</p>
             <figure class="fig">
               <div class="video-embed"><iframe src="https://www.youtube.com/embed/WRRBmRddwLg" title="SI demo" loading="lazy" allowfullscreen></iframe></div>
               <figcaption>SI demo: cross-organizational access workflow and reuse evaluation</figcaption>
@@ -307,11 +299,11 @@
         <details id="ti" class="project" open>
           <summary><span class="project-num">5</span> TI, Transformation Integrity for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
-            <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The downstream party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
-            <p>This infrastructure lets a downstream party determine the declared registered input and declared operation for a transformed file using only the shared ledger, without contacting the producing environment.</p>
+            <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The receiving party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
+            <p>This infrastructure lets a receiving party determine the declared registered input and declared operation for a transformed file using only the shared ledger, without contacting the producing environment.</p>
             <p>The processor writes a declaration to the ledger linking input File ID to output File ID with an operation label, and declarations referencing unregistered inputs are rejected. Inspection follows the chain backward and returns one of three states: resolved, resolved with gap, or no declaration.</p>
-            <p>Importantly, TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. This boundary keeps infrastructure-level claims honest: the system records what was declared, not whether the operation produced a semantically correct result.</p>
-            <p>Validation used a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). The downstream party retrieves the full chain in one query, and declaration-time validation correctly rejects unregistered inputs.</p>
+            <p>Importantly, TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. Correctness verification would require re-executing the transformation, which is outside what a shared ledger can enforce. This boundary keeps infrastructure-level claims honest.</p>
+            <p>Validation used a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). The receiving party retrieves the full chain in one query, and declaration-time validation correctly rejects unregistered inputs.</p>
             <figure class="fig">
               <div class="video-embed"><iframe src="https://www.youtube.com/embed/7rrnhwlIpJ4" title="TI demo" loading="lazy" allowfullscreen></iframe></div>
               <figcaption>TI demo: declared transformation lineage and chain inspection</figcaption>
@@ -323,10 +315,10 @@
         <details id="dv" class="project" open>
           <summary><span class="project-num">6</span> DV, File Origin Verification for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
-            <p>When a farmer sends a file to an advisor, and the advisor sends it to a certifier, the certifier has no way to check whether the file matches what the farmer originally recorded. The farmer's computer may be off, and no shared record connects them.</p>
-            <p>This infrastructure lets any downstream receiver verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
+            <p>When a farmer sends a file to an advisor, and the advisor sends it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
+            <p>This infrastructure lets any receiving party verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
             <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
-            <p>Verification was confirmed across multi-hop transfers: modified files correctly fail verification (different fingerprint, no matching record), and tracing reconstructs the full path regardless of whether intermediate parties are online.</p>
+            <p>Verification was confirmed across multi-hop transfers: modified files correctly fail verification (different fingerprint, no matching record), and tracing reconstructs the full path regardless of whether intermediate parties are online. This means a regulator receiving data three hops downstream can independently verify file integrity without any prior party being online.</p>
             <figure class="fig">
               <div class="video-embed"><iframe src="https://www.youtube.com/embed/oGBpgdAsZzA" title="DV demo" loading="lazy" allowfullscreen></iframe></div>
               <figcaption>DV demo: file origin verification and multi-hop transfer tracing</figcaption>
@@ -341,7 +333,7 @@
             <p>Before designing the infrastructure, it was necessary to understand what has been done across sectors and what gaps remain. Agriculture is not the only field where data crosses organizational boundaries.</p>
             <p>This cross-sectoral review analyzed blockchain applications in data sharing across agriculture, healthcare, and finance, identifying what each sector has implemented (origin, transformation, integration) and where gaps remain.</p>
             <p>An important distinction often conflated in the agricultural blockchain literature emerged from the review: supply-chain traceability tracks <em>products</em>, while data-file traceability tracks the <em>origin, transfer, and transformation of data objects</em>. Identifying this distinction was essential for defining the scope of verification infrastructure.</p>
-            <p>Agriculture had partial origin verification but no transformation or integration traceability, healthcare had implemented origin, and finance had implemented origin and transformation. No sector had all three, which established DV, TI, and SI as the three necessary layers.</p>
+            <p>Agriculture had partial origin verification but no transformation or integration traceability. Healthcare and finance operate under mandatory regulatory frameworks (HITECH, SEC reporting) that compelled infrastructure investment. Agriculture has no equivalent mandate, which is why the gap persists. Healthcare had implemented origin, and finance had implemented origin and transformation. No sector had all three. Each missing layer maps to a distinct operational failure: without origin verification, a receiving party cannot confirm the file is unmodified; without transformation traceability, a derived output cannot be traced to its input; without integration traceability, a combined file cannot be decomposed to its sources. DV, TI, and SI address each failure independently.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
           </div>
         </details>
