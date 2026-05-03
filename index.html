@@ -65,9 +65,9 @@
         <div class="about-content">
             <h2>About</h2>
             <p>I work on data infrastructure that allows agricultural files to remain verifiable after they cross organizational boundaries.</p>
-            <p>Healthcare addressed a version of this problem with shared ledger-based record coordination; finance addressed it with append-only audit trails. Agriculture has neither. After a file moves between organizations, the receiving party cannot verify whether it matches what was originally recorded, because the originating system may be inaccessible and no shared reference survives the transfer.</p>
-            <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization, a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
-            <p>Earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> established a principle that now guides this infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
+            <p>The healthcare industry addressed a version of this problem with shared ledger-based record coordination, and the finance industry addressed it with append-only audit trails. The agriculture industry has neither. Once a file moves between organizations, the receiving party cannot verify whether it matches what was originally recorded, because the originating system may be inaccessible and no shared reference survives the transfer.</p>
+            <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization &mdash; a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
+            <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> established a principle that now guides this infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
             <p>I am looking for roles where I can lead that work: finding the hard problems, building what is needed, and making it useful to the people who depend on it.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
@@ -124,7 +124,7 @@
           </div>
           <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
           <ul>
-            <li>Own the full stack of a cross-system agricultural data platform, smart contracts, REST APIs, data pipelines, web UI, shipped solo and used in funded-project demonstrations.</li>
+            <li>Own the full stack of a cross-system agricultural data platform &mdash; smart contracts, REST APIs, data pipelines, and web UI &mdash; shipped solo and used in funded-project demonstrations.</li>
             <li>Built distributed-ledger backends on Hyperledger Fabric (Go) with Node.js/Express service layers, delivering sub-5s trace queries across 8,000+ linked records.</li>
             <li>Designed ingestion and verification pipelines using Airflow jobs, Kafka event streams, and Spark batch aggregations over file-level metadata.</li>
             <li>Delivered reproducible documentation and demo code adopted by external collaborators without direct handoff.</li>
@@ -247,9 +247,9 @@
         <details class="project" open>
           <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">Phi-3 &middot; Ollama &middot; Node.js</span></summary>
           <div class="project-body">
-            <p>Users interacting with a blockchain-based data system should not need to learn API endpoints or command syntax, but agricultural data sharing does not require deep reasoning from an LLM, it requires accurate intent classification and correct routing to the right operation.</p>
-            <p>This natural language interface classifies user input into 15 intents and routes each to the correct DEMETER operation. Deterministic keyword matching handles known patterns; Phi-3 (3.8B) via Ollama handles the rest, running locally with no external API dependency.</p>
-            <p>The keyword router checks input against predefined patterns first, and unmatched queries fall through to Phi-3 for intent classification. A write confirmation gate prevents unintended ledger modifications, any operation that writes to the blockchain requires explicit user approval.</p>
+            <p>Users of a blockchain-based data system should not have to learn API endpoints or command syntax. At the same time, agricultural data sharing does not require deep reasoning from an LLM &mdash; it requires accurate intent classification and correct routing to the right operation.</p>
+            <p>This natural language interface classifies user input into 15 intents and routes each one to the correct DEMETER operation. Deterministic keyword matching handles the known patterns, and Phi-3 (3.8B) via Ollama handles everything else, running locally with no external API dependency.</p>
+            <p>The keyword router checks input against predefined patterns first, and any unmatched query falls through to Phi-3 for intent classification. A write confirmation gate prevents unintended ledger modifications: every operation that writes to the blockchain requires explicit user approval.</p>
             <p>A 74-case evaluation suite covering all 15 intents and edge cases confirmed 100% routing accuracy and zero false writes. Zero false writes means the AI layer cannot modify ledger state without explicit user confirmation &mdash; the correctness of the verification infrastructure does not depend on LLM reliability.</p>
           </div>
         </details>
@@ -267,11 +267,11 @@
               <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="Blockchain-IPFS system"></a><figcaption>System architecture: blockchain ledgers + IPFS for citrus drone imagery with NDVI, disease monitoring, irrigation, and crop growth data</figcaption></figure>
             </div>
 
-            <p>The smart contract logs every data interaction, uploads, access requests, transformations, downloads, and usage events, and each interaction generates a unique hashing ID that optimizes transaction speed and prevents redundant on-chain storage. Testing applied predefined criteria (data type, size, timestamp, geolocation) on citrus farm imagery.</p>
+            <p>The smart contract logs every data interaction &mdash; uploads, access requests, transformations, downloads, and usage events &mdash; and each interaction generates a unique hashing ID that improves transaction speed and prevents redundant on-chain storage. Testing applied predefined criteria (data type, size, timestamp, geolocation) on citrus farm imagery.</p>
 
-            <p>All user activities were successfully recorded on-chain with timestamps, user IDs, and access roles converted into secure hash values. The hashing ID update mechanism significantly reduced redundant storage compared to conventional blockchain-IPFS models, confirming the system handles real-world scalability demands while preserving data integrity.</p>
+            <p>All user activities were successfully recorded on-chain, with timestamps, user IDs, and access roles converted into secure hash values. The hashing ID update mechanism significantly reduced redundant storage compared to conventional blockchain-IPFS models, confirming that the system handles real-world scalability demands while preserving data integrity.</p>
 
-            <p>Future directions include a common Ag-Blockchain API enabling data transformation and interoperability across farm management, food traceability, and sustainability applications, along with Zero-Knowledge Proofs (ZKP) to verify and track off-chain data modifications while maintaining privacy.</p>
+            <p>Future directions include a shared Ag-Blockchain API to enable data transformation and interoperability across farm management, food traceability, and sustainability applications, along with Zero-Knowledge Proofs (ZKP) to verify and track off-chain data modifications while preserving privacy.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed framework: Common API connecting blockchain operator, auditors, Hyperledger Fabric, Node.js server, and end users</figcaption></figure>
             </div>
@@ -311,7 +311,7 @@
         <details id="dv" class="project" open>
           <summary><span class="project-num">6</span> DV, File Origin Verification for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
           <div class="project-body">
-            <p>When a farmer sends a file to an advisor, and the advisor sends it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
+            <p>When a farmer sends a file to an intermediate party and that party forwards it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
             <p>This infrastructure lets any receiving party verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
             <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
             <p>Verification was confirmed across multi-hop transfers: modified files correctly fail verification (different fingerprint, no matching record), and tracing reconstructs the full path regardless of whether intermediate parties are online. This means a regulator receiving data three hops downstream can independently verify file integrity without any prior party being online.</p>
@@ -335,7 +335,7 @@
         <details class="project" open>
           <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">Blockchain &middot; Smart Contract</span></summary>
           <div class="project-body">
-            <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage generates distinct data, spore density judgments at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers, yet no shared system connects producers, processors, and distributors. Once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
+            <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage produces its own data &mdash; spore density readings at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers &mdash; yet no shared system connects producers, processors, and distributors. Once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
             <p>This blockchain-based data management system records production data, processing events, and distribution transfers on a shared ledger so that any receiving party can trace the full history of a seaweed product from spore cultivation through final delivery. Applying blockchain at this layer guarantees three properties the supply chain previously lacked: diversity across participating parties, security against tampering, and transparency for auditors and regulators.</p>
             <p>The system builds directly on the laver spore selection patent (KR102034354B1), which established automated image-based quality assessment at the cultivation stage. Spore density judgments produced by that imaging pipeline become the first verifiable record on the ledger, and each downstream stage (harvest, processing, distribution) appends linked records referencing that origin.</p>
             <p class="sourced-by">Patent Application KR10-2024-0011399, 2024. Status: Pending.</p>
@@ -377,9 +377,9 @@
         <details id="aquaculture" class="project" open>
           <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
           <div class="project-body">
-            <p>Marine fish farms rely on manual observation for feeding decisions and growth assessment, which is labor-intensive, inconsistent, and cannot scale across large production environments with multiple species.</p>
-            <p>At BILLION21, I built the computer vision components for the company's smart aquaculture system, targeting two tasks that manual observation could not handle consistently: whole-population behavior analysis and individual-level size estimation for olive flounder and stone flounder. The feeding control logic, edge hardware, and feeder mechanisms were developed by other teams at the company; my contribution was the vision signals those downstream modules depended on.</p>
-            <p>YOLO handled population-level behavior detection, tracking movement patterns across the tank to inform feeding decisions. SAM handled individual-level segmentation, producing size estimates for growth monitoring. Both models were tuned for real farm imaging conditions rather than research datasets.</p>
+            <p>Marine fish farms rely on manual observation for feeding decisions and growth assessment. The work is labor-intensive, inconsistent, and does not scale across large production environments with multiple species.</p>
+            <p>At BILLION21, I built the computer vision components of the company's smart aquaculture system. They targeted two tasks that manual observation could not handle consistently: whole-population behavior analysis and individual-level size estimation for olive flounder and stone flounder. Other teams at the company developed the feeding control logic, edge hardware, and feeder mechanisms; my contribution was the vision signals those downstream modules depended on.</p>
+            <p>YOLO handled population-level behavior detection, tracking movement patterns across the tank to inform feeding decisions. SAM handled individual-level segmentation, producing size estimates for growth monitoring. Both models were tuned for real farm imaging conditions rather than research-grade datasets.</p>
             <p>The components were deployed in real production environments and contributed to BILLION21's commercial product development. The operational data such systems generate, feeding logs, growth time series, and environmental sensor traces, is precisely what the DEMETER smart-aquaculture extension (see ongoing applications above) is being built to verify and share across parties.</p>
             <p>This experience shaped a principle that guides my infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
           </div>
@@ -389,7 +389,7 @@
           <summary><span class="project-num">2</span> Laver Spore Selection System <span class="meta-inline">Computer Vision &middot; Machine Learning &middot; Microscopy</span></summary>
           <div class="project-body">
             <p>In Korean laver farming, spores are cultivated in water tanks and implanted onto nets wrapped around rotating frames. Verifying whether enough spores have attached to each net section determines harvest readiness, but this was done entirely by hand and eye, limiting efficiency and consistency across large-scale operations.</p>
-            <p>This automated spore sorting system uses a camera device (biological microscope with mercury lamp) mounted on the harvesting apparatus to photograph spores. Images are transmitted to a central control terminal that measures spore density and determines planting completeness, above threshold the net section is selected for harvest, below threshold it is re-cultivated.</p>
+            <p>This automated spore sorting system uses a camera device (a biological microscope with a mercury lamp) mounted on the harvesting apparatus to photograph spores. Images are transmitted to a central control terminal that measures spore density and decides planting completeness: if the density is above the threshold, the net section is selected for harvest; if below, it is re-cultivated.</p>
             <div class="img-row">
               <figure class="fig"><a href="assets/img/patent1-1.png" class="lightbox-link"><img src="assets/img/patent1-1.png" alt="Laver harvesting apparatus 3D view"></a><figcaption>Harvesting apparatus: water tank (100), rotating frame with net (10, 20), imaging device (30), shells with spores (1)</figcaption></figure>
             </div>
@@ -494,7 +494,7 @@
       <section id="teaching">
         <h2>Teaching</h2>
 
-        <p>My teaching approach is problem-first: start with an operational scenario in plain language, then introduce the tools needed to address it. Students build intuition before formalism, and learn to identify what is missing, design what is needed, and evaluate whether it works.</p>
+        <p>I teach problem-first. I start with a real-world scenario in plain language, then bring in the tools needed to solve it. Students build intuition before they learn the formal methods, and they practice three things in sequence: identifying what is missing, designing what is needed, and testing whether it actually works.</p>
 
         <div class="entry">
           <div class="entry-header">
