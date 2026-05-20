@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Younghoo Henry Cho</title>
-  <meta name="description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing. DEMETER, blockchain-based data platform for cross-organizational traceability.">
+  <meta name="description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta name="author" content="Younghoo Henry Cho">
-  <meta name="keywords" content="data infrastructure, blockchain, verification, agricultural engineering, DEMETER, Hyperledger Fabric, infrastructure engineer">
+  <meta name="keywords" content="AI accountability, data infrastructure, distributed systems, blockchain, verification, infrastructure engineer, DEMETER, Hyperledger Fabric">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Younghoo Henry Cho">
-  <meta property="og:description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing. DEMETER, blockchain-based data platform for cross-organizational traceability.">
+  <meta property="og:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://whoishoo.github.io/">
   <meta property="og:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
@@ -18,7 +18,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Younghoo Henry Cho">
-  <meta name="twitter:description" content="Ph.D. candidate building verification infrastructure for agricultural data sharing.">
+  <meta name="twitter:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta name="twitter:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
 
   <!-- Favicon -->
@@ -67,8 +67,8 @@
             <p>I work on data infrastructure that allows agricultural files to remain verifiable after they cross organizational boundaries.</p>
             <p>The healthcare industry addressed a version of this problem with shared ledger-based record coordination, and the finance industry addressed it with append-only audit trails. The agriculture industry has neither. Once a file moves between organizations, the receiving party cannot verify whether it matches what was originally recorded, because the originating system may be inaccessible and no shared reference survives the transfer.</p>
             <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization &mdash; a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
-            <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> established a principle that now guides this infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
-            <p>I am expanding into roles where I lead this work end-to-end: finding the hard problems, building what is needed, and making it useful to the people who depend on it.</p>
+            <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> at Billion21 was where I learned this firsthand: production environments, not benchmarks.</p>
+            <p>The same principle guides all of it: the key challenge is not applying the newest method, but building systems that work reliably where it matters.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
               <div class="chip-group" id="chip-sub"></div>
@@ -78,12 +78,12 @@
 
             <h3 id="skills">Technical Skills</h3>
             <table>
-              <tr><td>Backend &amp; Distributed</td><td>Hyperledger Fabric, Go, Node.js, Express, REST APIs, gRPC</td></tr>
-              <tr><td>Data &amp; Pipelines</td><td>Apache Airflow, Apache Spark, Apache Kafka, PostgreSQL, MySQL, MongoDB, CouchDB, Firebase</td></tr>
+              <tr><td>Backend &amp; Distributed</td><td>Hyperledger Fabric, Go, Node.js, Express, REST APIs, gRPC, microservices</td></tr>
+              <tr><td>Data &amp; Pipelines</td><td>Apache Airflow, Apache Spark, Apache Kafka, data lineage, ETL, PostgreSQL, MongoDB, CouchDB, Firebase</td></tr>
               <tr><td>Cloud &amp; DevOps</td><td>AWS, Azure, Docker, Kubernetes, CI/CD (GitHub Actions), Git, Linux</td></tr>
-              <tr><td>Applied AI &amp; Vision</td><td>LLM Integration, PyTorch, YOLO, SAM, OpenCV</td></tr>
+              <tr><td>Applied AI &amp; Vision</td><td>LLM integration, agentic systems, prompt engineering, evaluation frameworks, PyTorch, YOLO, SAM, OpenCV</td></tr>
               <tr><td>Frontend</td><td>Next.js, React, TypeScript</td></tr>
-              <tr><td>Languages</td><td>Python, Go, Rust, JavaScript, Java, C, C++, R</td></tr>
+              <tr><td>Languages</td><td>Python, Go, JavaScript, Java, C, C++, R</td></tr>
             </table>
         </div>
       </section>
@@ -124,10 +124,11 @@
           </div>
           <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
           <ul>
-            <li>Own the full stack of a cross-system agricultural data platform &mdash; smart contracts, REST APIs, data pipelines, and web UI &mdash; shipped solo and used in funded-project demonstrations.</li>
-            <li>Built distributed-ledger backends on Hyperledger Fabric (Go) with Node.js/Express service layers, delivering sub-5s trace queries across 8,000+ linked records.</li>
-            <li>Designed ingestion and verification pipelines using Airflow jobs, Kafka event streams, and Spark batch aggregations over file-level metadata.</li>
-            <li>Delivered reproducible documentation and demo code adopted by external collaborators without direct handoff.</li>
+            <li>Architected and shipped DEMETER end-to-end, a cross-organizational agricultural data verification platform, taking full ownership from system design through production deployment across four independently operated organizations.</li>
+            <li>Built a distributed-ledger backend on Hyperledger Fabric (Go) with a Node.js/Express REST API service layer, enabling real-time data lineage tracing across 8,000+ linked records with sub-5s latency.</li>
+            <li>Designed scalable event-driven ingestion pipelines using Airflow orchestration, Kafka event streams, and Spark batch aggregations over file-level metadata.</li>
+            <li>Integrated a local LLM as a natural language query interface with a 15-intent classification system, deterministic routing, and a confirmation gate to prevent unverified writes, validated across a 74-case evaluation suite with zero false writes.</li>
+            <li>Delivered production-grade documentation and demo code independently adopted by external collaborators across four organizations without direct handoff support.</li>
           </ul>
         </div>
 
@@ -199,20 +200,19 @@
               <figure class="fig"><a href="assets/img/demeter-1.png" class="lightbox-link"><img src="assets/img/demeter-1.png" alt="DEMETER network"></a><figcaption>Hyperledger Fabric network: 4 organizations, shared ledger, no central authority</figcaption></figure>
             </div>
             <table>
-              <tr><td>Chaincode</td><td>3 Go contracts, 19 exported functions (Dataset, Transform, Reuse)</td></tr>
-              <tr><td>Backend API</td><td>37 REST endpoints across 8 route modules (Node.js/Express)</td></tr>
-              <tr><td>Frontend</td><td>7 pages (Next.js 15, TypeScript, React Flow for provenance graphs)</td></tr>
-              <tr><td>NLQ</td><td>15 intents, deterministic routing + Phi-3 LLM fallback via Ollama</td></tr>
-              <tr><td>DID Auth</td><td>ECDSA P-256 key pair, Web Crypto API, challenge-response</td></tr>
-              <tr><td>Local Agent</td><td>Watches a folder, auto-detects provenance type, registers on-chain</td></tr>
-              <tr><td>Data Pipelines</td><td>Airflow jobs, Kafka event streams, Spark batch aggregations over ledger history</td></tr>
-              <tr><td>Deployment</td><td>Hyperledger Fabric v2.5, Raft ordering, implemented and evaluated across a four-organization Docker Compose test network with CI-driven build and test</td></tr>
+              <tr><td>On-chain</td><td>Go smart contracts on Hyperledger Fabric (Dataset, Transform, Reuse)</td></tr>
+              <tr><td>Backend</td><td>Node.js/Express REST API service layer</td></tr>
+              <tr><td>Frontend</td><td>Next.js + TypeScript with React Flow for provenance graphs</td></tr>
+              <tr><td>NLQ</td><td>Local LLM (Phi-3 via Ollama) with deterministic routing and a write-confirmation gate</td></tr>
+              <tr><td>Identity</td><td>DID-based login with browser-side key generation</td></tr>
+              <tr><td>Pipelines</td><td>Airflow orchestration, Kafka event streams, Spark batch aggregation over ledger history</td></tr>
+              <tr><td>Deployment</td><td>Four-organization Docker Compose test network with CI-driven build and test</td></tr>
             </table>
 
-            <p>Evaluation tested 5 claims across 4 independently operated systems, confirming all requirements (R1&ndash;R6) under both functional and failure conditions.</p>
+            <p>The platform was tested across four independently operated organizations and verified end-to-end. A receiving party can verify a file's origin, follow it through any transformations or combined outputs, and detect modifications &mdash; without contacting any earlier party. Provenance traces across 8,000 linked records resolve in under five seconds.</p>
             <div class="img-row img-row-2">
-              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>All 5 claims PASS: origin inspectable, transformation traceable, integration decomposable, unverified source flagged, NLQ zero false writes</figcaption></figure>
-              <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="Provenance trace"></a><figcaption>19-node trace across 5 depths in 0.84s. Queries under 5s up to 8,000 linked records</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>End-to-end verification: origin inspectable, transformation traceable, integration decomposable, modifications flagged, and the AI layer makes zero unverified writes.</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="Provenance trace"></a><figcaption>A real provenance trace through the platform: a receiving party retrieves the full chain in a single query.</figcaption></figure>
             </div>
 
             <h4>Demos</h4>
@@ -248,9 +248,8 @@
           <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">Phi-3 &middot; Ollama &middot; Node.js</span></summary>
           <div class="project-body">
             <p>Users of a blockchain-based data system should not have to learn API endpoints or command syntax. At the same time, agricultural data sharing does not require deep reasoning from an LLM &mdash; it requires accurate intent classification and correct routing to the right operation.</p>
-            <p>This natural language interface classifies user input into 15 intents and routes each one to the correct DEMETER operation. Deterministic keyword matching handles the known patterns, and Phi-3 (3.8B) via Ollama handles everything else, running locally with no external API dependency.</p>
-            <p>The keyword router checks input against predefined patterns first, and any unmatched query falls through to Phi-3 for intent classification. A write confirmation gate prevents unintended ledger modifications: every operation that writes to the blockchain requires explicit user approval.</p>
-            <p>A 74-case evaluation suite covering all 15 intents and edge cases confirmed 100% routing accuracy and zero false writes. Zero false writes means the AI layer cannot modify ledger state without explicit user confirmation &mdash; the correctness of the verification infrastructure does not depend on LLM reliability.</p>
+            <p>The interface classifies user input into a fixed set of operations and routes each one to the correct DEMETER endpoint. Deterministic keyword matching handles the known patterns; an LLM (Phi-3 via Ollama) handles the rest, running locally with no external API dependency.</p>
+            <p>A write-confirmation gate sits in front of every operation that changes ledger state: the AI layer cannot modify anything without explicit user approval. This means the correctness of the verification infrastructure does not depend on LLM reliability &mdash; even an inaccurate model cannot silently corrupt the ledger.</p>
           </div>
         </details>
 
