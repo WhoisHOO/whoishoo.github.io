@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Younghoo Henry Cho</title>
-  <meta name="description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
+  <meta name="description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
   <meta name="author" content="Younghoo Henry Cho">
   <meta name="keywords" content="AI accountability, data infrastructure, distributed systems, blockchain, verification, infrastructure engineer, DEMETER, Hyperledger Fabric">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Younghoo Henry Cho">
-  <meta property="og:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
+  <meta property="og:description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://whoishoo.github.io/">
   <meta property="og:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
@@ -18,7 +18,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Younghoo Henry Cho">
-  <meta name="twitter:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
+  <meta name="twitter:description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
   <meta name="twitter:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
 
   <!-- Favicon -->
@@ -99,7 +99,8 @@
           </div>
           <p>Ph.D. in Agricultural and Biological Engineering &middot; GPA: 3.95/4.0</p>
           <p class="meta">Certificate in Biological Systems Modeling</p>
-          <p class="meta">Data Infrastructure, Distributed Ledger Systems, Verification Architectures, Reusable Data Assets, LLM Interfaces</p>
+          <p class="meta">Research focus: Data Infrastructure, Distributed Ledger Systems, Verification Architectures, Reusable Data Assets, LLM Interfaces</p>
+          <p class="meta">Coursework: Agent-Based Modeling, Precision Agriculture (GPS/GIS, UAV, variable rate technology), SmartAg Systems (instrumentation, ML, control methods), Food &amp; Bioprocess Engineering</p>
         </div>
 
         <div class="entry">
@@ -124,11 +125,11 @@
           </div>
           <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
           <ul>
-            <li>Architected and shipped DEMETER end-to-end, a cross-organizational agricultural data verification platform, taking full ownership from system design through production deployment across four independently operated organizations.</li>
+            <li>Architected and shipped DEMETER end-to-end &mdash; a platform where independent organizations can share, verify, and trace agricultural data without a central authority &mdash; across four independently operated organizations.</li>
             <li>Built a distributed-ledger backend on Hyperledger Fabric (Go) with a Node.js/Express REST API service layer, enabling real-time data lineage tracing across 8,000+ linked records with sub-5s latency.</li>
-            <li>Designed scalable event-driven ingestion pipelines using Airflow orchestration, Kafka event streams, and Spark batch aggregations over file-level metadata.</li>
-            <li>Integrated a local LLM as a natural language query interface with a 15-intent classification system, deterministic routing, and a confirmation gate to prevent unverified writes, validated across a 74-case evaluation suite with zero false writes.</li>
-            <li>Delivered production-grade documentation and demo code independently adopted by external collaborators across four organizations without direct handoff support.</li>
+            <li>Designed scalable event-driven ingestion pipelines using Airflow orchestration, Kafka event streams, and Spark batch aggregations on file-level metadata.</li>
+            <li>Integrated a local LLM as a natural language query interface with deterministic routing and a confirmation gate that enforces data correctness before any write operation.</li>
+            <li>Designed the platform for generic applicability across agricultural data-sharing scenarios &mdash; covering data verification, transformation integrity, and provenance tracing &mdash; with production-grade documentation independently adopted by external collaborators without direct handoff.</li>
           </ul>
         </div>
 
@@ -159,7 +160,7 @@
             <span class="date">2020 &ndash; 2021</span>
           </div>
           <p class="org">Global BioAg Linkages</p>
-          <p>Evaluated AI technology fit for agricultural production systems end-to-end, from technical feasibility and data-requirement scoping to market viability analysis, producing deployment recommendations adopted in downstream pilot projects.</p>
+          <p>Evaluated AI technology fit for agricultural production systems end-to-end, from technical feasibility and data-requirement scoping to market viability analysis, producing deployment recommendations for downstream pilot projects.</p>
         </div>
 
         <div class="entry">
@@ -168,7 +169,7 @@
             <span class="date">2021 &ndash; 2022</span>
           </div>
           <p class="org">Texas Tech University</p>
-          <p>Developed computer-vision models for biological specimen detection and classification (plant species, animal behavior, acoustic signals), and built data analysis and visualization pipelines adopted by subsequent lab projects.</p>
+          <p>Developed computer-vision models for biological specimen detection and classification (plant species, animal behavior, acoustic signals), and built data analysis and visualization pipelines to interpret detection outputs across research datasets.</p>
         </div>
 
       </section>
@@ -371,7 +372,7 @@
         </details>
 
         <h3 class="project-category">Applied AI &amp; Data</h3>
-        <p class="category-intro">Computer vision and machine learning projects across aquaculture, citrus production, and food processing. The first two shipped into real production systems and led to filed patents; the rest demonstrate applied skill in agricultural domains relevant to the data infrastructure work above.</p>
+        <p class="category-intro">Computer vision and machine learning projects across aquaculture and crop production. The first two shipped into real production systems and led to filed patents; the rest demonstrate applied skill across detection, classification, and recognition tasks.</p>
 
         <details id="aquaculture" class="project" open>
           <summary><span class="project-num">1</span> AI Aquaculture System <span class="meta-inline">YOLO &middot; SAM &middot; Python &middot; OpenCV</span></summary>
@@ -379,8 +380,7 @@
             <p>Marine fish farms rely on manual observation for feeding decisions and growth assessment. The work is labor-intensive, inconsistent, and does not scale across large production environments with multiple species.</p>
             <p>At BILLION21, I built the computer vision components of the company's smart aquaculture system. They targeted two tasks that manual observation could not handle consistently: whole-population behavior analysis and individual-level size estimation for olive flounder and stone flounder. Other teams at the company developed the feeding control logic, edge hardware, and feeder mechanisms; my contribution was the vision signals those downstream modules depended on.</p>
             <p>YOLO handled population-level behavior detection, tracking movement patterns across the tank to inform feeding decisions. SAM handled individual-level segmentation, producing size estimates for growth monitoring. Both models were tuned for real farm imaging conditions rather than research-grade datasets.</p>
-            <p>The components were deployed in real production environments and contributed to BILLION21's commercial product development. The operational data such systems generate, feeding logs, growth time series, and environmental sensor traces, is precisely what the DEMETER smart-aquaculture extension (see ongoing applications above) is being built to verify and share across parties.</p>
-            <p>This experience shaped a principle that guides my infrastructure work: the key challenge in agricultural technology is not applying the newest method, but building systems that operate reliably under real production constraints.</p>
+            <p>The components were deployed in real production environments and contributed to BILLION21's commercial product development. The operational data such systems generate &mdash; feeding logs, growth time series, and environmental sensor traces &mdash; is precisely what the DEMETER smart-aquaculture extension (see ongoing applications above) is being built to verify and share across parties.</p>
           </div>
         </details>
 
@@ -402,35 +402,14 @@
         </details>
 
         <details class="project" open>
-          <summary><span class="project-num">3</span> Biological Systems Modeling <span class="meta-inline">Python &middot; NetLogo &middot; Java &middot; Agent-Based</span></summary>
-          <div class="project-body">
-            <p>Three-course series (ABE 5643C, ABE 6649C, ABE 6933) leading to the Certificate in Biological Systems Modeling. Built computational models of predator-prey dynamics, crop growth, and ecological processes &mdash; the kind of systems that produce the data my infrastructure work needs to verify.</p>
-          </div>
-        </details>
-
-        <details class="project" open>
-          <summary><span class="project-num">4</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
+          <summary><span class="project-num">3</span> Citrus Tree Trunk Segmentation <span class="meta-inline">PyTorch &middot; CNN &middot; Segmentation</span></summary>
           <div class="project-body">
             <p>Manual identification of tree trunks in citrus groves slows precision spraying and canopy management. This CNN-based image segmentation pipeline (PyTorch, ABE 6933) was implemented end-to-end from data preparation through training and inference, producing per-trunk masks usable for downstream precision-ag automation.</p>
           </div>
         </details>
 
         <details class="project" open>
-          <summary><span class="project-num">5</span> Precision Agriculture &amp; SmartAg <span class="meta-inline">GPS/GIS &middot; UAV &middot; IoT &middot; ML</span></summary>
-          <div class="project-body">
-            <p>Coursework in AOM 5435 Advanced Precision Agriculture (GPS/GIS, remote sensing, UAV, variable rate technology) and AOM 5456 Applied Methods in SmartAg Systems (instrumentation, ML, control methods). Direct exposure to the sensors and field-data sources that my infrastructure work targets.</p>
-          </div>
-        </details>
-
-        <details class="project" open>
-          <summary><span class="project-num">6</span> Food &amp; Bioprocess Engineering <span class="meta-inline">Process Design &middot; Data Management</span></summary>
-          <div class="project-body">
-            <p>Coursework in ABE 5815C covering unit process operations in agro/food and biological industries (sterilization, drying, fermentation, distillation). Domain knowledge for the food-traceability layer DEMETER's ongoing extension is built around.</p>
-          </div>
-        </details>
-
-        <details class="project" open>
-          <summary><span class="project-num">7</span> Applied Detection, Classification &amp; Recognition <span class="meta-inline">TensorFlow &middot; YOLO &middot; CNN &middot; Audio ML</span></summary>
+          <summary><span class="project-num">4</span> Applied Detection, Classification &amp; Recognition <span class="meta-inline">TensorFlow &middot; YOLO &middot; CNN &middot; Audio ML</span></summary>
           <div class="project-body">
             <p>During undergraduate research at Texas Tech, I applied ML models to real-world datasets across different domains to build hands-on experience with end-to-end pipelines for detection, classification, and recognition tasks across three modalities:</p>
             <ul>
