@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Younghoo Henry Cho</title>
-  <meta name="description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
+  <meta name="description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta name="author" content="Younghoo Henry Cho">
   <meta name="keywords" content="AI accountability, data infrastructure, distributed systems, blockchain, verification, infrastructure engineer, DEMETER, Hyperledger Fabric">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Younghoo Henry Cho">
-  <meta property="og:description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
+  <meta property="og:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://whoishoo.github.io/">
   <meta property="og:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
@@ -18,7 +18,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Younghoo Henry Cho">
-  <meta name="twitter:description" content="Engineer who builds the infrastructure that makes AI accountable &mdash; so organizations can trust what AI tells them and verify why.">
+  <meta name="twitter:description" content="Engineer who builds the infrastructure that makes AI accountable, so organizations can trust what AI tells them and verify why.">
   <meta name="twitter:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
 
   <!-- Favicon -->
@@ -39,7 +39,7 @@
         </div>
         <div class="sidebar-name">
           <h1>Younghoo Henry Cho</h1>
-          <p class="subtitle">Ph.D. Candidate<br>Agricultural &amp; Biological Engineering<br>University of Florida</p>
+          <p class="subtitle">Data Infrastructure Engineer</p>
         </div>
         <nav>
           <a href="#about">About</a>
@@ -67,8 +67,7 @@
             <p>I work on data infrastructure that allows agricultural files to remain verifiable after they cross organizational boundaries.</p>
             <p>Healthcare and finance solved a version of this problem, but only because a regulator requires every organization in those industries to report into a shared system. Agriculture has no such rule. Sharing data is voluntary, so any organization can opt out at any point, and once a file moves between organizations, the receiving party has no way to check whether it matches what was originally recorded.</p>
             <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable record that no single party controls. A receiving party can check two things without contacting any earlier organization: <a href="#dv">whether a file matches what its source registered</a>, and <a href="#ti">whether a file built from other files matches the inputs its source declared</a>. DEMETER runs both checks from one query.</p>
-            <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> at Billion21 was where I learned this firsthand: production environments, not benchmarks.</p>
-            <p>The same principle guides all of it: the key challenge is not applying the newest method, but building systems that work reliably where it matters.</p>
+            <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> at Billion21 built the computer-vision models that read fish feeding activity from camera and sensor input, to set feed amount and timing per species in a live production system.</p>
             <div class="explore-widget">
               <div class="chip-group" id="chip-top"></div>
               <div class="chip-group" id="chip-sub"></div>
@@ -95,7 +94,7 @@
         <div class="entry">
           <div class="entry-header">
             <h3>University of Florida</h3>
-            <span class="date">Aug 2022 &ndash; Expected Aug 2026</span>
+            <span class="date">Aug 2022 &ndash; Aug 2026</span>
           </div>
           <p>Ph.D. in Agricultural and Biological Engineering &middot; GPA: 3.95/4.0</p>
           <p class="meta">Certificate in Biological Systems Modeling</p>
@@ -125,11 +124,12 @@
           </div>
           <p class="org">University of Florida &middot; Agricultural and Biological Engineering</p>
           <ul>
-            <li>Architected and shipped DEMETER end-to-end &mdash; a platform where independent organizations can share, verify, and trace agricultural data without a central authority &mdash; across four independently operated organizations.</li>
-            <li>Built a distributed-ledger backend on Hyperledger Fabric (Go) with a Node.js/Express REST API service layer, enabling real-time data lineage tracing across 8,000+ linked records with sub-5s latency.</li>
-            <li>Designed scalable event-driven ingestion pipelines using Airflow orchestration, Kafka event streams, and Spark batch aggregations on file-level metadata.</li>
+            <li>Designed and built DEMETER, a blockchain system that lets an organization confirm where shared data came from and how it was changed, without contacting or trusting the organizations that handled it earlier.</li>
+            <li>Built the core in Go on Hyperledger Fabric with a REST API, so each organization records a file's identity and handoffs on a shared ledger under its own credentials, with no central operator.</li>
+            <li>Designed event-driven ingestion pipelines using Airflow orchestration, Kafka event streams, and Spark batch aggregation on file-level metadata.</li>
             <li>Integrated a local LLM as a natural language query interface with deterministic routing and a confirmation gate that enforces data correctness before any write operation.</li>
-            <li>Designed the platform for generic applicability across agricultural data-sharing scenarios &mdash; covering data verification, transformation integrity, and provenance tracing &mdash; with production-grade documentation independently adopted by external collaborators without direct handoff.</li>
+            <li>Verified the system on real soil-carbon data: it catches altered files, blocks records that cite unregistered sources, and tells apart two records that share a sample ID but hold different data.</li>
+            <li>Wrote the documentation that let an outside team run the system without my help.</li>
           </ul>
         </div>
 
@@ -185,12 +185,7 @@
           <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Airflow &middot; Kafka &middot; Spark &middot; Docker &middot; LLM</span></summary>
           <div class="project-body">
 
-            <figure class="fig">
-              <div class="video-embed"><iframe src="https://www.youtube.com/embed/Sjya2HOHHvs" title="DEMETER introduction" loading="lazy" allowfullscreen></iframe></div>
-              <figcaption>DEMETER project introduction</figcaption>
-            </figure>
-
-            <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand.</p>
+            <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded. The originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand.</p>
 
             <p>DEMETER records file history on a shared blockchain while files stay on each organization's own computer. It runs two checks behind one query: <a href="#dv">origin verification</a>, whether a file matches what its source registered, and <a href="#ti">transformation tracing</a>, whether a file built from other files matches the inputs its source declared. A natural language interface lets users query and write records through plain-text commands.</p>
             <div class="img-row">
@@ -210,52 +205,61 @@
               <tr><td>Deployment</td><td>Four-organization Docker Compose test network with CI-driven build and test</td></tr>
             </table>
 
-            <p>The platform was tested across four independently operated organizations and verified end-to-end. A receiving party can verify a file's origin, follow it through any transformations or combined outputs, and detect modifications &mdash; without contacting any earlier party. Provenance traces across 8,000 linked records resolve in under five seconds.</p>
+            <p>DEMETER was verified end-to-end on a demonstration built from real soil-carbon data, the Florida Soil Characterization Dataset. From its own position and without contacting any earlier organization, a receiving party confirms a file's origin, traces a combined file back through the files it was built from, and catches an altered file that no longer matches its registration.</p>
             <div class="img-row img-row-2">
               <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>End-to-end verification: origin inspectable, transformation traceable, a combined file's sources recoverable, modifications flagged, and the AI layer makes zero unverified writes.</figcaption></figure>
               <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="Provenance trace"></a><figcaption>A real provenance trace through the platform: a receiving party retrieves the full chain in a single query.</figcaption></figure>
             </div>
 
-            <h4>Demos</h4>
-            <div class="video-grid">
-              <figure class="fig">
-                <div class="video-embed"><iframe src="https://www.youtube.com/embed/r9WaIpidBOM" title="DEMETER overview" loading="lazy" allowfullscreen></iframe></div>
-                <figcaption>DEMETER platform overview</figcaption>
-              </figure>
-              <figure class="fig">
-                <div class="video-embed"><iframe src="https://www.youtube.com/embed/J-mHoNzZWF0" title="DEMETER function intro" loading="lazy" allowfullscreen></iframe></div>
-                <figcaption>DEMETER function introduction</figcaption>
-              </figure>
-              <figure class="fig">
-                <div class="video-embed"><iframe src="https://www.youtube.com/embed/3WZ0zhMz-S4" title="DID login demo" loading="lazy" allowfullscreen></iframe></div>
-                <figcaption>DID-based blockchain login</figcaption>
-              </figure>
-              <figure class="fig">
-                <div class="video-embed"><iframe src="https://www.youtube.com/embed/2XV6br_fy2Q" title="LLM search demo" loading="lazy" allowfullscreen></iframe></div>
-                <figcaption>NLQ: searching and finding files via LLM</figcaption>
-              </figure>
-              <figure class="fig">
-                <div class="video-embed"><iframe src="https://www.youtube.com/embed/5nnW4xeIyfI" title="LLM share demo" loading="lazy" allowfullscreen></iframe></div>
-                <figcaption>NLQ: requesting and sharing files via LLM</figcaption>
-              </figure>
-            </div>
-
             <p>As a general-purpose bottom layer, DEMETER is currently being extended to soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes letting outside systems read these records under their own conventions, pagination-based tracing beyond 8,000 records, and AI agent interfaces for automated verification workflows.</p>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An Integrated Trust Infrastructure for Shared Agricultural Data.</em> Under review.</p>
           </div>
         </details>
 
         <details class="project" open>
           <summary><span class="project-num">2</span> Natural Language Query Interface <span class="meta-inline">Phi-3 &middot; Ollama &middot; Node.js</span></summary>
           <div class="project-body">
-            <p>Users of a blockchain-based data system should not have to learn API endpoints or command syntax. At the same time, agricultural data sharing does not require deep reasoning from an LLM &mdash; it requires accurate intent classification and correct routing to the right operation.</p>
+            <p>Users of a blockchain-based data system should not have to learn API endpoints or command syntax. At the same time, agricultural data sharing does not require deep reasoning from an LLM: it requires accurate intent classification and correct routing to the right operation.</p>
             <p>The interface classifies user input into a fixed set of operations and routes each one to the correct DEMETER endpoint. Deterministic keyword matching handles the known patterns; an LLM (Phi-3 via Ollama) handles the rest, running locally with no external API dependency.</p>
-            <p>A write-confirmation gate sits in front of every operation that changes ledger state: the AI layer cannot modify anything without explicit user approval. This means the correctness of the verification infrastructure does not depend on LLM reliability &mdash; even an inaccurate model cannot silently corrupt the ledger.</p>
+            <p>A write-confirmation gate sits in front of every operation that changes ledger state: the AI layer cannot modify anything without explicit user approval. The correctness of the verification infrastructure does not depend on LLM reliability, so even an inaccurate model cannot silently corrupt the ledger.</p>
+          </div>
+        </details>
+
+        <details id="dv" class="project" open>
+          <summary><span class="project-num">3</span> DEMETER Component: DV, File Origin Verification <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
+          <div class="project-body">
+            <p>When a farmer sends a file to an intermediate party and that party forwards it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
+            <p>This infrastructure lets any receiving party verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
+            <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
+            <p>Verification was confirmed two hops downstream from the original registration, and separately under branching, where one organization forwards the same file to two different receivers at once: each receiver traces its own path back to the shared source without picking up the other's transfer record. A modified file correctly fails verification (different fingerprint, no matching registration), and a receiver several hops downstream can check a file's origin and history on its own, without any earlier organization needing to be online.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-dv-infrastructure">github.com/WhoisHOO/demeter-dv-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Enabling Infrastructure Layer for Origin Verification and Transfer Tracing of Shared Agricultural Data Files.</em> Under review.</p>
+          </div>
+        </details>
+
+        <details id="ti" class="project" open>
+          <summary><span class="project-num">4</span> DEMETER Component: TI, Transformation Integrity <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
+          <div class="project-body">
+            <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The receiving party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
+            <p>This infrastructure lets a receiving party determine the declared registered input and declared operation for a transformed file using only the shared ledger, without contacting the producing environment.</p>
+            <p>The processor writes a declaration to the ledger linking input File IDs to an output File ID with an operation label, and a declaration naming an input that isn't itself registered is rejected at commit. A query follows the chain backward from the output, one declaration at a time, until every branch reaches a registered original. If a step was never declared, the query stops there and reports the gap instead of guessing across it.</p>
+            <p>TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. Correctness verification would require re-executing the transformation, which is outside what a shared ledger can enforce.</p>
+            <p>Validation covered all three ways a file can be built from others, combining several files into one, splitting one file into several, and modifying one file into another, using public USDA-NASS Florida citrus production data across four independently certified organizations. A receiving party recovers the full chain to every registration root in one query. Declarations naming an unregistered input are rejected at commit, a second declaration for an output that already has one is rejected, and an undeclared step in the middle of a chain is reported honestly rather than skipped over.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure Layer for Tracing Transformed Agricultural Data Back to Its Sources.</em> Under review.</p>
+          </div>
+        </details>
+
+        <details id="access-governance" class="project" open>
+          <summary><span class="project-num">5</span> DEMETER Component: Access &amp; Reuse Governance <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
+          <div class="project-body">
+            <p><a href="#dv">DV</a> and <a href="#ti">TI</a> tell a receiving party where a file came from and what it was built from. Neither one tells a receiving party whether reusing that file was actually allowed. That needs a separate record: who approved the transfer, and under what license.</p>
+            <p>This infrastructure governs cross-organization access: every request, approval, transfer, and reuse decision is written to a shared ledger, so any party can check who approved a transfer and under what license, without relying on any single party's internal logs.</p>
+            <p>The access request workflow runs through Request, Approve, Fulfill, and Download. Each stage writes an on-chain record. Reuse evaluation checks the requested purpose against 7 Creative Commons license types, with expiration enforcement and derivative restrictions. A decision-chain trace shows who approved what and when.</p>
+            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
           </div>
         </details>
 
         <details class="project" open>
-          <summary><span class="project-num">3</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
+          <summary><span class="project-num">6</span> Scalable Blockchain-Based Traceability for Agricultural Imagery <span class="meta-inline">Hyperledger Fabric &middot; IPFS &middot; Node.js</span></summary>
           <div class="project-body">
             <p>When citrus drone TIFF imagery is repeatedly transformed for NDVI analysis, yield estimation, and disease monitoring, the receiving party cannot follow the chain back to the original capture. Existing blockchain frameworks store a new hash on-chain for every transformation, which fragments the trace and balloons storage costs as image volume grows.</p>
             <div class="img-row">
@@ -267,7 +271,7 @@
               <figure class="fig"><a href="assets/img/scale-2.png" class="lightbox-link"><img src="assets/img/scale-2.png" alt="Blockchain-IPFS system"></a><figcaption>System architecture: blockchain ledgers + IPFS for citrus drone imagery with NDVI, disease monitoring, irrigation, and crop growth data</figcaption></figure>
             </div>
 
-            <p>The smart contract logs every data interaction &mdash; uploads, access requests, transformations, downloads, and usage events &mdash; and each interaction generates a unique hashing ID that improves transaction speed and prevents redundant on-chain storage. Testing applied predefined criteria (data type, size, timestamp, geolocation) on citrus farm imagery.</p>
+            <p>The smart contract logs every data interaction: uploads, access requests, transformations, downloads, and usage events. Each interaction generates a unique hashing ID that improves transaction speed and prevents redundant on-chain storage. Testing applied predefined criteria (data type, size, timestamp, geolocation) on citrus farm imagery.</p>
 
             <p>All user activities were successfully recorded on-chain, with timestamps, user IDs, and access roles converted into secure hash values. The hashing ID update mechanism significantly reduced redundant storage compared to conventional blockchain-IPFS models, confirming that the system handles real-world scalability demands while preserving data integrity.</p>
 
@@ -275,51 +279,6 @@
             <div class="img-row">
               <figure class="fig"><a href="assets/img/scale-3.png" class="lightbox-link"><img src="assets/img/scale-3.png" alt="Proposed API framework"></a><figcaption>Proposed framework: Common API connecting blockchain operator, auditors, Hyperledger Fabric, Node.js server, and end users</figcaption></figure>
             </div>
-          </div>
-        </details>
-
-        <details id="access-governance" class="project" open>
-          <summary><span class="project-num">4</span> Access &amp; Reuse Governance for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
-          <div class="project-body">
-            <p><a href="#dv">DV</a> and <a href="#ti">TI</a> tell a receiving party where a file came from and what it was built from. Neither one tells a receiving party whether reusing that file was actually allowed. That needs a separate record: who approved the transfer, and under what license.</p>
-            <p>This infrastructure governs cross-organization access: every request, approval, transfer, and reuse decision is written to a shared ledger, so any party can check who approved a transfer and under what license, without relying on any single party's internal logs.</p>
-            <p>The access request workflow runs through Request, Approve, Fulfill, and Download. Each stage writes an on-chain record. Reuse evaluation checks the requested purpose against 7 Creative Commons license types, with expiration enforcement and derivative restrictions. A decision-chain trace shows who approved what and when.</p>
-            <figure class="fig">
-              <div class="video-embed"><iframe src="https://www.youtube.com/embed/WRRBmRddwLg" title="Access governance demo" loading="lazy" allowfullscreen></iframe></div>
-              <figcaption>Access governance demo: cross-organizational access workflow and reuse evaluation</figcaption>
-            </figure>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
-          </div>
-        </details>
-
-        <details id="ti" class="project" open>
-          <summary><span class="project-num">5</span> TI, Transformation Integrity for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
-          <div class="project-body">
-            <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The receiving party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
-            <p>This infrastructure lets a receiving party determine the declared registered input and declared operation for a transformed file using only the shared ledger, without contacting the producing environment.</p>
-            <p>The processor writes a declaration to the ledger linking input File IDs to an output File ID with an operation label, and a declaration naming an input that isn't itself registered is rejected at commit. A query follows the chain backward from the output, one declaration at a time, until every branch reaches a registered original. If a step was never declared, the query stops there and reports the gap instead of guessing across it.</p>
-            <p>TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. Correctness verification would require re-executing the transformation, which is outside what a shared ledger can enforce.</p>
-            <p>Validation covered all three ways a file can be built from others &mdash; combining several files into one, splitting one file into several, and modifying one file into another &mdash; using public USDA-NASS Florida citrus production data across four independently certified organizations. A receiving party recovers the full chain to every registration root in one query. Declarations naming an unregistered input are rejected at commit, a second declaration for an output that already has one is rejected, and an undeclared step in the middle of a chain is reported honestly rather than skipped over.</p>
-            <figure class="fig">
-              <div class="video-embed"><iframe src="https://www.youtube.com/embed/7rrnhwlIpJ4" title="TI demo" loading="lazy" allowfullscreen></iframe></div>
-              <figcaption>TI demo: declared transformation lineage and chain inspection</figcaption>
-            </figure>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-ti-infrastructure">github.com/WhoisHOO/demeter-ti-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Determining the Declared Registered Input and Operation for a Transformed Agricultural File.</em> Under review.</p>
-          </div>
-        </details>
-
-        <details id="dv" class="project" open>
-          <summary><span class="project-num">6</span> DV, File Origin Verification for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; SHA-256</span></summary>
-          <div class="project-body">
-            <p>When a farmer sends a file to an intermediate party and that party forwards it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
-            <p>This infrastructure lets any receiving party verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
-            <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
-            <p>Verification was confirmed two hops downstream from the original registration, and separately under branching, where one organization forwards the same file to two different receivers at once: each receiver traces its own path back to the shared source without picking up the other's transfer record. A modified file correctly fails verification (different fingerprint, no matching registration). This means a receiver several hops downstream can check a file's origin and history on its own, without any earlier organization needing to be online.</p>
-            <figure class="fig">
-              <div class="video-embed"><iframe src="https://www.youtube.com/embed/oGBpgdAsZzA" title="DV demo" loading="lazy" allowfullscreen></iframe></div>
-              <figcaption>DV demo: file origin verification and multi-hop transfer tracing</figcaption>
-            </figure>
-            <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-dv-infrastructure">github.com/WhoisHOO/demeter-dv-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure for Agricultural File Origin Verification and Transfer Tracing.</em> Under review.</p>
           </div>
         </details>
 
@@ -335,7 +294,7 @@
         <details class="project" open>
           <summary><span class="project-num">8</span> Blockchain-Based Seaweed Supply Chain Tracking <span class="meta-inline">Blockchain &middot; Smart Contract</span></summary>
           <div class="project-body">
-            <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage produces its own data &mdash; spore density readings at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers &mdash; yet no shared system connects producers, processors, and distributors. Once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
+            <p>Seaweed (laver) farming in South Korea involves spore cultivation, harvesting, processing, and distribution across multiple independent parties. Each stage produces its own data: spore density readings at cultivation, harvest yield at recovery, processing conditions and batch records at the mill, and distribution paths between wholesalers and retailers. No shared system connects producers, processors, and distributors, so once a product leaves one party's system, the data needed for quality assurance and regulatory compliance is lost.</p>
             <p>This blockchain-based data management system records production data, processing events, and distribution transfers on a shared ledger so that any receiving party can trace the full history of a seaweed product from spore cultivation through final delivery. Applying blockchain at this layer guarantees three properties the supply chain previously lacked: diversity across participating parties, security against tampering, and transparency for auditors and regulators.</p>
             <p>The system builds directly on the laver spore selection patent (KR102034354B1), which established automated image-based quality assessment at the cultivation stage. Spore density judgments produced by that imaging pipeline become the first verifiable record on the ledger, and each downstream stage (harvest, processing, distribution) appends linked records referencing that origin.</p>
             <p class="sourced-by">Patent Application KR10-2024-0011399, 2024. Status: Pending.</p>
@@ -380,7 +339,7 @@
             <p>Marine fish farms rely on manual observation for feeding decisions and growth assessment. The work is labor-intensive, inconsistent, and does not scale across large production environments with multiple species.</p>
             <p>At BILLION21, I built the computer vision components of the company's smart aquaculture system. They targeted two tasks that manual observation could not handle consistently: whole-population behavior analysis and individual-level size estimation for olive flounder and stone flounder. Other teams at the company developed the feeding control logic, edge hardware, and feeder mechanisms; my contribution was the vision signals those downstream modules depended on.</p>
             <p>YOLO handled population-level behavior detection, tracking movement patterns across the tank to inform feeding decisions. SAM handled individual-level segmentation, producing size estimates for growth monitoring. Both models were tuned for real farm imaging conditions rather than research-grade datasets.</p>
-            <p>The components were deployed in real production environments and contributed to BILLION21's commercial product development. The operational data such systems generate &mdash; feeding logs, growth time series, and environmental sensor traces &mdash; is precisely what the DEMETER smart-aquaculture extension (see ongoing applications above) is being built to verify and share across parties.</p>
+            <p>These components were built for production use in BILLION21's commercial aquaculture system. The operational data such systems generate, feeding logs, growth time series, and environmental sensor traces, is the kind of data DEMETER's smart-aquaculture extension is now being built to verify and share across organizations.</p>
           </div>
         </details>
 
@@ -427,9 +386,9 @@
 
         <h3 id="papers">Papers</h3>
         <ul class="pub-list">
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</li>
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An infrastructure for agricultural file origin verification and transfer tracing.</em> Under review.</li>
-          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An infrastructure for determining the declared registered input and operation for a transformed agricultural file.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An Integrated Trust Infrastructure for Shared Agricultural Data.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Enabling Infrastructure Layer for Origin Verification and Transfer Tracing of Shared Agricultural Data Files.</em> Under review.</li>
+          <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>An Infrastructure Layer for Tracing Transformed Agricultural Data Back to Its Sources.</em> Under review.</li>
           <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a future agricultural data ecosystem: A cross-sectoral review of blockchain application in data sharing.</em> Under review.</li>
           <li>Zhang, C., Guzman, S., Judge, J., Zhuang, Y., Zhao, C., Cho, Y., &amp; Yu, Z. (2026). Event-based decentralized approach of root zone soil moisture increase dynamics. <em>Air, Soil and Water Research</em>, 19, 1&ndash;23.</li>
           <li>Cho, Y., Yu, Z., &amp; Ampatzidis, Y. (2025). Bridging carbon markets and agriculture: A comparative study of stakeholder engagement in South Korea and United States. <em>Discover Agriculture</em>, 3, 126.</li>
@@ -527,12 +486,12 @@
 
         <h3 id="courses">Proposed Courses</h3>
         <ul>
-          <li><strong>Data Infrastructure for Agricultural Systems</strong> &mdash; Verification, traceability, and governance in cross-organizational data sharing. Designing systems that track data origin, transfer, and transformation using distributed ledger technology and APIs.</li>
-          <li><strong>Applied Blockchain and Smart Contracts for Agriculture</strong> &mdash; Blockchain architecture, smart contract design (Hyperledger Fabric), and applications in supply chain transparency, carbon credit verification, and data provenance.</li>
-          <li><strong>AI and Machine Learning for Agricultural Applications</strong> &mdash; Hands-on course covering computer vision (YOLO, SAM, OpenCV), applied ML, and LLM integration for agricultural monitoring and decision support under real production constraints.</li>
-          <li><strong>Data Science and Programming for Agricultural Engineering</strong> &mdash; Python-based course on data manipulation, statistical analysis, API development, database management, and data visualization.</li>
-          <li><strong>Smart Agriculture Systems Engineering</strong> &mdash; IoT architectures, sensor networks, edge computing, and cloud platforms (AWS, Azure) for agricultural monitoring, from field-level sensors to decision support systems.</li>
-          <li><strong>Digital Agriculture Seminar</strong> &mdash; Graduate seminar on data governance, cross-sectoral interoperability, trustworthy AI pipelines, and infrastructure challenges in scaling digital systems across diverse agricultural contexts.</li>
+          <li><strong>Data Infrastructure for Agricultural Systems</strong>: Verification, traceability, and governance in cross-organizational data sharing. Designing systems that track data origin, transfer, and transformation using distributed ledger technology and APIs.</li>
+          <li><strong>Applied Blockchain and Smart Contracts for Agriculture</strong>: Blockchain architecture, smart contract design (Hyperledger Fabric), and applications in supply chain transparency, carbon credit verification, and data provenance.</li>
+          <li><strong>AI and Machine Learning for Agricultural Applications</strong>: Hands-on course covering computer vision (YOLO, SAM, OpenCV), applied ML, and LLM integration for agricultural monitoring and decision support under real production constraints.</li>
+          <li><strong>Data Science and Programming for Agricultural Engineering</strong>: Python-based course on data manipulation, statistical analysis, API development, database management, and data visualization.</li>
+          <li><strong>Smart Agriculture Systems Engineering</strong>: IoT architectures, sensor networks, edge computing, and cloud platforms (AWS, Azure) for agricultural monitoring, from field-level sensors to decision support systems.</li>
+          <li><strong>Digital Agriculture Seminar</strong>: Graduate seminar on data governance, cross-sectoral interoperability, trustworthy AI pipelines, and infrastructure challenges in scaling digital systems across diverse agricultural contexts.</li>
         </ul>
 
       </section>
@@ -582,7 +541,7 @@
       <!-- Live Network -->
       <section id="network">
         <h2>Live Network</h2>
-        <p>The same problem DEMETER addresses, tracking what crosses organizational boundaries, applies here. Every visitor to this site connects from somewhere, and each connection is recorded as a node on the map below. The infrastructure mirrors what the projects above describe.</p>
+        <p>The same problem DEMETER addresses, tracking what crosses organizational boundaries, applies here. Each visit writes one record, a country name and a randomized location, to a small database, and the map below plots every record it holds as a node connected back to Gainesville.</p>
         <div id="visitor-map"></div>
         <p class="network-stats"><span id="visitor-count">0</span> connections from <span id="country-count">0</span> countries</p>
         <p class="privacy-note">Privacy: only country name and obfuscated coordinates (~30km random offset) are stored. No IP address, city, or personal data is recorded. Each browser submits at most once per 24 hours.</p>
