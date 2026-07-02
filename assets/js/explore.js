@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
       children: [
         {
           label: "Data Infrastructure",
-          children: ["DEMETER", "NLQ/LLM", "Scalable Traceability", "SI", "TI", "DV", "Seaweed Blockchain", "Ag Machinery", "Carbon Markets"],
+          children: ["DEMETER", "NLQ/LLM", "Scalable Traceability", "Access Governance", "TI", "DV", "Seaweed Blockchain", "Ag Machinery", "Carbon Markets"],
         },
         {
           label: "Applied AI",
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { keywords: ["projects", "data infrastructure", "demeter"], title: "DEMETER: Data Sharing and Verification Platform", desc: "General-purpose blockchain platform for cross-system data exchange, origin verification, and traceable file history.", link: "#demeter", type: "project" },
     { keywords: ["projects", "data infrastructure", "nlq/llm"], title: "Natural Language Query Interface", desc: "Phi-3 LLM via Ollama. 15 intents, deterministic routing, 100% accuracy.", link: "#demeter", type: "project" },
     { keywords: ["projects", "data infrastructure", "scalable traceability"], title: "Scalable Blockchain-Based Traceability", desc: "DV-TI applied to citrus drone imagery. Dynamic hashing ID, IPFS integration.", link: "#projects", type: "project" },
-    { keywords: ["projects", "data infrastructure", "si"], title: "SI — Source Integration", desc: "Governs how files move between organizations. Access workflow, reuse evaluation, license enforcement.", link: "#si", type: "project" },
+    { keywords: ["projects", "data infrastructure", "access governance"], title: "Access & Reuse Governance", desc: "Who approved a transfer and under what license, tracked on-chain. A governance layer on top of DV/TI, not part of either.", link: "#access-governance", type: "project" },
     { keywords: ["projects", "data infrastructure", "ti"], title: "TI — Transformation Integrity", desc: "Determines declared input and operation for transformed files without contacting producer.", link: "#ti", type: "project" },
     { keywords: ["projects", "data infrastructure", "dv"], title: "DV — File Origin Verification", desc: "File origin verification and transfer tracing across multiple parties.", link: "#dv", type: "project" },
     { keywords: ["projects", "data infrastructure", "seaweed blockchain"], title: "Blockchain-Based Seaweed Supply Chain Tracking", desc: "Blockchain data management for seaweed farming. Patent KR10-2024-0011399.", link: "#projects", type: "project" },

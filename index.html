@@ -65,8 +65,8 @@
         <div class="about-content">
             <h2>About</h2>
             <p>I work on data infrastructure that allows agricultural files to remain verifiable after they cross organizational boundaries.</p>
-            <p>The healthcare industry addressed a version of this problem with shared ledger-based record coordination, and the finance industry addressed it with append-only audit trails. The agriculture industry has neither. Once a file moves between organizations, the receiving party cannot verify whether it matches what was originally recorded, because the originating system may be inaccessible and no shared reference survives the transfer.</p>
-            <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable, traceable record that no single party controls. As a result, a receiving party can verify a file's origin and transformation history without contacting any earlier organization &mdash; a check that was previously impossible. The independent research behind each layer follows: <a href="#dv">who registered the file</a>, <a href="#ti">what was done to it</a>, and <a href="#si">how it was shared</a>.</p>
+            <p>Healthcare and finance solved a version of this problem, but only because a regulator requires every organization in those industries to report into a shared system. Agriculture has no such rule. Sharing data is voluntary, so any organization can opt out at any point, and once a file moves between organizations, the receiving party has no way to check whether it matches what was originally recorded.</p>
+            <p>Over four years, I built <a href="#demeter">DEMETER</a>, a platform that lets organizations share data while keeping a verifiable record that no single party controls. A receiving party can check two things without contacting any earlier organization: <a href="#dv">whether a file matches what its source registered</a>, and <a href="#ti">whether a file built from other files matches the inputs its source declared</a>. DEMETER runs both checks from one query.</p>
             <p>My earlier work on <a href="#aquaculture">vision systems for marine aquaculture</a> at Billion21 was where I learned this firsthand: production environments, not benchmarks.</p>
             <p>The same principle guides all of it: the key challenge is not applying the newest method, but building systems that work reliably where it matters.</p>
             <div class="explore-widget">
@@ -179,7 +179,7 @@
         <h2>Projects</h2>
 
         <h3 class="project-category">Data Infrastructure</h3>
-        <p class="category-intro">Each project below addresses a layer of the same problem: making agricultural data verifiable across organizational boundaries. The order moves from the integrated platform (DEMETER), to its independent infrastructure layers (DV, TI, SI), to the foundational research and field studies that motivated them.</p>
+        <p class="category-intro">Each project below addresses a piece of the same problem: making agricultural data verifiable across organizational boundaries. The order moves from the integrated platform (DEMETER), to the two infrastructure layers it is built from (DV and TI), to related work on access governance and image-data scaling, to the review and field studies that motivated all of it.</p>
 
         <details id="demeter" class="project" open>
           <summary><span class="project-num">1</span> DEMETER: Data Sharing and Verification Platform <span class="meta-inline">Hyperledger Fabric &middot; Go &middot; Node.js &middot; Airflow &middot; Kafka &middot; Spark &middot; Docker &middot; LLM</span></summary>
@@ -192,9 +192,9 @@
 
             <p>A certifier receiving a dataset from a third-party lab has no way to verify whether the file matches what the originating organization recorded &mdash; the originating system may be inaccessible, and no shared reference connects the origin state to the copy in hand.</p>
 
-            <p>DEMETER records file history on a shared blockchain while files remain on each organization's local system. Three layers handle what is lost when files cross boundaries: <a href="#dv">where a file came from</a> (origin), <a href="#ti">how it was changed</a> (transformation), and <a href="#si">how it was shared</a> (integration). A natural language interface lets users query and write records through plain-text commands.</p>
+            <p>DEMETER records file history on a shared blockchain while files stay on each organization's own computer. It runs two checks behind one query: <a href="#dv">origin verification</a>, whether a file matches what its source registered, and <a href="#ti">transformation tracing</a>, whether a file built from other files matches the inputs its source declared. A natural language interface lets users query and write records through plain-text commands.</p>
             <div class="img-row">
-              <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>Architecture: LLM interface, Origin/Transformation/Integration on-chain, Tracing, files remain off-chain</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-2.png" class="lightbox-link"><img src="assets/img/demeter-2.png" alt="DEMETER system flow"></a><figcaption>Architecture: LLM interface, Origin/Transformation/Access on-chain, Tracing, files remain off-chain</figcaption></figure>
             </div>
 
             <div class="img-row">
@@ -212,7 +212,7 @@
 
             <p>The platform was tested across four independently operated organizations and verified end-to-end. A receiving party can verify a file's origin, follow it through any transformations or combined outputs, and detect modifications &mdash; without contacting any earlier party. Provenance traces across 8,000 linked records resolve in under five seconds.</p>
             <div class="img-row img-row-2">
-              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>End-to-end verification: origin inspectable, transformation traceable, integration decomposable, modifications flagged, and the AI layer makes zero unverified writes.</figcaption></figure>
+              <figure class="fig"><a href="assets/img/demeter-3.png" class="lightbox-link"><img src="assets/img/demeter-3.png" alt="Evaluation results"></a><figcaption>End-to-end verification: origin inspectable, transformation traceable, a combined file's sources recoverable, modifications flagged, and the AI layer makes zero unverified writes.</figcaption></figure>
               <figure class="fig"><a href="assets/img/demeter-4.png" class="lightbox-link"><img src="assets/img/demeter-4.png" alt="Provenance trace"></a><figcaption>A real provenance trace through the platform: a receiving party retrieves the full chain in a single query.</figcaption></figure>
             </div>
 
@@ -240,7 +240,7 @@
               </figure>
             </div>
 
-            <p>As a general-purpose bottom layer, DEMETER is currently being extended to soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes pagination-based tracing beyond 8,000 records and AI agent interfaces for automated verification workflows.</p>
+            <p>As a general-purpose bottom layer, DEMETER is currently being extended to soil spectrum and mapping data, fresh food to waste management, and smart aquaculture with edge computing. Future work includes letting outside systems read these records under their own conventions, pagination-based tracing beyond 8,000 records, and AI agent interfaces for automated verification workflows.</p>
             <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/DEMETER">github.com/WhoisHOO/DEMETER</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>DEMETER: An infrastructure for verification-traceable reuse of agricultural data across decentralized environments.</em> Under review.</p>
           </div>
         </details>
@@ -278,15 +278,15 @@
           </div>
         </details>
 
-        <details id="si" class="project" open>
-          <summary><span class="project-num">4</span> SI, Source Integration for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
+        <details id="access-governance" class="project" open>
+          <summary><span class="project-num">4</span> Access &amp; Reuse Governance for Agricultural Data Sharing <span class="meta-inline">Go &middot; Hyperledger Fabric &middot; CouchDB</span></summary>
           <div class="project-body">
-            <p>When multiple files from different organizations are combined into a single output, the receiving party cannot determine which source files contributed or under what license conditions they were shared.</p>
-            <p>This infrastructure governs how files move between organizations and how combined outputs relate back to their sources, recording every access request, approval, transfer, and reuse decision on-chain.</p>
-            <p>The access request workflow runs through Request, Approve, Fulfill, and Download. Each stage produces an on-chain record so that any party can reconstruct who approved which transfer and under which license, without relying on any single party's internal logs. Reuse evaluation checks purpose against 7 Creative Commons license types with expiration enforcement and derivative restrictions. A decision chain tracing audits who approved what and when.</p>
+            <p><a href="#dv">DV</a> and <a href="#ti">TI</a> tell a receiving party where a file came from and what it was built from. Neither one tells a receiving party whether reusing that file was actually allowed. That needs a separate record: who approved the transfer, and under what license.</p>
+            <p>This infrastructure governs cross-organization access: every request, approval, transfer, and reuse decision is written to a shared ledger, so any party can check who approved a transfer and under what license, without relying on any single party's internal logs.</p>
+            <p>The access request workflow runs through Request, Approve, Fulfill, and Download. Each stage writes an on-chain record. Reuse evaluation checks the requested purpose against 7 Creative Commons license types, with expiration enforcement and derivative restrictions. A decision-chain trace shows who approved what and when.</p>
             <figure class="fig">
-              <div class="video-embed"><iframe src="https://www.youtube.com/embed/WRRBmRddwLg" title="SI demo" loading="lazy" allowfullscreen></iframe></div>
-              <figcaption>SI demo: cross-organizational access workflow and reuse evaluation</figcaption>
+              <div class="video-embed"><iframe src="https://www.youtube.com/embed/WRRBmRddwLg" title="Access governance demo" loading="lazy" allowfullscreen></iframe></div>
+              <figcaption>Access governance demo: cross-organizational access workflow and reuse evaluation</figcaption>
             </figure>
             <p class="sourced-by">Code: <a href="https://github.com/WhoisHOO/demeter-si-infrastructure">github.com/WhoisHOO/demeter-si-infrastructure</a> (private during review, will be open-sourced upon publication)<br>Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. Under review.</p>
           </div>
@@ -297,9 +297,9 @@
           <div class="project-body">
             <p>When a file is transformed into a new file (e.g., raw sensor data into a loss appraisal), the new file has different content and a different fingerprint. The receiving party cannot determine which input was used or what operation was performed, because that information exists only inside the producing party's system.</p>
             <p>This infrastructure lets a receiving party determine the declared registered input and declared operation for a transformed file using only the shared ledger, without contacting the producing environment.</p>
-            <p>The processor writes a declaration to the ledger linking input File ID to output File ID with an operation label, and declarations referencing unregistered inputs are rejected. Inspection follows the chain backward and returns one of three states: resolved, resolved with gap, or no declaration.</p>
-            <p>Importantly, TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. Correctness verification would require re-executing the transformation, which is outside what a shared ledger can enforce. This boundary keeps infrastructure-level claims honest.</p>
-            <p>Validation used a two-stage chain (farmer registers, ATP-A transforms, ATP-B transforms again). The receiving party retrieves the full chain in one query, and declaration-time validation correctly rejects unregistered inputs.</p>
+            <p>The processor writes a declaration to the ledger linking input File IDs to an output File ID with an operation label, and a declaration naming an input that isn't itself registered is rejected at commit. A query follows the chain backward from the output, one declaration at a time, until every branch reaches a registered original. If a step was never declared, the query stops there and reports the gap instead of guessing across it.</p>
+            <p>TI verifies the consistency of a transformation <em>declaration</em>, not the correctness of the transformation <em>process</em> itself. Correctness verification would require re-executing the transformation, which is outside what a shared ledger can enforce.</p>
+            <p>Validation covered all three ways a file can be built from others &mdash; combining several files into one, splitting one file into several, and modifying one file into another &mdash; using public USDA-NASS Florida citrus production data across four independently certified organizations. A receiving party recovers the full chain to every registration root in one query. Declarations naming an unregistered input are rejected at commit, a second declaration for an output that already has one is rejected, and an undeclared step in the middle of a chain is reported honestly rather than skipped over.</p>
             <figure class="fig">
               <div class="video-embed"><iframe src="https://www.youtube.com/embed/7rrnhwlIpJ4" title="TI demo" loading="lazy" allowfullscreen></iframe></div>
               <figcaption>TI demo: declared transformation lineage and chain inspection</figcaption>
@@ -314,7 +314,7 @@
             <p>When a farmer sends a file to an intermediate party and that party forwards it to a receiving party, the receiving party has no way to check whether the file matches what the farmer originally recorded. The originating organization's system may be inaccessible, and no shared record connects the origin state to the copy in hand.</p>
             <p>This infrastructure lets any receiving party verify whether a file has the same content as the version recorded before the first transfer, and reconstruct the full sequence of senders and receivers, without contacting any earlier computer.</p>
             <p>A SHA-256 fingerprint is computed at registration and stored on the shared ledger, and each transfer is recorded as a linked entry. Verification recomputes the fingerprint from the file in hand and compares it against the ledger, while transfer tracing follows linked records backward to the origin.</p>
-            <p>Verification was confirmed across multi-hop transfers: modified files correctly fail verification (different fingerprint, no matching record), and tracing reconstructs the full path regardless of whether intermediate parties are online. This means a regulator receiving data three hops downstream can independently verify file integrity without any prior party being online.</p>
+            <p>Verification was confirmed two hops downstream from the original registration, and separately under branching, where one organization forwards the same file to two different receivers at once: each receiver traces its own path back to the shared source without picking up the other's transfer record. A modified file correctly fails verification (different fingerprint, no matching registration). This means a receiver several hops downstream can check a file's origin and history on its own, without any earlier organization needing to be online.</p>
             <figure class="fig">
               <div class="video-embed"><iframe src="https://www.youtube.com/embed/oGBpgdAsZzA" title="DV demo" loading="lazy" allowfullscreen></iframe></div>
               <figcaption>DV demo: file origin verification and multi-hop transfer tracing</figcaption>
@@ -326,8 +326,8 @@
         <details class="project" open>
           <summary><span class="project-num">7</span> Cross-Sectoral Review of Blockchain in Data Sharing <span class="meta-inline">Agriculture &middot; Healthcare &middot; Finance</span></summary>
           <div class="project-body">
-            <p>Across agriculture, healthcare, and finance, blockchain has been applied to data sharing in fundamentally different ways. The agricultural blockchain literature often conflates two distinct things: supply-chain traceability, which tracks <em>products</em>, and data-file traceability, which tracks the <em>origin, transfer, and transformation of data objects</em>. Distinguishing them defined the scope of what verification infrastructure must do.</p>
-            <p>Agriculture had partial origin verification but no transformation or integration traceability. Healthcare and finance operate under mandatory regulatory frameworks (HITECH, SEC reporting) that compelled infrastructure investment. Agriculture has no equivalent mandate, which is why the gap persists. Healthcare had implemented origin, and finance had implemented origin and transformation. No sector had all three. Each missing layer maps to a distinct operational failure: without origin verification, a receiving party cannot confirm the file is unmodified; without transformation traceability, a derived output cannot be traced to its input; without integration traceability, a combined file cannot be decomposed to its sources. DV, TI, and SI address each failure independently.</p>
+            <p>A systematic review of 113 agricultural blockchain studies, compared against how healthcare and finance handle the same problem. Most agricultural blockchain studies conflate two distinct things: supply-chain traceability, which tracks a <em>product</em> moving through custody, and file traceability, which tracks the <em>origin, transfer, and transformation of a data file</em>. Distinguishing the two defined what verification infrastructure actually needs to check.</p>
+            <p>In the reviewed studies, agricultural origin verification and transformation tracing were both only partial, and no study let one organization read another's records under its own conventions. Healthcare and finance have built more complete systems, but only because a regulator requires every organization in those industries to report into a shared system. Agriculture has no such mandate: participation is voluntary, so any organization can opt out. This dissertation builds origin verification (DV) and transformation tracing (TI) for that voluntary setting.</p>
             <p class="sourced-by">Sourced by: Cho, Y., Yu, Z., &amp; Ampatzidis, Y. <em>Facilitating a Future Agricultural Data Ecosystem.</em> Under review.</p>
           </div>
         </details>
