@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>hooWorld</title>
-<meta name="description" content="A pixel-art atlas of WhoisHOO's work. Every repo is a country.">
+<meta name="description" content="A pixel-art atlas of WhoisHOO's repositories. Every repo is a country; main is its capital, branches are provinces.">
 <link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,10 +40,11 @@
     border: 4px solid var(--ink); box-shadow: 0 0 0 4px #000;
     padding: 14px 16px;
   }
-  #dialog .name { color: var(--gold); font-size: 13px; margin-bottom: 8px; }
+  #dialog .name { color: var(--gold); font-size: 13px; margin-bottom: 8px; word-break: break-all; }
   #dialog .tag { color: #9fd49f; margin-bottom: 10px; }
-  #dialog .lore { min-height: 54px; }
-  #dialog .stats { color: #7fd4ff; margin-top: 10px; }
+  #dialog .lore { min-height: 40px; }
+  #dialog .gov { color: #d4a97f; margin-top: 10px; }
+  #dialog .stats { color: #7fd4ff; margin-top: 6px; }
   #dialog .actions { margin-top: 12px; }
   #dialog a.btn, #dialog span.btn {
     display: inline-block; padding: 8px 12px; text-decoration: none;
@@ -58,7 +59,7 @@
 
 <header>
   <h1>HOO WORLD</h1>
-  <span class="sub">a portfolio atlas &mdash; every repo is a country</span>
+  <span class="sub">every repo is a country &middot; main is the capital &middot; branches are provinces</span>
   <a href="index.html">&larr; whoIsHoo</a>
 </header>
 
@@ -69,125 +70,130 @@
     <div class="name"></div>
     <div class="tag"></div>
     <div class="lore"></div>
+    <div class="gov"></div>
     <div class="stats"></div>
     <div class="actions"></div>
   </div>
 </div>
 <div id="tip"></div>
 
-<footer>hooWorld v0.1 &mdash; drawn in tiles, ruled by commits</footer>
+<footer>hooWorld v0.2 &mdash; drawn in tiles, ruled by commits</footer>
 
 <script>
 'use strict';
 
 /* ---------- tile palette ----------
    s sand | g grass | t tree | f farm | m mountain | M snow peak
-   c castle | o office | d dojo | l lab | r ruins | F fog | space = ocean */
+   c castle (capital = main) | v village (province = branch)
+   o office | d dojo | l lab | r ruins | F fog | space = ocean */
 const COLORS = {
   s: '#e7d9a8', g: '#4f9e4f', t: '#2e7032', f: '#c9b84a',
-  m: '#8a8f98', M: '#e8ecf2', c: '#cfd4dc', o: '#7d8aa0',
-  d: '#c0453e', l: '#3fb0a8', r: '#9aa0a8', F: '#5a6472',
+  m: '#8a8f98', M: '#e8ecf2', c: '#cfd4dc', v: '#8a5a33',
+  o: '#7d8aa0', d: '#c0453e', l: '#3fb0a8', r: '#9aa0a8', F: '#5a6472',
 };
 const WATER = ['#16406b', '#1b4a7a'];
+const GH = 'https://github.com/WhoisHOO/';
 
-/* ---------- the world ---------- */
+/* ---------- the world ----------
+   countries = repositories (snapshot 2026-10-12; update data when repos change)
+   capital = main branch (castle tiles), provinces = other branches (village tiles) */
 const ISLANDS = [
   {
-    id: 'capital', x: 52, y: 25,
-    name: 'Hoo Capital',
-    tag: 'seat of the whoIsHoo',
-    lore: 'The city you are standing in. Roads from every kingdom end here, at the portfolio gates.',
-    stats: 'HTML / CSS / JS',
-    link: 'index.html', btn: 'ENTER THE PROFILE',
+    id: 'home', x: 4, y: 3,
+    name: 'whoishoo.github.io',
+    tag: 'the homeland. you are standing on it.',
+    lore: 'Resume and portfolio of Younghoo Cho. Two provinces are under construction; one of them is this very map.',
+    lang: 'HTML', provinces: ['gh-pages', 'hooworld'],
+    link: GH + 'whoishoo.github.io',
     art: [
-      '   sggggs   ',
-      '  sggccggs  ',
-      ' sggccccggs ',
-      ' sgtgccgtgs ',
-      '  sggggggs  ',
-      '   ssggss   ',
+      '    ssgggggss   ',
+      '  ssgggggggggs  ',
+      ' sggtggccggtggs ',
+      ' sggggccccgggs  ',
+      ' sgvggccccggvgs ',
+      ' sggggggggggggs ',
+      '  ssggtggtggss  ',
+      '    ssgggggss   ',
     ],
   },
   {
-    id: 'demeter', x: 6, y: 4,
-    name: 'Kingdom of DEMETER',
-    tag: 'where every grain of data has a birth certificate',
-    lore: 'A PhD-era realm of verifiable data sharing. Each organization records its files and handoffs on a Hyperledger Fabric ledger: no central operator, no blind trust. The royal archives are sealed; the doctrine is published.',
-    stats: 'Go / Hyperledger Fabric / Docker / LLM gatekeeper',
-    link: null, btn: 'ARCHIVES SEALED',
+    id: 'hoohr', x: 30, y: 4,
+    name: 'HOOHR',
+    tag: 'a bureaucratic utopia',
+    lore: 'Lightweight HR toolkit for startups and SMBs: attendance, leave, and expense management. Attendance is law; leave requests are sacred scrolls.',
+    lang: 'TypeScript', provinces: [],
+    link: GH + 'HOOHR',
     art: [
-      '    ssgggggss     ',
-      '  ssgggggggggss   ',
-      ' sggffffggttgggs  ',
-      ' sgffffffgttgggs  ',
-      ' sgffffffggccggs  ',
-      ' sggffffggccccgs  ',
-      '  sggggggccccggs  ',
-      '   sggttgggggggs  ',
-      '    ssgggggggss   ',
-      '      sssssss     ',
+      '   sggggggs  ',
+      '  sggooooggs ',
+      ' sggooooooogs',
+      ' sggoogggoogs',
+      '  sggggggcgs ',
+      '   ssggccgs  ',
+      '     ssggs   ',
     ],
   },
   {
-    id: 'nda', x: 74, y: 3,
+    id: 'nda', x: 56, y: 3,
     name: 'The NDA Empire',
     tag: 'a connected-car dominion, permanently under fog',
     lore: 'Travelers speak of telemetry rivers, Kubernetes fortresses, and carrier toll gates. The emperor forbids maps. All records classified.',
-    stats: 'Java/Spring / Python / Kubernetes',
+    lang: 'Java/Spring, Python, Kubernetes', provinces: ['[REDACTED]'],
     link: null, btn: 'ACCESS DENIED',
     art: [
-      '    FFFFFFFFFF      ',
-      '  FFFFFFFFFFFFFF    ',
-      ' FFFFmmFFFFFFFFFF   ',
-      ' FFFmMmmFFFFFFFFFF  ',
-      ' FFFFmmFFFFFFmmFFF  ',
-      '  FFFFFFFFFFmMmFFF  ',
-      '  FFFFFFFFFFFmFFFF  ',
-      '   FFFFFFFFFFFFFF   ',
-      '     FFFFFFFFFF     ',
+      '   FFFFFFFFFF    ',
+      '  FFFFFFFFFFFF   ',
+      ' FFFFmmFFFFFFFF  ',
+      ' FFFmMmmFFFFFFFF ',
+      ' FFFFmmFFFFmmFFF ',
+      '  FFFFFFFFmMmFFF ',
+      '   FFFFFFFFmFFF  ',
+      '    FFFFFFFFFF   ',
     ],
   },
   {
-    id: 'hoohr', x: 8, y: 30,
-    name: 'HOOHR Federation',
-    tag: 'a bureaucratic utopia',
-    lore: 'Attendance is law. Leave requests are sacred scrolls. A lightweight HR toolkit governs startups and small guilds with TypeScript decrees.',
-    stats: 'TypeScript',
-    link: 'https://github.com/WhoisHOO/HOOHR', btn: 'ENTER KINGDOM',
+    id: 'demeter', x: 84, y: 3,
+    name: 'DEMETER',
+    tag: 'where every grain of data has a birth certificate',
+    lore: 'A PhD-era realm of verifiable data sharing on Hyperledger Fabric: no central operator, no blind trust. The royal archives are sealed; the doctrine is published.',
+    lang: 'Go, Hyperledger Fabric, Docker', provinces: ['sealed'],
+    link: null, btn: 'ARCHIVES SEALED',
     art: [
-      '   sggggggs   ',
-      '  sggooooggs  ',
-      ' sggoooooogs  ',
-      ' sggooggoogs  ',
-      '  sggggggggs  ',
-      '   ssggggss   ',
+      '    ssggggss    ',
+      '  ssggggggggss  ',
+      ' sggffffggttggs ',
+      ' sgffffffgccggs ',
+      ' sggffffggccggs ',
+      '  sggggggggggs  ',
+      '   ssggttggss   ',
+      '     ssggss     ',
     ],
   },
   {
-    id: 'dojo', x: 44, y: 46,
-    name: 'Code Assessment Dojo',
+    id: 'assessment', x: 8, y: 22,
+    name: 'code_assessment',
     tag: 'monks drill algorithms at dawn',
-    lore: 'Two pointers, topological sort, shrines to the LRU cache. Pilgrims repeat spaced-repetition rituals daily until the patterns answer by themselves.',
-    stats: 'Python / Java',
-    link: 'https://github.com/WhoisHOO/code_assessment', btn: 'ENTER DOJO',
+    lore: 'A training nation of big-tech quiz rituals: two pointers, topological sort, shrines to the LRU cache. One frontier province: sprint1.',
+    lang: 'Python, Java', provinces: ['sprint1'],
+    link: GH + 'code_assessment',
     art: [
       '   sgggggs   ',
-      '  sgtgddgts  ',
-      ' sgggddddggs ',
-      '  sgtgddgtgs ',
+      '  sgtgccgts  ',
+      ' sgggccccggs ',
+      '  sgtggggvgs ',
       '   sgggggss  ',
     ],
   },
   {
-    id: 'hooai', x: 88, y: 34,
-    name: 'HOOAI Isles',
+    id: 'hooai', x: 34, y: 22,
+    name: 'HOOAI',
     tag: 'an archipelago of experiments',
     lore: 'Notebooks wash ashore daily. Vision models watch the fish; the fish suspect nothing.',
-    stats: 'Jupyter / PyTorch / OpenCV',
-    link: 'https://github.com/WhoisHOO/HOOAI', btn: 'ENTER ISLES',
+    lang: 'Jupyter Notebook', provinces: [],
+    link: GH + 'HOOAI',
     art: [
       '  sggls      ',
-      ' sgglls  sgs ',
+      ' sggcls  sgs ',
       '  sggs  sgls ',
       '   ss    ss  ',
       '     sgls    ',
@@ -196,32 +202,72 @@ const ISLANDS = [
     ],
   },
   {
-    id: 'plains', x: 24, y: 48,
-    name: 'The Data Plains',
-    tag: 'R scripts graze freely',
-    lore: 'Open fields of exploratory data analysis and weather records. Harvest season never ends; someone is always plotting.',
-    stats: 'R / EDA / visualization',
-    link: 'https://github.com/WhoisHOO/handsOn', btn: 'ENTER PLAINS',
+    id: 'ghdid', x: 62, y: 23,
+    name: 'ghdid',
+    tag: 'a quiet island; its records are terse',
+    lore: 'Few chronicles survive. The locals commit rarely but decisively.',
+    lang: 'unrecorded', provinces: [],
+    link: GH + 'ghdid',
     art: [
-      '   sggggggggs   ',
-      '  sgffffffggs   ',
-      ' sggffffffffgs  ',
-      '  sggffffffgs   ',
-      '   ssggggggs    ',
+      '  sggs  ',
+      ' sgcggs ',
+      ' sggtgs ',
+      '  ssgs  ',
     ],
   },
   {
-    id: 'ruins', x: 90, y: 52,
-    name: 'Capstone Ruins',
+    id: 'blockchain', x: 84, y: 23,
+    name: 'blockchain',
+    tag: 'small island, big ideas',
+    lore: 'Early distributed-ledger experiments. The lighthouse still blinks in blocks.',
+    lang: 'unrecorded', provinces: [],
+    link: GH + 'blockchain',
+    art: [
+      '  sgms  ',
+      ' sggcgs ',
+      '  sggs  ',
+    ],
+  },
+  {
+    id: 'handson', x: 6, y: 42,
+    name: 'handsOn',
+    tag: 'R scripts graze freely',
+    lore: 'Open fields of EDA and visualization, farmed as a group exercise in data-science husbandry. One province: updateHandsOn.',
+    lang: 'R', provinces: ['updateHandsOn'],
+    art: [
+      '   sggggggggs  ',
+      '  sgffffffcgs  ',
+      ' sggffffffffgs ',
+      '  sggfvfffggs  ',
+      '   ssggggggs   ',
+    ],
+    link: GH + 'handsOn',
+  },
+  {
+    id: 'capstone', x: 34, y: 43,
+    name: 'Student-Communication-app-with-firebase',
     tag: 'remains of an undergrad civilization',
-    lore: 'Firebase obelisks still hum beneath the vines. Archaeologists date the site to the final year of the bachelor era.',
-    stats: 'Firebase / Android',
-    link: 'https://github.com/WhoisHOO/Student-Communication-app-with-firebase', btn: 'EXCAVATE',
+    lore: 'Capstone ruins. Firebase obelisks still hum beneath the vines; archaeologists date the site to the final year of the bachelor era.',
+    lang: 'Capstone, Firebase', provinces: [],
+    link: GH + 'Student-Communication-app-with-firebase',
     art: [
       '  sgggrgs  ',
-      ' sgrgggrgs ',
+      ' sgrgcgrgs ',
       ' sggrgrggs ',
       '  ssgggss  ',
+    ],
+  },
+  {
+    id: 'ppdata', x: 60, y: 44,
+    name: 'personal-project-data',
+    tag: 'a data atoll',
+    lore: 'A small weather-worn depot from the ABE 6933 era. Datasets rest here between voyages.',
+    lang: 'data', provinces: [],
+    link: GH + 'personal-project-data',
+    art: [
+      '  sgfgs ',
+      ' sgcfgs ',
+      '  sggs  ',
     ],
   },
 ];
@@ -231,8 +277,8 @@ const T = 8;                       // tile size in px
 const CW = 120, CH = 64;           // world size in tiles
 const cv = document.getElementById('map');
 const cx = cv.getContext('2d');
-const owner = new Array(CW * CH).fill(null);   // tile -> island id
-const tiles = new Array(CW * CH).fill(null);   // tile -> char
+const owner = new Array(CW * CH).fill(null);
+const tiles = new Array(CW * CH).fill(null);
 
 for (const isl of ISLANDS) {
   isl.art.forEach((row, ry) => {
@@ -248,7 +294,7 @@ for (const isl of ISLANDS) {
   });
 }
 
-/* hero sprite (12 wide x 14 tall, 2px per cell) near the capital */
+/* hero sprite, standing in the homeland */
 const HERO = [
   '  kkkkkk  ',
   ' kkkkkkkk ',
@@ -265,7 +311,7 @@ const HERO = [
   '  bb  bb  ',
 ];
 const HERO_COLORS = { k: '#222222', y: '#f0c89a', P: '#1a1a1a', h: '#2e4a8f', p: '#333a44', b: '#513c28' };
-const HERO_POS = { x: 54, y: 27 };  // in tiles, stands inside Hoo Capital
+const HERO_POS = { x: 11, y: 9 };  // inside whoishoo.github.io
 
 let frame = 0, hoverId = null;
 
@@ -290,7 +336,6 @@ function draw() {
       }
     }
   }
-  // hero (gentle idle bob)
   const bob = (frame % 8) < 4 ? 0 : 1;
   const hx = HERO_POS.x * T, hy = HERO_POS.y * T + bob - HERO.length * 2;
   HERO.forEach((row, ry) => [...row].forEach((ch, rx) => {
@@ -339,12 +384,13 @@ cv.addEventListener('click', (ev) => {
   dlg.style.display = 'block';
   dlg.querySelector('.name').textContent = '✦ ' + isl.name;
   dlg.querySelector('.tag').textContent = '"' + isl.tag + '"';
-  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + isl.stats;
+  dlg.querySelector('.gov').textContent = '♛ CAPITAL: main' +
+    (isl.provinces.length ? '  ⚑ PROVINCES: ' + isl.provinces.join(', ') : '  (unitary state)');
+  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + isl.lang;
   const actions = dlg.querySelector('.actions');
   actions.innerHTML = isl.link
-    ? '<a class="btn" href="' + isl.link + '"' + (isl.link.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' + isl.btn + ' ▸</a>'
+    ? '<a class="btn" href="' + isl.link + '" target="_blank" rel="noopener">ENTER KINGDOM ▸</a>'
     : '<span class="btn">' + isl.btn + '</span>';
-  // typewriter
   const loreEl = dlg.querySelector('.lore');
   clearInterval(typeTimer);
   loreEl.textContent = '';
