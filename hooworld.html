@@ -84,7 +84,12 @@
 </div>
 <div id="tip"></div>
 
-<footer>hooWorld v0.2 &mdash; drawn in tiles, ruled by commits</footer>
+<footer>
+  hooWorld v0.2 &mdash; drawn in tiles, ruled by commits<br>
+  music: "Video Game Soldiers" by Twin Musicom (twinmusicom.org) &middot;
+  "Death of Kings 2" by Kevin MacLeod (incompetech.com) &middot;
+  licensed under <a href="https://creativecommons.org/licenses/by/4.0/" style="color:#5a6a80">CC BY 4.0</a>
+</footer>
 
 <script>
 'use strict';
@@ -411,15 +416,20 @@ cv.addEventListener('click', (ev) => {
   blip();
 });
 
-/* ---------- chiptune (Web Audio, no files, no copyright) ---------- */
-let actx = null, musicOn = false, musicTimer = null, stepIdx = 0;
+/* ---------- background music (assets/audio, CC BY 4.0 — credits in footer) ---------- */
+let actx = null, musicOn = false, trackIdx = 0;
 const bgmBtn = document.getElementById('bgm');
-
-const MEL = [  // 32 eighth-note steps, C-pentatonic loop (Hz; 0 = rest)
-  659, 0, 784, 0, 880, 0, 784, 659,  587, 0, 659, 0, 523, 0, 0, 0,
-  659, 0, 784, 0, 880, 0, 1047, 880, 784, 0, 659, 0, 587, 0, 0, 0,
+const PLAYLIST = [
+  'assets/audio/Video Game Soldiers - Twin Musicom.mp3',
+  'assets/audio/Death of Kings 2 - Kevin MacLeod.mp3',
 ];
-const BASS = [131, 110, 175, 98];  // one note per 8 steps: C3 A2 F3 G2
+const bgm = new Audio();
+bgm.volume = 0.35;
+bgm.addEventListener('ended', () => {
+  trackIdx = (trackIdx + 1) % PLAYLIST.length;
+  bgm.src = PLAYLIST[trackIdx];
+  bgm.play();
+});
 
 function tone(freq, dur, type, vol, when) {
   const o = actx.createOscillator(), g = actx.createGain();
@@ -430,20 +440,17 @@ function tone(freq, dur, type, vol, when) {
   o.start(when); o.stop(when + dur);
 }
 
-function musicStep() {
-  const t = actx.currentTime;
-  const m = MEL[stepIdx % MEL.length];
-  if (m) tone(m, 0.22, 'square', 0.025, t);
-  if (stepIdx % 8 === 0) tone(BASS[(stepIdx / 8) % BASS.length], 0.9, 'triangle', 0.05, t);
-  stepIdx++;
-}
-
 bgmBtn.addEventListener('click', () => {
   if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
   musicOn = !musicOn;
   bgmBtn.innerHTML = musicOn ? '&#9834; ON' : '&#9834; OFF';
-  if (musicOn) { actx.resume(); stepIdx = 0; musicStep(); musicTimer = setInterval(musicStep, 190); }
-  else clearInterval(musicTimer);
+  if (musicOn) {
+    actx.resume();
+    if (!bgm.src) bgm.src = PLAYLIST[0];
+    bgm.play();
+  } else {
+    bgm.pause();
+  }
 });
 
 function blip() {  // dialog-open sound effect
