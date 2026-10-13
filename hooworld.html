@@ -92,7 +92,7 @@
 <header>
   <h1>HOO WORLD</h1>
   <span class="sub">every repo is a country &middot; main is the capital &middot; branches are provinces</span>
-  <button id="bgm" title="toggle music">&#9834; OFF</button>
+  <button id="bgm" title="toggle music">&#9834; ON</button>
   <a href="index.html">&larr; whoIsHoo</a>
 </header>
 
@@ -263,8 +263,10 @@ function openDialog(c) {
   blip();
 }
 
-/* ---------- background music (assets/audio, CC BY 4.0 — credits in footer) ---------- */
-let actx = null, musicOn = false, trackIdx = 0;
+/* ---------- background music (assets/audio, CC BY 4.0 — credits in footer) ----------
+   Default ON. Browsers block unmuted autoplay before a user gesture, so we
+   try on load and otherwise start at the visitor's first click/keypress. */
+let actx = null, musicOn = true, trackIdx = 0;
 const bgmBtn = document.getElementById('bgm');
 const PLAYLIST = [
   'assets/audio/Video Game Soldiers - Twin Musicom.mp3',
@@ -277,6 +279,21 @@ bgm.addEventListener('ended', () => {
   bgm.src = PLAYLIST[trackIdx];
   bgm.play();
 });
+
+function startMusic() {
+  if (!bgm.src) bgm.src = PLAYLIST[0];
+  return bgm.play();
+}
+function armAutoplay() {
+  const kick = () => {
+    if (musicOn && bgm.paused) startMusic().catch(() => {});
+    document.removeEventListener('pointerdown', kick);
+    document.removeEventListener('keydown', kick);
+  };
+  document.addEventListener('pointerdown', kick);
+  document.addEventListener('keydown', kick);
+}
+startMusic().catch(armAutoplay);
 
 function tone(freq, dur, type, vol, when) {
   const o = actx.createOscillator(), g = actx.createGain();
@@ -301,7 +318,8 @@ bgmBtn.addEventListener('click', () => {
 });
 
 function blip() {
-  if (!musicOn || !actx) return;
+  if (!musicOn) return;
+  if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
   const t = actx.currentTime;
   tone(880, 0.06, 'square', 0.04, t);
   tone(1320, 0.08, 'square', 0.04, t + 0.06);
