@@ -24,6 +24,12 @@
   .sub { color: #93a4bb; }
   header a { color: #7fd4ff; text-decoration: none; margin-left: auto; }
   header a:hover { color: #fff; }
+  #bgm {
+    font-family: inherit; font-size: 10px; cursor: pointer;
+    background: none; color: var(--gold); border: 3px solid var(--gold);
+    padding: 6px 10px;
+  }
+  #bgm:hover { background: var(--gold); color: #000; }
   .stage { max-width: 980px; margin: 0 auto; padding: 8px 10px 24px; }
   canvas {
     display: block; width: 100%; height: auto;
@@ -60,6 +66,7 @@
 <header>
   <h1>HOO WORLD</h1>
   <span class="sub">every repo is a country &middot; main is the capital &middot; branches are provinces</span>
+  <button id="bgm" title="toggle music">&#9834; OFF</button>
   <a href="index.html">&larr; whoIsHoo</a>
 </header>
 
@@ -401,7 +408,50 @@ cv.addEventListener('click', (ev) => {
     if (n >= isl.lore.length) clearInterval(typeTimer);
   }, 14);
   dlg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  blip();
 });
+
+/* ---------- chiptune (Web Audio, no files, no copyright) ---------- */
+let actx = null, musicOn = false, musicTimer = null, stepIdx = 0;
+const bgmBtn = document.getElementById('bgm');
+
+const MEL = [  // 32 eighth-note steps, C-pentatonic loop (Hz; 0 = rest)
+  659, 0, 784, 0, 880, 0, 784, 659,  587, 0, 659, 0, 523, 0, 0, 0,
+  659, 0, 784, 0, 880, 0, 1047, 880, 784, 0, 659, 0, 587, 0, 0, 0,
+];
+const BASS = [131, 110, 175, 98];  // one note per 8 steps: C3 A2 F3 G2
+
+function tone(freq, dur, type, vol, when) {
+  const o = actx.createOscillator(), g = actx.createGain();
+  o.type = type; o.frequency.value = freq;
+  g.gain.setValueAtTime(vol, when);
+  g.gain.exponentialRampToValueAtTime(0.001, when + dur);
+  o.connect(g).connect(actx.destination);
+  o.start(when); o.stop(when + dur);
+}
+
+function musicStep() {
+  const t = actx.currentTime;
+  const m = MEL[stepIdx % MEL.length];
+  if (m) tone(m, 0.22, 'square', 0.025, t);
+  if (stepIdx % 8 === 0) tone(BASS[(stepIdx / 8) % BASS.length], 0.9, 'triangle', 0.05, t);
+  stepIdx++;
+}
+
+bgmBtn.addEventListener('click', () => {
+  if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+  musicOn = !musicOn;
+  bgmBtn.innerHTML = musicOn ? '&#9834; ON' : '&#9834; OFF';
+  if (musicOn) { actx.resume(); stepIdx = 0; musicStep(); musicTimer = setInterval(musicStep, 190); }
+  else clearInterval(musicTimer);
+});
+
+function blip() {  // dialog-open sound effect
+  if (!musicOn || !actx) return;
+  const t = actx.currentTime;
+  tone(880, 0.06, 'square', 0.04, t);
+  tone(1320, 0.08, 'square', 0.04, t + 0.06);
+}
 </script>
 </body>
 </html>
