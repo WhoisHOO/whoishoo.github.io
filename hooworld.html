@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>hooWorld</title>
-<meta name="description" content="A pixel-art atlas of WhoisHOO's repositories. Every repo is a country; main is its capital, branches are provinces.">
+<meta name="description" content="A fantasy atlas of WhoisHOO's repositories. Every repo is a country; main is its capital, branches are provinces.">
 <link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
   :root { --ink:#e8e4d8; --gold:#f2c24b; --panel:#101823; --line:#3a4a5f; }
   * { box-sizing: border-box; }
@@ -18,29 +18,54 @@
   }
   header {
     display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
-    padding: 18px 20px 8px; max-width: 980px; margin: 0 auto;
+    padding: 18px 20px 8px; max-width: 1080px; margin: 0 auto;
   }
   h1 { font-size: 22px; margin: 0; color: var(--gold); text-shadow: 3px 3px 0 #000; }
   .sub { color: #93a4bb; }
-  header a { color: #7fd4ff; text-decoration: none; margin-left: auto; }
-  header a:hover { color: #fff; }
   #bgm {
     font-family: inherit; font-size: 10px; cursor: pointer;
     background: none; color: var(--gold); border: 3px solid var(--gold);
     padding: 6px 10px;
   }
   #bgm:hover { background: var(--gold); color: #000; }
-  .stage { max-width: 980px; margin: 0 auto; padding: 8px 10px 24px; }
-  canvas {
-    display: block; width: 100%; height: auto;
-    image-rendering: pixelated; cursor: crosshair;
-    border: 4px solid var(--line); background: #123;
+  header a { color: #7fd4ff; text-decoration: none; margin-left: auto; }
+  header a:hover { color: #fff; }
+  .stage { max-width: 1080px; margin: 0 auto; padding: 8px 10px 24px; }
+
+  .map-wrap { position: relative; border: 4px solid var(--line); }
+  .map-wrap img { display: block; width: 100%; height: auto; }
+
+  .banner {
+    position: absolute; transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif; font-weight: 800; white-space: nowrap;
+    color: #f5e6c4; cursor: pointer; text-align: center;
+    background: linear-gradient(#2a2118e6, #141009e6);
+    border: 1px solid #c9a24b; border-radius: 2px;
+    padding: 3px 12px; letter-spacing: 1px;
+    box-shadow: 0 2px 8px #000c;
+    transition: transform .12s, box-shadow .12s;
   }
+  .banner::before, .banner::after {
+    content: ''; position: absolute; top: 15%; height: 70%; width: 7px;
+    background: #1d1710e6; border: 1px solid #c9a24b;
+  }
+  .banner::before { left: -8px; transform: skewY(18deg); }
+  .banner::after  { right: -8px; transform: skewY(-18deg); }
+  .banner.big   { font-size: clamp(11px, 1.6vw, 17px); }
+  .banner.small { font-size: clamp(8px, 1.1vw, 12px); opacity: .95; }
+  .banner:hover {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 0 14px #f2c24b88, 0 2px 8px #000c; z-index: 3;
+  }
+  .here {
+    position: absolute; transform: translate(-50%, -100%);
+    color: var(--gold); font-size: 14px; pointer-events: none;
+    animation: bob 1.2s infinite steps(2);
+    text-shadow: 0 2px 4px #000;
+  }
+  @keyframes bob { 50% { transform: translate(-50%, -130%); } }
+
   .hint { color: #93a4bb; margin: 8px 2px; }
-  #tip {
-    position: fixed; pointer-events: none; display: none; z-index: 5;
-    background: #000c; color: var(--gold); padding: 6px 8px; border: 2px solid var(--gold);
-  }
   #dialog {
     display: none; margin-top: 10px; background: var(--panel);
     border: 4px solid var(--ink); box-shadow: 0 0 0 4px #000;
@@ -58,7 +83,8 @@
   }
   #dialog a.btn:hover { background: var(--gold); color: #000; }
   #dialog span.btn { border-color: #5a6472; color: #5a6472; }
-  footer { text-align: center; color: #5a6a80; padding: 10px 0 30px; }
+  footer { text-align: center; color: #5a6a80; padding: 10px 14px 30px; }
+  footer a { color: #5a6a80; }
 </style>
 </head>
 <body>
@@ -71,8 +97,10 @@
 </header>
 
 <div class="stage">
-  <canvas id="map" width="960" height="512"></canvas>
-  <div class="hint">&#9656; click a land to read its chronicle</div>
+  <div class="map-wrap" id="mapwrap">
+    <img src="assets/img/hooworld-map.png" alt="hooWorld map" draggable="false">
+  </div>
+  <div class="hint">&#9656; click a banner to read that country's chronicle</div>
   <div id="dialog">
     <div class="name"></div>
     <div class="tag"></div>
@@ -82,339 +110,158 @@
     <div class="actions"></div>
   </div>
 </div>
-<div id="tip"></div>
 
 <footer>
-  hooWorld v0.2 &mdash; drawn in tiles, ruled by commits<br>
+  hooWorld v0.3 &mdash; drawn by prompts, ruled by commits<br>
   music: "Video Game Soldiers" by Twin Musicom (twinmusicom.org) &middot;
   "Death of Kings 2" by Kevin MacLeod (incompetech.com) &middot;
-  licensed under <a href="https://creativecommons.org/licenses/by/4.0/" style="color:#5a6a80">CC BY 4.0</a>
+  licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &middot;
+  map artwork: AI-generated
 </footer>
 
 <script>
 'use strict';
-
-/* ---------- tile palette ----------
-   s sand | g grass | t tree | f farm | m mountain | M snow peak
-   c castle (capital = main) | v village (province = branch)
-   o office | d dojo | l lab | r ruins | F fog | space = ocean */
-const COLORS = {
-  s: '#e7d9a8', g: '#4f9e4f', t: '#2e7032', f: '#c9b84a',
-  m: '#8a8f98', M: '#e8ecf2', c: '#cfd4dc', v: '#8a5a33',
-  o: '#7d8aa0', d: '#c0453e', l: '#3fb0a8', r: '#9aa0a8', F: '#5a6472',
-};
-const WATER = ['#16406b', '#1b4a7a'];
 const GH = 'https://github.com/WhoisHOO/';
 
-/* ---------- the world ----------
-   countries = repositories (snapshot 2026-10-12; update data when repos change)
-   capital = main branch (castle tiles), provinces = other branches (village tiles) */
-const ISLANDS = [
+/* countries = repositories (snapshot 2026-10-12; update when repos change)
+   x,y are % positions of the label anchor on the map image */
+const COUNTRIES = [
   {
-    id: 'home', x: 4, y: 3,
+    x: 27, y: 66, size: 'big',
     name: 'whoishoo.github.io',
-    tag: 'the homeland. you are standing on it.',
-    lore: 'Resume and portfolio of Younghoo Cho. Two provinces are under construction; one of them is this very map.',
+    tag: 'the homeland. you are here.',
+    lore: 'Resume and portfolio of Younghoo Cho, built under the great tree. Two provinces are under construction; one of them is this very map.',
     lang: 'HTML', provinces: ['gh-pages', 'hooworld'],
-    link: GH + 'whoishoo.github.io',
-    art: [
-      '    ssgggggss   ',
-      '  ssgggggggggs  ',
-      ' sggtggccggtggs ',
-      ' sggggccccgggs  ',
-      ' sgvggccccggvgs ',
-      ' sggggggggggggs ',
-      '  ssggtggtggss  ',
-      '    ssgggggss   ',
-    ],
+    link: GH + 'whoishoo.github.io', here: true,
   },
   {
-    id: 'hoohr', x: 30, y: 4,
+    x: 52, y: 16, size: 'big',
+    name: 'The NDA Empire',
+    tag: 'a connected-car dominion under eternal winter',
+    lore: 'Telemetry rivers run beneath the glacier; Kubernetes fortresses ring the volcano. The emperor forbids maps. All records classified.',
+    lang: 'Java/Spring, Python, Kubernetes', provinces: ['[REDACTED]'],
+    link: null, btn: 'ACCESS DENIED',
+  },
+  {
+    x: 17, y: 31, size: 'big',
+    name: 'DEMETER',
+    tag: 'where every grain of data has a birth certificate',
+    lore: 'A PhD-era realm of verifiable data sharing on Hyperledger Fabric: no central operator, no blind trust. The royal archives sit behind the mists; the doctrine is published.',
+    lang: 'Go, Hyperledger Fabric, Docker', provinces: ['sealed'],
+    link: null, btn: 'ARCHIVES SEALED',
+  },
+  {
+    x: 83, y: 26, size: 'big',
     name: 'HOOHR',
-    tag: 'a bureaucratic utopia',
+    tag: 'a bureaucratic utopia in autumn',
     lore: 'Lightweight HR toolkit for startups and SMBs: attendance, leave, and expense management. Attendance is law; leave requests are sacred scrolls.',
     lang: 'TypeScript', provinces: [],
     link: GH + 'HOOHR',
-    art: [
-      '   sggggggs  ',
-      '  sggooooggs ',
-      ' sggooooooogs',
-      ' sggoogggoogs',
-      '  sggggggcgs ',
-      '   ssggccgs  ',
-      '     ssggs   ',
-    ],
   },
   {
-    id: 'nda', x: 56, y: 3,
-    name: 'The NDA Empire',
-    tag: 'a connected-car dominion, permanently under fog',
-    lore: 'Travelers speak of telemetry rivers, Kubernetes fortresses, and carrier toll gates. The emperor forbids maps. All records classified.',
-    lang: 'Java/Spring, Python, Kubernetes', provinces: ['[REDACTED]'],
-    link: null, btn: 'ACCESS DENIED',
-    art: [
-      '   FFFFFFFFFF    ',
-      '  FFFFFFFFFFFF   ',
-      ' FFFFmmFFFFFFFF  ',
-      ' FFFmMmmFFFFFFFF ',
-      ' FFFFmmFFFFmmFFF ',
-      '  FFFFFFFFmMmFFF ',
-      '   FFFFFFFFmFFF  ',
-      '    FFFFFFFFFF   ',
-    ],
-  },
-  {
-    id: 'demeter', x: 84, y: 3,
-    name: 'DEMETER',
-    tag: 'where every grain of data has a birth certificate',
-    lore: 'A PhD-era realm of verifiable data sharing on Hyperledger Fabric: no central operator, no blind trust. The royal archives are sealed; the doctrine is published.',
-    lang: 'Go, Hyperledger Fabric, Docker', provinces: ['sealed'],
-    link: null, btn: 'ARCHIVES SEALED',
-    art: [
-      '    ssggggss    ',
-      '  ssggggggggss  ',
-      ' sggffffggttggs ',
-      ' sgffffffgccggs ',
-      ' sggffffggccggs ',
-      '  sggggggggggs  ',
-      '   ssggttggss   ',
-      '     ssggss     ',
-    ],
-  },
-  {
-    id: 'assessment', x: 8, y: 22,
+    x: 78, y: 74, size: 'big',
     name: 'code_assessment',
-    tag: 'monks drill algorithms at dawn',
+    tag: 'monks drill algorithms in the canyon at dawn',
     lore: 'A training nation of big-tech quiz rituals: two pointers, topological sort, shrines to the LRU cache. One frontier province: sprint1.',
     lang: 'Python, Java', provinces: ['sprint1'],
     link: GH + 'code_assessment',
-    art: [
-      '   sgggggs   ',
-      '  sgtgccgts  ',
-      ' sgggccccggs ',
-      '  sgtggggvgs ',
-      '   sgggggss  ',
-    ],
   },
   {
-    id: 'hooai', x: 34, y: 22,
+    x: 46, y: 39, size: 'small',
     name: 'HOOAI',
-    tag: 'an archipelago of experiments',
+    tag: 'an isle of experiments',
     lore: 'Notebooks wash ashore daily. Vision models watch the fish; the fish suspect nothing.',
     lang: 'Jupyter Notebook', provinces: [],
     link: GH + 'HOOAI',
-    art: [
-      '  sggls      ',
-      ' sggcls  sgs ',
-      '  sggs  sgls ',
-      '   ss    ss  ',
-      '     sgls    ',
-      '    sglls    ',
-      '     sss     ',
-    ],
   },
   {
-    id: 'ghdid', x: 62, y: 23,
-    name: 'ghdid',
-    tag: 'a quiet island; its records are terse',
-    lore: 'Few chronicles survive. The locals commit rarely but decisively.',
-    lang: 'unrecorded', provinces: [],
-    link: GH + 'ghdid',
-    art: [
-      '  sggs  ',
-      ' sgcggs ',
-      ' sggtgs ',
-      '  ssgs  ',
-    ],
+    x: 67, y: 41, size: 'small',
+    name: 'handsOn',
+    tag: 'R scripts graze freely',
+    lore: 'Fields of EDA and visualization, farmed as a group exercise in data-science husbandry. One province: updateHandsOn.',
+    lang: 'R', provinces: ['updateHandsOn'],
+    link: GH + 'handsOn',
   },
   {
-    id: 'blockchain', x: 84, y: 23,
+    x: 89, y: 46, size: 'small',
     name: 'blockchain',
     tag: 'small island, big ideas',
     lore: 'Early distributed-ledger experiments. The lighthouse still blinks in blocks.',
     lang: 'unrecorded', provinces: [],
     link: GH + 'blockchain',
-    art: [
-      '  sgms  ',
-      ' sggcgs ',
-      '  sggs  ',
-    ],
   },
   {
-    id: 'handson', x: 6, y: 42,
-    name: 'handsOn',
-    tag: 'R scripts graze freely',
-    lore: 'Open fields of EDA and visualization, farmed as a group exercise in data-science husbandry. One province: updateHandsOn.',
-    lang: 'R', provinces: ['updateHandsOn'],
-    art: [
-      '   sggggggggs  ',
-      '  sgffffffcgs  ',
-      ' sggffffffffgs ',
-      '  sggfvfffggs  ',
-      '   ssggggggs   ',
-    ],
-    link: GH + 'handsOn',
+    x: 53, y: 70, size: 'small',
+    name: 'ghdid',
+    tag: 'a quiet island; its records are terse',
+    lore: 'Few chronicles survive. The locals commit rarely but decisively.',
+    lang: 'unrecorded', provinces: [],
+    link: GH + 'ghdid',
   },
   {
-    id: 'capstone', x: 34, y: 43,
-    name: 'Student-Communication-app-with-firebase',
-    tag: 'remains of an undergrad civilization',
-    lore: 'Capstone ruins. Firebase obelisks still hum beneath the vines; archaeologists date the site to the final year of the bachelor era.',
-    lang: 'Capstone, Firebase', provinces: [],
-    link: GH + 'Student-Communication-app-with-firebase',
-    art: [
-      '  sgggrgs  ',
-      ' sgrgcgrgs ',
-      ' sggrgrggs ',
-      '  ssgggss  ',
-    ],
-  },
-  {
-    id: 'ppdata', x: 60, y: 44,
+    x: 60, y: 55, size: 'small',
     name: 'personal-project-data',
     tag: 'a data atoll',
     lore: 'A small weather-worn depot from the ABE 6933 era. Datasets rest here between voyages.',
     lang: 'data', provinces: [],
     link: GH + 'personal-project-data',
-    art: [
-      '  sgfgs ',
-      ' sgcfgs ',
-      '  sggs  ',
-    ],
+  },
+  {
+    x: 90, y: 91, size: 'small',
+    name: 'Student-Communication-app',
+    tag: 'remains of an undergrad civilization',
+    lore: 'Capstone ruins in the red rock. Firebase obelisks still hum beneath the dust; archaeologists date the site to the final year of the bachelor era.',
+    lang: 'Capstone, Firebase', provinces: [],
+    link: GH + 'Student-Communication-app-with-firebase',
   },
 ];
 
-/* ---------- renderer ---------- */
-const T = 8;                       // tile size in px
-const CW = 120, CH = 64;           // world size in tiles
-const cv = document.getElementById('map');
-const cx = cv.getContext('2d');
-const owner = new Array(CW * CH).fill(null);
-const tiles = new Array(CW * CH).fill(null);
-
-for (const isl of ISLANDS) {
-  isl.art.forEach((row, ry) => {
-    [...row].forEach((ch, rx) => {
-      if (ch === ' ') return;
-      const x = isl.x + rx, y = isl.y + ry;
-      if (x < 0 || y < 0 || x >= CW || y >= CH) return;
-      const i = y * CW + x;
-      if (tiles[i]) console.warn('tile overlap at', x, y, isl.id, 'over', owner[i]);
-      tiles[i] = ch;
-      owner[i] = isl.id;
-    });
-  });
-}
-
-/* hero sprite, standing in the homeland */
-const HERO = [
-  '  kkkkkk  ',
-  ' kkkkkkkk ',
-  ' kyyyyyyk ',
-  ' kyPyyPyk ',
-  '  yyyyyy  ',
-  '   yyyy   ',
-  ' hhhhhhhh ',
-  'hhyhhhhyhh',
-  'h hhhhhh h',
-  '  hhhhhh  ',
-  '  pppppp  ',
-  '  pp  pp  ',
-  '  bb  bb  ',
-];
-const HERO_COLORS = { k: '#222222', y: '#f0c89a', P: '#1a1a1a', h: '#2e4a8f', p: '#333a44', b: '#513c28' };
-const HERO_POS = { x: 11, y: 9 };  // inside whoishoo.github.io
-
-let frame = 0, hoverId = null;
-
-function draw() {
-  for (let y = 0; y < CH; y++) {
-    for (let x = 0; x < CW; x++) {
-      const i = y * CW + x;
-      const ch = tiles[i];
-      if (!ch) {
-        const shimmer = ((x * 7 + y * 13 + frame) % 29) === 0;
-        cx.fillStyle = shimmer ? WATER[1] : WATER[0];
-      } else if (ch === 'F') {
-        const drift = ((x * 5 + y * 11 + frame) % 17) < 2;
-        cx.fillStyle = drift ? '#6a7585' : COLORS.F;
-      } else {
-        cx.fillStyle = COLORS[ch] || '#f0f';
-      }
-      cx.fillRect(x * T, y * T, T, T);
-      if (ch && owner[i] === hoverId) {
-        cx.fillStyle = 'rgba(255,255,255,0.18)';
-        cx.fillRect(x * T, y * T, T, T);
-      }
-    }
-  }
-  const bob = (frame % 8) < 4 ? 0 : 1;
-  const hx = HERO_POS.x * T, hy = HERO_POS.y * T + bob - HERO.length * 2;
-  HERO.forEach((row, ry) => [...row].forEach((ch, rx) => {
-    if (ch === ' ') return;
-    cx.fillStyle = HERO_COLORS[ch];
-    cx.fillRect(hx + rx * 2, hy + ry * 2, 2, 2);
-  }));
-}
-
-setInterval(() => { frame++; draw(); }, 300);
-draw();
-
-/* ---------- interaction ---------- */
-const tip = document.getElementById('tip');
+/* ---------- banners ---------- */
+const wrap = document.getElementById('mapwrap');
 const dlg = document.getElementById('dialog');
 let typeTimer = null;
 
-function tileAt(ev) {
-  const r = cv.getBoundingClientRect();
-  const x = Math.floor((ev.clientX - r.left) / r.width * CW);
-  const y = Math.floor((ev.clientY - r.top) / r.height * CH);
-  if (x < 0 || y < 0 || x >= CW || y >= CH) return null;
-  return owner[y * CW + x];
-}
-
-cv.addEventListener('mousemove', (ev) => {
-  const id = tileAt(ev);
-  if (id !== hoverId) { hoverId = id; draw(); }
-  cv.style.cursor = id ? 'pointer' : 'crosshair';
-  if (id) {
-    const isl = ISLANDS.find(s => s.id === id);
-    tip.textContent = isl.name;
-    tip.style.display = 'block';
-    tip.style.left = (ev.clientX + 14) + 'px';
-    tip.style.top = (ev.clientY + 14) + 'px';
-  } else {
-    tip.style.display = 'none';
+COUNTRIES.forEach((c) => {
+  const b = document.createElement('div');
+  b.className = 'banner ' + c.size;
+  b.textContent = c.name;
+  b.style.left = c.x + '%';
+  b.style.top = c.y + '%';
+  b.addEventListener('click', () => openDialog(c));
+  wrap.appendChild(b);
+  if (c.here) {
+    const pin = document.createElement('div');
+    pin.className = 'here';
+    pin.textContent = '▼';
+    pin.style.left = c.x + '%';
+    pin.style.top = (c.y - 4) + '%';
+    wrap.appendChild(pin);
   }
 });
-cv.addEventListener('mouseleave', () => { hoverId = null; tip.style.display = 'none'; draw(); });
 
-cv.addEventListener('click', (ev) => {
-  const id = tileAt(ev);
-  if (!id) return;
-  const isl = ISLANDS.find(s => s.id === id);
+function openDialog(c) {
   dlg.style.display = 'block';
-  dlg.querySelector('.name').textContent = '✦ ' + isl.name;
-  dlg.querySelector('.tag').textContent = '"' + isl.tag + '"';
+  dlg.querySelector('.name').textContent = '✦ ' + c.name;
+  dlg.querySelector('.tag').textContent = '"' + c.tag + '"';
   dlg.querySelector('.gov').textContent = '♛ CAPITAL: main' +
-    (isl.provinces.length ? '  ⚑ PROVINCES: ' + isl.provinces.join(', ') : '  (unitary state)');
-  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + isl.lang;
+    (c.provinces.length ? '  ⚑ PROVINCES: ' + c.provinces.join(', ') : '  (unitary state)');
+  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + c.lang;
   const actions = dlg.querySelector('.actions');
-  actions.innerHTML = isl.link
-    ? '<a class="btn" href="' + isl.link + '" target="_blank" rel="noopener">ENTER KINGDOM ▸</a>'
-    : '<span class="btn">' + isl.btn + '</span>';
+  actions.innerHTML = c.link
+    ? '<a class="btn" href="' + c.link + '" target="_blank" rel="noopener">ENTER KINGDOM ▸</a>'
+    : '<span class="btn">' + c.btn + '</span>';
   const loreEl = dlg.querySelector('.lore');
   clearInterval(typeTimer);
   loreEl.textContent = '';
   let n = 0;
   typeTimer = setInterval(() => {
     n += 2;
-    loreEl.textContent = isl.lore.slice(0, n);
-    if (n >= isl.lore.length) clearInterval(typeTimer);
+    loreEl.textContent = c.lore.slice(0, n);
+    if (n >= c.lore.length) clearInterval(typeTimer);
   }, 14);
   dlg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   blip();
-});
+}
 
 /* ---------- background music (assets/audio, CC BY 4.0 — credits in footer) ---------- */
 let actx = null, musicOn = false, trackIdx = 0;
@@ -453,7 +300,7 @@ bgmBtn.addEventListener('click', () => {
   }
 });
 
-function blip() {  // dialog-open sound effect
+function blip() {
   if (!musicOn || !actx) return;
   const t = actx.currentTime;
   tone(880, 0.06, 'square', 0.04, t);
