@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hooWorld</title>
+<meta name="description" content="A pixel-art atlas of WhoisHOO's work. Every repo is a country.">
+<link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#e8e4d8; --gold:#f2c24b; --panel:#101823; --line:#3a4a5f; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #0b1320; color: var(--ink);
+    font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.8;
+  }
+  header {
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    padding: 18px 20px 8px; max-width: 980px; margin: 0 auto;
+  }
+  h1 { font-size: 22px; margin: 0; color: var(--gold); text-shadow: 3px 3px 0 #000; }
+  .sub { color: #93a4bb; }
+  header a { color: #7fd4ff; text-decoration: none; margin-left: auto; }
+  header a:hover { color: #fff; }
+  .stage { max-width: 980px; margin: 0 auto; padding: 8px 10px 24px; }
+  canvas {
+    display: block; width: 100%; height: auto;
+    image-rendering: pixelated; cursor: crosshair;
+    border: 4px solid var(--line); background: #123;
+  }
+  .hint { color: #93a4bb; margin: 8px 2px; }
+  #tip {
+    position: fixed; pointer-events: none; display: none; z-index: 5;
+    background: #000c; color: var(--gold); padding: 6px 8px; border: 2px solid var(--gold);
+  }
+  #dialog {
+    display: none; margin-top: 10px; background: var(--panel);
+    border: 4px solid var(--ink); box-shadow: 0 0 0 4px #000;
+    padding: 14px 16px;
+  }
+  #dialog .name { color: var(--gold); font-size: 13px; margin-bottom: 8px; }
+  #dialog .tag { color: #9fd49f; margin-bottom: 10px; }
+  #dialog .lore { min-height: 54px; }
+  #dialog .stats { color: #7fd4ff; margin-top: 10px; }
+  #dialog .actions { margin-top: 12px; }
+  #dialog a.btn, #dialog span.btn {
+    display: inline-block; padding: 8px 12px; text-decoration: none;
+    border: 3px solid var(--gold); color: var(--gold);
+  }
+  #dialog a.btn:hover { background: var(--gold); color: #000; }
+  #dialog span.btn { border-color: #5a6472; color: #5a6472; }
+  footer { text-align: center; color: #5a6a80; padding: 10px 0 30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>HOO WORLD</h1>
+  <span class="sub">a portfolio atlas &mdash; every repo is a country</span>
+  <a href="index.html">&larr; whoIsHoo</a>
+</header>
+
+<div class="stage">
+  <canvas id="map" width="960" height="512"></canvas>
+  <div class="hint">&#9656; click a land to read its chronicle</div>
+  <div id="dialog">
+    <div class="name"></div>
+    <div class="tag"></div>
+    <div class="lore"></div>
+    <div class="stats"></div>
+    <div class="actions"></div>
+  </div>
+</div>
+<div id="tip"></div>
+
+<footer>hooWorld v0.1 &mdash; drawn in tiles, ruled by commits</footer>
+
+<script>
+'use strict';
+
+/* ---------- tile palette ----------
+   s sand | g grass | t tree | f farm | m mountain | M snow peak
+   c castle | o office | d dojo | l lab | r ruins | F fog | space = ocean */
+const COLORS = {
+  s: '#e7d9a8', g: '#4f9e4f', t: '#2e7032', f: '#c9b84a',
+  m: '#8a8f98', M: '#e8ecf2', c: '#cfd4dc', o: '#7d8aa0',
+  d: '#c0453e', l: '#3fb0a8', r: '#9aa0a8', F: '#5a6472',
+};
+const WATER = ['#16406b', '#1b4a7a'];
+
+/* ---------- the world ---------- */
+const ISLANDS = [
+  {
+    id: 'capital', x: 52, y: 25,
+    name: 'Hoo Capital',
+    tag: 'seat of the whoIsHoo',
+    lore: 'The city you are standing in. Roads from every kingdom end here, at the portfolio gates.',
+    stats: 'HTML / CSS / JS',
+    link: 'index.html', btn: 'ENTER THE PROFILE',
+    art: [
+      '   sggggs   ',
+      '  sggccggs  ',
+      ' sggccccggs ',
+      ' sgtgccgtgs ',
+      '  sggggggs  ',
+      '   ssggss   ',
+    ],
+  },
+  {
+    id: 'demeter', x: 6, y: 4,
+    name: 'Kingdom of DEMETER',
+    tag: 'where every grain of data has a birth certificate',
+    lore: 'A PhD-era realm of verifiable data sharing. Each organization records its files and handoffs on a Hyperledger Fabric ledger: no central operator, no blind trust. The royal archives are sealed; the doctrine is published.',
+    stats: 'Go / Hyperledger Fabric / Docker / LLM gatekeeper',
+    link: null, btn: 'ARCHIVES SEALED',
+    art: [
+      '    ssgggggss     ',
+      '  ssgggggggggss   ',
+      ' sggffffggttgggs  ',
+      ' sgffffffgttgggs  ',
+      ' sgffffffggccggs  ',
+      ' sggffffggccccgs  ',
+      '  sggggggccccggs  ',
+      '   sggttgggggggs  ',
+      '    ssgggggggss   ',
+      '      sssssss     ',
+    ],
+  },
+  {
+    id: 'nda', x: 74, y: 3,
+    name: 'The NDA Empire',
+    tag: 'a connected-car dominion, permanently under fog',
+    lore: 'Travelers speak of telemetry rivers, Kubernetes fortresses, and carrier toll gates. The emperor forbids maps. All records classified.',
+    stats: 'Java/Spring / Python / Kubernetes',
+    link: null, btn: 'ACCESS DENIED',
+    art: [
+      '    FFFFFFFFFF      ',
+      '  FFFFFFFFFFFFFF    ',
+      ' FFFFmmFFFFFFFFFF   ',
+      ' FFFmMmmFFFFFFFFFF  ',
+      ' FFFFmmFFFFFFmmFFF  ',
+      '  FFFFFFFFFFmMmFFF  ',
+      '  FFFFFFFFFFFmFFFF  ',
+      '   FFFFFFFFFFFFFF   ',
+      '     FFFFFFFFFF     ',
+    ],
+  },
+  {
+    id: 'hoohr', x: 8, y: 30,
+    name: 'HOOHR Federation',
+    tag: 'a bureaucratic utopia',
+    lore: 'Attendance is law. Leave requests are sacred scrolls. A lightweight HR toolkit governs startups and small guilds with TypeScript decrees.',
+    stats: 'TypeScript',
+    link: 'https://github.com/WhoisHOO/HOOHR', btn: 'ENTER KINGDOM',
+    art: [
+      '   sggggggs   ',
+      '  sggooooggs  ',
+      ' sggoooooogs  ',
+      ' sggooggoogs  ',
+      '  sggggggggs  ',
+      '   ssggggss   ',
+    ],
+  },
+  {
+    id: 'dojo', x: 44, y: 46,
+    name: 'Code Assessment Dojo',
+    tag: 'monks drill algorithms at dawn',
+    lore: 'Two pointers, topological sort, shrines to the LRU cache. Pilgrims repeat spaced-repetition rituals daily until the patterns answer by themselves.',
+    stats: 'Python / Java',
+    link: 'https://github.com/WhoisHOO/code_assessment', btn: 'ENTER DOJO',
+    art: [
+      '   sgggggs   ',
+      '  sgtgddgts  ',
+      ' sgggddddggs ',
+      '  sgtgddgtgs ',
+      '   sgggggss  ',
+    ],
+  },
+  {
+    id: 'hooai', x: 88, y: 34,
+    name: 'HOOAI Isles',
+    tag: 'an archipelago of experiments',
+    lore: 'Notebooks wash ashore daily. Vision models watch the fish; the fish suspect nothing.',
+    stats: 'Jupyter / PyTorch / OpenCV',
+    link: 'https://github.com/WhoisHOO/HOOAI', btn: 'ENTER ISLES',
+    art: [
+      '  sggls      ',
+      ' sgglls  sgs ',
+      '  sggs  sgls ',
+      '   ss    ss  ',
+      '     sgls    ',
+      '    sglls    ',
+      '     sss     ',
+    ],
+  },
+  {
+    id: 'plains', x: 24, y: 48,
+    name: 'The Data Plains',
+    tag: 'R scripts graze freely',
+    lore: 'Open fields of exploratory data analysis and weather records. Harvest season never ends; someone is always plotting.',
+    stats: 'R / EDA / visualization',
+    link: 'https://github.com/WhoisHOO/handsOn', btn: 'ENTER PLAINS',
+    art: [
+      '   sggggggggs   ',
+      '  sgffffffggs   ',
+      ' sggffffffffgs  ',
+      '  sggffffffgs   ',
+      '   ssggggggs    ',
+    ],
+  },
+  {
+    id: 'ruins', x: 90, y: 52,
+    name: 'Capstone Ruins',
+    tag: 'remains of an undergrad civilization',
+    lore: 'Firebase obelisks still hum beneath the vines. Archaeologists date the site to the final year of the bachelor era.',
+    stats: 'Firebase / Android',
+    link: 'https://github.com/WhoisHOO/Student-Communication-app-with-firebase', btn: 'EXCAVATE',
+    art: [
+      '  sgggrgs  ',
+      ' sgrgggrgs ',
+      ' sggrgrggs ',
+      '  ssgggss  ',
+    ],
+  },
+];
+
+/* ---------- renderer ---------- */
+const T = 8;                       // tile size in px
+const CW = 120, CH = 64;           // world size in tiles
+const cv = document.getElementById('map');
+const cx = cv.getContext('2d');
+const owner = new Array(CW * CH).fill(null);   // tile -> island id
+const tiles = new Array(CW * CH).fill(null);   // tile -> char
+
+for (const isl of ISLANDS) {
+  isl.art.forEach((row, ry) => {
+    [...row].forEach((ch, rx) => {
+      if (ch === ' ') return;
+      const x = isl.x + rx, y = isl.y + ry;
+      if (x < 0 || y < 0 || x >= CW || y >= CH) return;
+      const i = y * CW + x;
+      if (tiles[i]) console.warn('tile overlap at', x, y, isl.id, 'over', owner[i]);
+      tiles[i] = ch;
+      owner[i] = isl.id;
+    });
+  });
+}
+
+/* hero sprite (12 wide x 14 tall, 2px per cell) near the capital */
+const HERO = [
+  '  kkkkkk  ',
+  ' kkkkkkkk ',
+  ' kyyyyyyk ',
+  ' kyPyyPyk ',
+  '  yyyyyy  ',
+  '   yyyy   ',
+  ' hhhhhhhh ',
+  'hhyhhhhyhh',
+  'h hhhhhh h',
+  '  hhhhhh  ',
+  '  pppppp  ',
+  '  pp  pp  ',
+  '  bb  bb  ',
+];
+const HERO_COLORS = { k: '#222222', y: '#f0c89a', P: '#1a1a1a', h: '#2e4a8f', p: '#333a44', b: '#513c28' };
+const HERO_POS = { x: 54, y: 27 };  // in tiles, stands inside Hoo Capital
+
+let frame = 0, hoverId = null;
+
+function draw() {
+  for (let y = 0; y < CH; y++) {
+    for (let x = 0; x < CW; x++) {
+      const i = y * CW + x;
+      const ch = tiles[i];
+      if (!ch) {
+        const shimmer = ((x * 7 + y * 13 + frame) % 29) === 0;
+        cx.fillStyle = shimmer ? WATER[1] : WATER[0];
+      } else if (ch === 'F') {
+        const drift = ((x * 5 + y * 11 + frame) % 17) < 2;
+        cx.fillStyle = drift ? '#6a7585' : COLORS.F;
+      } else {
+        cx.fillStyle = COLORS[ch] || '#f0f';
+      }
+      cx.fillRect(x * T, y * T, T, T);
+      if (ch && owner[i] === hoverId) {
+        cx.fillStyle = 'rgba(255,255,255,0.18)';
+        cx.fillRect(x * T, y * T, T, T);
+      }
+    }
+  }
+  // hero (gentle idle bob)
+  const bob = (frame % 8) < 4 ? 0 : 1;
+  const hx = HERO_POS.x * T, hy = HERO_POS.y * T + bob - HERO.length * 2;
+  HERO.forEach((row, ry) => [...row].forEach((ch, rx) => {
+    if (ch === ' ') return;
+    cx.fillStyle = HERO_COLORS[ch];
+    cx.fillRect(hx + rx * 2, hy + ry * 2, 2, 2);
+  }));
+}
+
+setInterval(() => { frame++; draw(); }, 300);
+draw();
+
+/* ---------- interaction ---------- */
+const tip = document.getElementById('tip');
+const dlg = document.getElementById('dialog');
+let typeTimer = null;
+
+function tileAt(ev) {
+  const r = cv.getBoundingClientRect();
+  const x = Math.floor((ev.clientX - r.left) / r.width * CW);
+  const y = Math.floor((ev.clientY - r.top) / r.height * CH);
+  if (x < 0 || y < 0 || x >= CW || y >= CH) return null;
+  return owner[y * CW + x];
+}
+
+cv.addEventListener('mousemove', (ev) => {
+  const id = tileAt(ev);
+  if (id !== hoverId) { hoverId = id; draw(); }
+  cv.style.cursor = id ? 'pointer' : 'crosshair';
+  if (id) {
+    const isl = ISLANDS.find(s => s.id === id);
+    tip.textContent = isl.name;
+    tip.style.display = 'block';
+    tip.style.left = (ev.clientX + 14) + 'px';
+    tip.style.top = (ev.clientY + 14) + 'px';
+  } else {
+    tip.style.display = 'none';
+  }
+});
+cv.addEventListener('mouseleave', () => { hoverId = null; tip.style.display = 'none'; draw(); });
+
+cv.addEventListener('click', (ev) => {
+  const id = tileAt(ev);
+  if (!id) return;
+  const isl = ISLANDS.find(s => s.id === id);
+  dlg.style.display = 'block';
+  dlg.querySelector('.name').textContent = '✦ ' + isl.name;
+  dlg.querySelector('.tag').textContent = '"' + isl.tag + '"';
+  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + isl.stats;
+  const actions = dlg.querySelector('.actions');
+  actions.innerHTML = isl.link
+    ? '<a class="btn" href="' + isl.link + '"' + (isl.link.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' + isl.btn + ' ▸</a>'
+    : '<span class="btn">' + isl.btn + '</span>';
+  // typewriter
+  const loreEl = dlg.querySelector('.lore');
+  clearInterval(typeTimer);
+  loreEl.textContent = '';
+  let n = 0;
+  typeTimer = setInterval(() => {
+    n += 2;
+    loreEl.textContent = isl.lore.slice(0, n);
+    if (n >= isl.lore.length) clearInterval(typeTimer);
+  }, 14);
+  dlg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+</script>
+</body>
+</html>
