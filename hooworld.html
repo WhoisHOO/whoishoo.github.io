@@ -3,331 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>hooWorld</title>
-<meta name="description" content="A fantasy atlas of WhoisHOO's repositories. Every repo is a country; main is its capital, branches are provinces.">
-<link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
+<title>hooWorld &middot; Younghoo Cho</title>
+<meta name="description" content="hooWorld: every repository of WhoisHOO is a planet. Main is its capital, branches are its moons.">
+<meta property="og:title" content="hooWorld">
+<meta property="og:description" content="Every repository is a planet. Main is its capital, branches are its moons.">
+<meta property="og:image" content="https://whoishoo.github.io/assets/img/og.jpg">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/hoo.css">
 <style>
-  :root { --ink:#e8e4d8; --gold:#f2c24b; --panel:#101823; --line:#3a4a5f; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: #0b1320; color: var(--ink);
-    font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.8;
+  body.world {
+    min-height: 100vh; color: #f2f2ff;
+    background:
+      radial-gradient(1px 1px at 12% 18%, #fff8, transparent),
+      radial-gradient(1px 1px at 72% 34%, #fff6, transparent),
+      radial-gradient(1.5px 1.5px at 38% 76%, #fff7, transparent),
+      radial-gradient(ellipse at top, #2a1f63, #0d0a24 72%);
+    background-attachment: fixed;
   }
-  header {
-    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
-    padding: 18px 20px 8px; max-width: 1080px; margin: 0 auto;
+  .world-head {
+    max-width: 1200px; margin: 0 auto; padding: 18px 120px 12px 18px;
+    display: flex; align-items: center; gap: 18px;
   }
-  h1 { font-size: 22px; margin: 0; color: var(--gold); text-shadow: 3px 3px 0 #000; }
-  .sub { color: #93a4bb; }
-  #bgm {
-    font-family: inherit; font-size: 10px; cursor: pointer;
-    background: none; color: var(--gold); border: 3px solid var(--gold);
-    padding: 6px 10px;
+  .world-title {
+    margin: 0; font-size: clamp(38px, 6vw, 66px); line-height: 1; letter-spacing: .06em;
+    color: var(--portal); text-shadow: -3px -3px 0 var(--ink), 3px -3px 0 var(--ink), -3px 3px 0 var(--ink), 3px 3px 0 var(--ink), 6px 6px 0 var(--ink);
   }
-  #bgm:hover { background: var(--gold); color: #000; }
-  .links { margin-left: auto; display: flex; gap: 14px; }
-  header a { color: #7fd4ff; text-decoration: none; }
-  header a:hover { color: #fff; }
-  .stage { max-width: 1080px; margin: 0 auto; padding: 8px 10px 24px; }
+  .world-sub { margin: 4px 0 0; color: #d9dcff; font-weight: 500; }
+  .portal.mini { gap: 6px; flex-shrink: 0; }
+  .mini-label { font: 600 12px/1.15 var(--font-ui); color: #e9ffc4; text-align: center; }
 
-  .map-wrap { position: relative; border: 4px solid var(--line); }
-  .map-wrap img { display: block; width: 100%; height: auto; }
+  .galaxy-wrap { max-width: 1200px; margin: 0 auto; padding: 4px 18px 0; }
+  .galaxy { position: relative; overflow: hidden; background: #0d0a24; }
+  .galaxy > img { width: 100%; height: auto; }
 
-  .banner {
-    position: absolute; transform: translate(-50%, -50%);
-    font-family: 'Cinzel', serif; font-weight: 800; white-space: nowrap;
-    color: #f5e6c4; cursor: pointer; text-align: center;
-    background: linear-gradient(#2a2118e6, #141009e6);
-    border: 1px solid #c9a24b; border-radius: 2px;
-    padding: 3px 12px; letter-spacing: 1px;
-    box-shadow: 0 2px 8px #000c;
-    transition: transform .12s, box-shadow .12s;
+  .planet {
+    position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%);
+    width: calc(var(--r) * 2%); aspect-ratio: 1; transform: translate(-50%, -50%);
+    padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer;
+    transition: box-shadow .15s ease;
   }
-  .banner::before, .banner::after {
-    content: ''; position: absolute; top: 15%; height: 70%; width: 7px;
-    background: #1d1710e6; border: 1px solid #c9a24b;
+  .planet:hover, .planet:focus-visible {
+    outline: none; box-shadow: 0 0 0 4px var(--portal), 0 0 38px 10px #97e34acc;
   }
-  .banner::before { left: -8px; transform: skewY(18deg); }
-  .banner::after  { right: -8px; transform: skewY(-18deg); }
-  .banner.big   { font-size: clamp(11px, 1.6vw, 17px); }
-  .banner.small { font-size: clamp(8px, 1.1vw, 12px); opacity: .95; }
-  .banner:hover {
-    transform: translate(-50%, -50%) scale(1.12);
-    box-shadow: 0 0 14px #f2c24b88, 0 2px 8px #000c; z-index: 3;
+  .p-label {
+    position: absolute; left: 50%; top: 80%; transform: translateX(-50%);
+    white-space: nowrap; font: 600 clamp(9px, 1.05vw, 14px)/1 var(--font-ui);
+    color: var(--ink); background: var(--paper); border: 2.5px solid var(--ink); border-radius: 999px;
+    box-shadow: 2px 2px 0 var(--ink); padding: 5px 9px;
   }
-  .here {
-    position: absolute; transform: translate(-50%, -100%);
-    color: var(--gold); font-size: 14px; pointer-events: none;
-    animation: bob 1.2s infinite steps(2);
-    text-shadow: 0 2px 4px #000;
+  .planet:hover .p-label, .planet:focus-visible .p-label { background: var(--portal); }
+  .orbit {
+    position: absolute; inset: calc(var(--o, 16%) * -1); border-radius: 50%;
+    border: 2px dashed #ffffff3d; pointer-events: none;
+    animation: spin var(--t, 14s) linear infinite; animation-delay: var(--d, 0s);
   }
-  @keyframes bob { 50% { transform: translate(-50%, -130%); } }
+  .moon {
+    --m: clamp(9px, 1.25vw, 18px);
+    position: absolute; top: calc(var(--m) / -2); left: 50%;
+    width: var(--m); height: var(--m); margin-left: calc(var(--m) / -2); border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #f4f4f4, #9a9a9a); border: 2.5px solid var(--ink);
+  }
+  .hint { margin: 12px 0 0; text-align: center; color: #c9cdf0; }
+  .index { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 12px 0 0; }
+  .index .tag { cursor: pointer; }
+  .index .tag:hover { background: var(--portal); }
 
-  .hint { color: #93a4bb; margin: 8px 2px; }
-  #dialog {
-    display: none; margin-top: 10px; background: var(--panel);
-    border: 4px solid var(--ink); box-shadow: 0 0 0 4px #000;
-    padding: 14px 16px;
+  @media (prefers-reduced-motion: reduce) { .orbit { animation: none; } }
+  @media (max-width: 700px) {
+    .world-head { padding-right: 18px; padding-top: 64px; flex-direction: column; align-items: flex-start; }
+    .p-label { display: none; }
   }
-  #dialog .name { color: var(--gold); font-size: 13px; margin-bottom: 8px; word-break: break-all; }
-  #dialog .tag { color: #9fd49f; margin-bottom: 10px; }
-  #dialog .lore { min-height: 40px; }
-  #dialog .gov { color: #d4a97f; margin-top: 10px; }
-  #dialog .stats { color: #7fd4ff; margin-top: 6px; }
-  #dialog .actions { margin-top: 12px; }
-  #dialog a.btn, #dialog span.btn {
-    display: inline-block; padding: 8px 12px; text-decoration: none;
-    border: 3px solid var(--gold); color: var(--gold);
-  }
-  #dialog a.btn:hover { background: var(--gold); color: #000; }
-  #dialog span.btn { border-color: #5a6472; color: #5a6472; }
-  footer { text-align: center; color: #5a6a80; padding: 10px 14px 30px; }
-  footer a { color: #5a6a80; }
 </style>
 </head>
-<body>
+<body class="world">
 
-<header>
-  <h1>HOO WORLD</h1>
-  <span class="sub">every repo is a country &middot; main is the capital &middot; branches are provinces</span>
-  <button id="bgm" title="toggle music">&#9834; ON</button>
-  <span class="links">
-    <a href="resume.html">&#128220; r&eacute;sum&eacute;</a>
-    <a href="index.html">&larr; profile</a>
-  </span>
+<button class="bgm" id="bgm" type="button">&#9834; MUSIC: ON</button>
+
+<header class="world-head">
+  <a class="portal mini" href="index.html" data-warp>
+    <span class="portal-swirl" style="--size:64px" aria-hidden="true"></span>
+    <span class="mini-label">BACK TO<br>PROFILE</span>
+  </a>
+  <div>
+    <h1 class="world-title head">HOOWORLD</h1>
+    <p class="world-sub">every repository is a planet &middot; main is its capital &middot; branches are its moons</p>
+  </div>
 </header>
 
-<div class="stage">
-  <div class="map-wrap" id="mapwrap">
-    <img src="assets/img/hooworld-map.png" alt="hooWorld map" draggable="false">
-  </div>
-  <div class="hint">&#9656; click a banner to read that country's chronicle</div>
-  <div id="dialog">
-    <div class="name"></div>
-    <div class="tag"></div>
-    <div class="lore"></div>
-    <div class="gov"></div>
-    <div class="stats"></div>
-    <div class="actions"></div>
-  </div>
-</div>
+<main class="galaxy-wrap">
+  <div class="galaxy toon">
+    <img src="assets/img/galaxy.webp" alt="A cartoon galaxy with twelve planets, one per repository" draggable="false">
 
-<footer>
-  hooWorld v0.3 &mdash; drawn by prompts, ruled by commits<br>
-  music: "Video Game Soldiers" by Twin Musicom (twinmusicom.org) &middot;
-  "Death of Kings 2" by Kevin MacLeod (incompetech.com) &middot;
-  licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &middot;
-  map artwork: AI-generated
+    <button class="planet" type="button" data-modal="p-home" style="--x:13.3; --y:24.7; --r:11.3">
+      <span class="orbit" style="--o:9%; --t:18s"><span class="moon"></span></span>
+      <span class="orbit" style="--o:9%; --t:18s; --d:-9s; border:0"><span class="moon"></span></span>
+      <span class="p-label">whoishoo.github.io</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-demeter" style="--x:39.2; --y:21.5; --r:8.3">
+      <span class="p-label">DEMETER</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-nda" style="--x:64.7; --y:19.7; --r:8.3">
+      <span class="orbit" style="--o:12%; --t:13s"><span class="moon"></span></span>
+      <span class="p-label">The NDA Empire</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-hoohr" style="--x:87.7; --y:23.2; --r:9.2">
+      <span class="p-label">HOOHR</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-assessment" style="--x:12.0; --y:61.9; --r:8.1">
+      <span class="orbit" style="--o:12%; --t:12s; --d:-4s"><span class="moon"></span></span>
+      <span class="p-label">code_assessment</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-hooai" style="--x:34.0; --y:54.1; --r:5.5">
+      <span class="p-label">HOOAI</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-handson" style="--x:61.1; --y:54.1; --r:9.6">
+      <span class="orbit" style="--o:14%; --t:16s; --d:-6s"><span class="moon"></span></span>
+      <span class="p-label">handsOn</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-ghdid" style="--x:89.6; --y:57.1; --r:7.3">
+      <span class="p-label">ghdid</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-blockchain" style="--x:19.4; --y:87.4; --r:4.75">
+      <span class="p-label">blockchain</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-capstone" style="--x:39.6; --y:82.6; --r:7.8">
+      <span class="p-label">Student-Communication-app-with-firebase</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-ppdata" style="--x:63.7; --y:85.9; --r:5.7">
+      <span class="p-label">personal-project-data</span>
+    </button>
+    <button class="planet" type="button" data-modal="p-uncharted" style="--x:83.7; --y:85.1; --r:6.7">
+      <span class="p-label">???</span>
+    </button>
+  </div>
+
+  <p class="hint">click a planet, or pick one from the index</p>
+  <nav class="index" aria-label="Planet index">
+    <button class="tag" type="button" data-modal="p-home">whoishoo.github.io</button>
+    <button class="tag" type="button" data-modal="p-demeter">DEMETER</button>
+    <button class="tag" type="button" data-modal="p-nda">The NDA Empire</button>
+    <button class="tag" type="button" data-modal="p-hoohr">HOOHR</button>
+    <button class="tag" type="button" data-modal="p-assessment">code_assessment</button>
+    <button class="tag" type="button" data-modal="p-hooai">HOOAI</button>
+    <button class="tag" type="button" data-modal="p-handson">handsOn</button>
+    <button class="tag" type="button" data-modal="p-ghdid">ghdid</button>
+    <button class="tag" type="button" data-modal="p-blockchain">blockchain</button>
+    <button class="tag" type="button" data-modal="p-capstone">Student-Communication-app-with-firebase</button>
+    <button class="tag" type="button" data-modal="p-ppdata">personal-project-data</button>
+    <button class="tag" type="button" data-modal="p-uncharted">???</button>
+  </nav>
+</main>
+
+<footer class="credits">
+  planets are a snapshot of github.com/WhoisHOO &middot; &copy; 2026 Younghoo Henry Cho<br>
+  music: &ldquo;Galactic Rap,&rdquo; &ldquo;Phantom from Space,&rdquo; and &ldquo;Graveyard Shift&rdquo; by Kevin MacLeod (incompetech.com),
+  licensed under Creative Commons: <a href="https://creativecommons.org/licenses/by/4.0/">By Attribution 4.0</a> &middot; artwork: AI-generated
 </footer>
 
-<script>
-'use strict';
-const GH = 'https://github.com/WhoisHOO/';
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <article class="modal-card toon" role="dialog" aria-modal="true" aria-label="Planet details">
+    <button class="modal-x" type="button" data-close aria-label="Close">&times;</button>
+    <div class="modal-body"></div>
+  </article>
+</div>
 
-/* countries = repositories (snapshot 2026-10-12; update when repos change)
-   x,y are % positions of the label anchor on the map image */
-const COUNTRIES = [
-  {
-    x: 27, y: 66, size: 'big',
-    name: 'whoishoo.github.io',
-    tag: 'the homeland. you are here.',
-    lore: 'Resume and portfolio of Younghoo Cho, built under the great tree. Two provinces are under construction; one of them is this very map.',
-    lang: 'HTML', provinces: ['gh-pages', 'hooworld'],
-    link: GH + 'whoishoo.github.io', here: true,
-  },
-  {
-    x: 52, y: 16, size: 'big',
-    name: 'The NDA Empire',
-    tag: 'a connected-car dominion under eternal winter',
-    lore: 'Telemetry rivers run beneath the glacier; Kubernetes fortresses ring the volcano. The emperor forbids maps. All records classified.',
-    lang: 'Java/Spring, Python, Kubernetes', provinces: ['[REDACTED]'],
-    link: null, btn: 'ACCESS DENIED',
-  },
-  {
-    x: 17, y: 31, size: 'big',
-    name: 'DEMETER',
-    tag: 'where every grain of data has a birth certificate',
-    lore: 'A PhD-era realm of verifiable data sharing on Hyperledger Fabric: no central operator, no blind trust. The royal archives sit behind the mists; the doctrine is published.',
-    lang: 'Go, Hyperledger Fabric, Docker', provinces: ['sealed'],
-    link: null, btn: 'ARCHIVES SEALED',
-  },
-  {
-    x: 83, y: 26, size: 'big',
-    name: 'HOOHR',
-    tag: 'a bureaucratic utopia in autumn',
-    lore: 'Lightweight HR toolkit for startups and SMBs: attendance, leave, and expense management. Attendance is law; leave requests are sacred scrolls.',
-    lang: 'TypeScript', provinces: [],
-    link: GH + 'HOOHR',
-  },
-  {
-    x: 78, y: 74, size: 'big',
-    name: 'code_assessment',
-    tag: 'monks drill algorithms in the canyon at dawn',
-    lore: 'A training nation of big-tech quiz rituals: two pointers, topological sort, shrines to the LRU cache. One frontier province: sprint1.',
-    lang: 'Python, Java', provinces: ['sprint1'],
-    link: GH + 'code_assessment',
-  },
-  {
-    x: 46, y: 39, size: 'small',
-    name: 'HOOAI',
-    tag: 'an isle of experiments',
-    lore: 'Notebooks wash ashore daily. Vision models watch the fish; the fish suspect nothing.',
-    lang: 'Jupyter Notebook', provinces: [],
-    link: GH + 'HOOAI',
-  },
-  {
-    x: 67, y: 41, size: 'small',
-    name: 'handsOn',
-    tag: 'R scripts graze freely',
-    lore: 'Fields of EDA and visualization, farmed as a group exercise in data-science husbandry. One province: updateHandsOn.',
-    lang: 'R', provinces: ['updateHandsOn'],
-    link: GH + 'handsOn',
-  },
-  {
-    x: 89, y: 46, size: 'small',
-    name: 'blockchain',
-    tag: 'small island, big ideas',
-    lore: 'Early distributed-ledger experiments. The lighthouse still blinks in blocks.',
-    lang: 'unrecorded', provinces: [],
-    link: GH + 'blockchain',
-  },
-  {
-    x: 53, y: 70, size: 'small',
-    name: 'ghdid',
-    tag: 'a quiet island; its records are terse',
-    lore: 'Few chronicles survive. The locals commit rarely but decisively.',
-    lang: 'unrecorded', provinces: [],
-    link: GH + 'ghdid',
-  },
-  {
-    x: 60, y: 55, size: 'small',
-    name: 'personal-project-data',
-    tag: 'a data atoll',
-    lore: 'A small weather-worn depot from the ABE 6933 era. Datasets rest here between voyages.',
-    lang: 'data', provinces: [],
-    link: GH + 'personal-project-data',
-  },
-  {
-    x: 90, y: 91, size: 'small',
-    name: 'Student-Communication-app',
-    tag: 'remains of an undergrad civilization',
-    lore: 'Capstone ruins in the red rock. Firebase obelisks still hum beneath the dust; archaeologists date the site to the final year of the bachelor era.',
-    lang: 'Capstone, Firebase', provinces: [],
-    link: GH + 'Student-Communication-app-with-firebase',
-  },
-];
+<!-- ===================== planets: one per repository ===================== -->
 
-/* ---------- banners ---------- */
-const wrap = document.getElementById('mapwrap');
-const dlg = document.getElementById('dialog');
-let typeTimer = null;
+<template id="p-home">
+  <p class="m-kicker">PLANET &middot; HOMEWORLD</p>
+  <h2 class="m-title">whoishoo.github.io</h2>
+  <p class="m-meta">&ldquo;the homeworld. you are in its orbit.&rdquo;</p>
+  <p>The profile of Younghoo Cho, and the galaxy you are looking at right now.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>gh-pages, hooworld</dd><dt>TECH</dt><dd>HTML, CSS, JavaScript</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/whoishoo.github.io" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
 
-COUNTRIES.forEach((c) => {
-  const b = document.createElement('div');
-  b.className = 'banner ' + c.size;
-  b.textContent = c.name;
-  b.style.left = c.x + '%';
-  b.style.top = c.y + '%';
-  b.addEventListener('click', () => openDialog(c));
-  wrap.appendChild(b);
-  if (c.here) {
-    const pin = document.createElement('div');
-    pin.className = 'here';
-    pin.textContent = '▼';
-    pin.style.left = c.x + '%';
-    pin.style.top = (c.y - 4) + '%';
-    wrap.appendChild(pin);
-  }
-});
+<template id="p-demeter">
+  <p class="m-kicker">PLANET &middot; ARCHIVES SEALED</p>
+  <h2 class="m-title">DEMETER</h2>
+  <p class="m-meta">&ldquo;where every grain of data has a birth certificate&rdquo;</p>
+  <p>A Ph.D.-era farm world of verifiable data sharing on Hyperledger Fabric: no central operator, no blind trust. The archives stay sealed until the papers are published.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>classified</dd><dt>TECH</dt><dd>Go, Hyperledger Fabric, Docker</dd></dl>
+  <div class="m-links"><a class="btn" href="index.html#m-demeter" data-warp>Read the mission briefing &#9656;</a></div>
+</template>
 
-function openDialog(c) {
-  dlg.style.display = 'block';
-  dlg.querySelector('.name').textContent = '✦ ' + c.name;
-  dlg.querySelector('.tag').textContent = '"' + c.tag + '"';
-  dlg.querySelector('.gov').textContent = '♛ CAPITAL: main' +
-    (c.provinces.length ? '  ⚑ PROVINCES: ' + c.provinces.join(', ') : '  (unitary state)');
-  dlg.querySelector('.stats').textContent = '⚔ TECH: ' + c.lang;
-  const actions = dlg.querySelector('.actions');
-  actions.innerHTML = c.link
-    ? '<a class="btn" href="' + c.link + '" target="_blank" rel="noopener">ENTER KINGDOM ▸</a>'
-    : '<span class="btn">' + c.btn + '</span>';
-  const loreEl = dlg.querySelector('.lore');
-  clearInterval(typeTimer);
-  loreEl.textContent = '';
-  let n = 0;
-  typeTimer = setInterval(() => {
-    n += 2;
-    loreEl.textContent = c.lore.slice(0, n);
-    if (n >= c.lore.length) clearInterval(typeTimer);
-  }, 14);
-  dlg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  blip();
-}
+<template id="p-nda">
+  <p class="m-kicker">PLANET &middot; ACCESS DENIED</p>
+  <h2 class="m-title">The NDA Empire</h2>
+  <p class="m-meta">&ldquo;a connected-car dominion behind permanent fog&rdquo;</p>
+  <p>Telemetry rivers run under the clouds, and Kubernetes fortresses guard the carrier toll gates. The emperor forbids maps.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>[REDACTED]</dd><dt>TECH</dt><dd>Java/Spring, Python, Kubernetes</dd></dl>
+</template>
 
-/* ---------- background music (assets/audio, CC BY 4.0 — credits in footer) ----------
-   Default ON. Browsers block unmuted autoplay before a user gesture, so we
-   try on load and otherwise start at the visitor's first click/keypress. */
-let actx = null, musicOn = true, trackIdx = 0;
-const bgmBtn = document.getElementById('bgm');
-const PLAYLIST = [
-  'assets/audio/Video Game Soldiers - Twin Musicom.mp3',
-  'assets/audio/Death of Kings 2 - Kevin MacLeod.mp3',
-];
-const bgm = new Audio();
-bgm.volume = 0.35;
-bgm.addEventListener('ended', () => {
-  trackIdx = (trackIdx + 1) % PLAYLIST.length;
-  bgm.src = PLAYLIST[trackIdx];
-  bgm.play();
-});
+<template id="p-hoohr">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">HOOHR</h2>
+  <p class="m-meta">&ldquo;a bureaucratic machine world&rdquo;</p>
+  <p>A lightweight HR toolkit for startups and small businesses: attendance, leave, and expense management. Attendance is law; leave requests are sacred scrolls.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd><dt>TECH</dt><dd>TypeScript</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/HOOHR" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
 
-function startMusic() {
-  if (!bgm.src) bgm.src = PLAYLIST[0];
-  return bgm.play();
-}
-function armAutoplay() {
-  const kick = () => {
-    if (musicOn && bgm.paused) startMusic().catch(() => {});
-    document.removeEventListener('pointerdown', kick);
-    document.removeEventListener('keydown', kick);
-  };
-  document.addEventListener('pointerdown', kick);
-  document.addEventListener('keydown', kick);
-}
-startMusic().catch(armAutoplay);
+<template id="p-assessment">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">code_assessment</h2>
+  <p class="m-meta">&ldquo;monks drill algorithms in the canyons at dawn&rdquo;</p>
+  <p>A training world for big-tech coding assessments: spaced-repetition rituals, pattern flashcards, and timed trials.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>sprint1</dd><dt>TECH</dt><dd>Python, Java</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
 
-function tone(freq, dur, type, vol, when) {
-  const o = actx.createOscillator(), g = actx.createGain();
-  o.type = type; o.frequency.value = freq;
-  g.gain.setValueAtTime(vol, when);
-  g.gain.exponentialRampToValueAtTime(0.001, when + dur);
-  o.connect(g).connect(actx.destination);
-  o.start(when); o.stop(when + dur);
-}
+<template id="p-hooai">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">HOOAI</h2>
+  <p class="m-meta">&ldquo;an archipelago of experiments&rdquo;</p>
+  <p>Notebooks wash ashore daily. Vision models watch the fish; the fish suspect nothing.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd><dt>TECH</dt><dd>Jupyter Notebook</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/HOOAI" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
 
-bgmBtn.addEventListener('click', () => {
-  if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
-  musicOn = !musicOn;
-  bgmBtn.innerHTML = musicOn ? '&#9834; ON' : '&#9834; OFF';
-  if (musicOn) {
-    actx.resume();
-    if (!bgm.src) bgm.src = PLAYLIST[0];
-    bgm.play();
-  } else {
-    bgm.pause();
-  }
-});
+<template id="p-handson">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">handsOn</h2>
+  <p class="m-meta">&ldquo;a gas giant of exploratory data&rdquo;</p>
+  <p>R scripts drift through its storms: EDA and visualization from a data-science group exercise.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>updateHandsOn</dd><dt>TECH</dt><dd>R</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/handsOn" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
 
-function blip() {
-  if (!musicOn) return;
-  if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
-  const t = actx.currentTime;
-  tone(880, 0.06, 'square', 0.04, t);
-  tone(1320, 0.08, 'square', 0.04, t + 0.06);
-}
-</script>
+<template id="p-ghdid">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">ghdid</h2>
+  <p class="m-meta">&ldquo;a quiet ice world; its records are terse&rdquo;</p>
+  <p>Few chronicles survive. The locals commit rarely but decisively.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/ghdid" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
+
+<template id="p-blockchain">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">blockchain</h2>
+  <p class="m-meta">&ldquo;small rock, big ideas&rdquo;</p>
+  <p>Early distributed-ledger experiments. The lighthouse still blinks in blocks.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/blockchain" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
+
+<template id="p-capstone">
+  <p class="m-kicker">PLANET &middot; RUINS</p>
+  <h2 class="m-title">Student-Communication-app-with-firebase</h2>
+  <p class="m-meta">&ldquo;remains of an undergrad civilization&rdquo;</p>
+  <p>Capstone ruins. Firebase obelisks still hum beneath the cracks; archaeologists date the site to the final year of the bachelor era.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd><dt>TECH</dt><dd>Firebase</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/Student-Communication-app-with-firebase" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
+
+<template id="p-ppdata">
+  <p class="m-kicker">PLANET</p>
+  <h2 class="m-title">personal-project-data</h2>
+  <p class="m-meta">&ldquo;a dune world of datasets&rdquo;</p>
+  <p>A small weather-worn depot from a data course. Datasets rest here between voyages.</p>
+  <dl class="kv"><dt>CAPITAL</dt><dd>main</dd><dt>MOONS</dt><dd>none</dd></dl>
+  <div class="m-links"><a class="btn primary" href="https://github.com/WhoisHOO/personal-project-data" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
+
+<template id="p-uncharted">
+  <p class="m-kicker">PLANET &middot; UNCHARTED</p>
+  <h2 class="m-title">???</h2>
+  <p class="m-meta">&ldquo;reserved for the next repository&rdquo;</p>
+  <p>No repository has claimed this world yet. The next project lands here.</p>
+</template>
+
+<script src="assets/js/hoo.js"></script>
 </body>
 </html>

@@ -1,339 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Younghoo Henry Cho</title>
-  <meta name="description" content="Engineer. A game-style profile: quests, stats, and equipment are real lines from the CV. Full resume inside.">
-  <meta name="author" content="Younghoo Henry Cho">
-  <meta property="og:title" content="Younghoo Henry Cho">
-  <meta property="og:description" content="Engineer. A game-style profile: quests, stats, and equipment are real lines from the CV.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://whoishoo.github.io/">
-  <meta property="og:image" content="https://whoishoo.github.io/assets/img/prof_pic.jpeg">
-  <link rel="icon" type="image/jpeg" href="assets/img/prof_pic.jpeg">
-  <link rel="apple-touch-icon" href="assets/img/prof_pic.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Younghoo Cho &middot; Engineer</title>
+<meta name="description" content="Younghoo (whoIsHoo) Cho, engineer across AI, data infrastructure, and systems. A game-style profile: every mission, stat, and item is a line from the CV.">
+<meta name="author" content="Younghoo Henry Cho">
+<meta property="og:title" content="Younghoo Cho &middot; Engineer">
+<meta property="og:description" content="Engineer across AI, data infrastructure, and systems. Every mission, stat, and item is a line from the CV.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whoishoo.github.io/">
+<meta property="og:image" content="https://whoishoo.github.io/assets/img/og.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/hoo.css">
 <style>
-  :root {
-    --wood: #8a5a33; --wood-dark: #5f3c1e; --wood-light: #c98d52;
-    --cream: #f6e8c8; --cream-deep: #efd9ad; --pill: #f9efd4;
-    --label: #b5723c; --ink: #4a2e14;
-    --hp: #58c24e; --mp: #4ea7e0; --track: #d9c99a;
-    --active: #1d9e3a;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
+  body.profile {
     min-height: 100vh;
-    background: #79b7e6 url('assets/img/village.png') center / cover no-repeat fixed;
-    font-family: 'Press Start 2P', monospace;
-    color: var(--ink);
-    padding: 18px 14px 10px;
+    background: #3cc4d8 url('assets/img/profile-bg.webp') center bottom / cover no-repeat fixed;
   }
-  .wrap {
-    max-width: 1180px; margin: 0 auto;
-    display: flex; gap: 22px; align-items: flex-start;
+  .stage {
+    max-width: 1220px; margin: 0 auto; padding: 68px 18px 0;
+    display: grid; grid-template-columns: minmax(270px, .78fr) 1.7fr; gap: 30px; align-items: start;
   }
 
-  /* ---------- quest board (left) ---------- */
-  .qboard { width: 31%; min-width: 270px; }
-  .qb-roof {
-    background: linear-gradient(var(--wood-light), var(--wood));
-    border: 4px solid var(--wood-dark); border-radius: 10px 10px 0 0;
-    padding: 10px 8px; text-align: center;
+  /* ---------- status window ---------- */
+  .status {
+    grid-column: 2; grid-row: 1; position: relative;
+    background: linear-gradient(180deg, #c3cbd3, #98a1aa);
+    padding: 52px 16px 18px;
   }
-  .qb-sign {
-    display: inline-block; background: var(--cream);
-    border: 3px solid var(--wood-dark); border-radius: 8px;
-    padding: 7px 14px; font-size: 13px; letter-spacing: 1px; color: var(--ink);
+  .rivet {
+    position: absolute; width: 13px; height: 13px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #eef2f5, #6f7880);
+    border: 2.5px solid var(--ink);
   }
-  .qb-face {
-    background: var(--wood-light);
-    background-image: repeating-linear-gradient(180deg, #0000 0 26px, #00000014 26px 28px);
-    border: 4px solid var(--wood-dark); border-top: none;
-    border-radius: 0 0 10px 10px;
-    padding: 14px 12px 16px;
-    display: flex; flex-direction: column; gap: 12px;
+  .rivet.tl { top: 10px; left: 10px; }  .rivet.tr { top: 10px; right: 10px; }
+  .rivet.bl { bottom: 10px; left: 10px; } .rivet.br { bottom: 10px; right: 10px; }
+  .nameplate {
+    position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+    margin: 0; white-space: nowrap;
+    font-size: clamp(21px, 3vw, 34px); color: var(--portal);
+    background: var(--screen); border: 4px solid var(--ink); border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--ink), inset 0 0 16px #97e34a44;
+    padding: 8px 26px 6px; text-shadow: 0 0 10px #97e34aaa;
   }
-  .quest {
-    position: relative; display: block; text-decoration: none; color: var(--ink);
-    background: linear-gradient(170deg, #faf0d2, #f0ddae);
-    border: 2px solid #c9a86b; border-radius: 3px;
-    padding: 10px 10px 8px; box-shadow: 2px 3px 6px #00000055;
-    transform: rotate(var(--r, 0deg));
-    transition: transform .14s ease, box-shadow .14s ease;
+  .status-inner {
+    background: var(--paper); border: 3px solid var(--ink); border-radius: 12px;
+    padding: 16px; display: grid; grid-template-columns: 1.1fr 1fr 1.15fr; gap: 16px;
   }
-  .quest::before {
-    content: ''; position: absolute; top: -5px; left: 50%; margin-left: -5px;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #e8e8e8, #555);
-    box-shadow: 0 2px 3px #00000088;
-  }
-  .quest:hover { transform: rotate(0deg) scale(1.38); z-index: 6; box-shadow: 0 10px 24px #000000aa; }
-  .quest h3 { margin: 0 0 5px; font-size: 8.5px; line-height: 1.5; letter-spacing: 0.3px; }
-  .quest p {
-    margin: 0 0 6px; font-family: Georgia, serif; font-style: italic;
-    font-size: 11px; line-height: 1.35; color: #5c4425;
-  }
-  .quest .reward { font-size: 7.5px; color: #8d6708; line-height: 1.5; }
-  .quest .stamp {
-    position: absolute; right: 7px; bottom: 7px; transform: rotate(-9deg);
-    font-size: 7px; padding: 2px 5px; border: 2px solid currentColor;
-    border-radius: 3px; opacity: 0.85; background: #ffffff66;
-  }
-  .stamp.cleared { color: #1d6b32; }
-  .stamp.ongoing { color: #9a6a00; }
-  .stamp.daily   { color: #a03030; }
+  .col { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .col-head { margin: 0 0 2px; font-size: 21px; text-align: center; }
 
-  /* ---------- status window (center) ---------- */
-  .status-win {
-    flex: 1; position: relative; margin-top: 26px;
-    background: var(--cream);
-    border: 5px solid var(--wood); border-radius: 14px;
-    box-shadow: 0 0 0 4px var(--wood-dark), 0 12px 30px #00000066;
-    padding: 40px 18px 16px;
+  .stat { background: var(--paper-2); border: 2.5px solid var(--ink); border-radius: 10px; padding: 7px 10px; }
+  .stat b { display: block; font-size: 15.5px; }
+  .stat span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+  .bar-row {
+    display: grid; grid-template-columns: 24px auto 1fr auto; align-items: center; gap: 6px;
+    background: var(--paper-2); border: 2.5px solid var(--ink); border-radius: 10px;
+    padding: 6px 8px; font-size: 12.5px; font-weight: 600;
   }
-  .name-ribbon {
-    position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
-    background: linear-gradient(var(--wood-light), var(--label));
-    border: 4px solid var(--wood-dark); border-radius: 10px;
-    color: #fff7e6; text-shadow: 1px 2px 0 #00000066;
-    font-size: 13px; letter-spacing: 1px; white-space: nowrap;
-    padding: 10px 22px;
+  .bar-row svg { width: 24px; height: 24px; }
+  .bar { height: 12px; background: #e8dcb8; border: 2.5px solid var(--ink); border-radius: 6px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: var(--v); background: #5fcf3a; }
+  .bar.coffee i { background: #b97a3c; }
+  .counters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .counter {
+    font: inherit; color: var(--text); cursor: pointer; text-align: center;
+    background: #fff; border: 2.5px solid var(--ink); border-radius: 10px;
+    box-shadow: 2px 2px 0 var(--ink); padding: 7px 4px 6px; transition: transform .1s;
   }
-  .win-cols { display: flex; gap: 14px; align-items: stretch; }
-  .col { display: flex; flex-direction: column; gap: 9px; }
-  .col.stats { flex: 1.25; }
-  .col.mid   { flex: 1.1; align-items: center; }
-  .col.equip { width: 76px; align-items: center; }
-  .col-label {
-    width: 100%; text-align: center; background: var(--label); color: #fff7e6;
-    border: 3px solid var(--wood-dark); border-radius: 7px;
-    font-size: 8.5px; padding: 7px 4px; letter-spacing: 0.5px;
-  }
-  .pill {
-    background: var(--pill); border: 2px solid var(--wood); border-radius: 7px;
-    font-size: 8.5px; line-height: 1.6; padding: 8px 9px;
-  }
-  .pill small { display: block; font-size: 7px; color: #8a6a3e; margin-top: 2px; }
-  .barrow { display: flex; align-items: center; gap: 6px; }
-  .track {
-    flex: 1; height: 10px; background: var(--track);
-    border: 2px solid var(--wood); border-radius: 5px; overflow: hidden;
-  }
-  .track i { display: block; height: 100%; }
-  .track .hp { width: 100%; background: linear-gradient(var(--hp), #3f9c38); }
-  .track .mp { width: 100%; background: linear-gradient(var(--mp), #3c86b8); }
+  .counter:hover { transform: translateY(-2px); background: #f3ffe3; }
+  .counter b { display: block; font-family: var(--font-head); font-weight: 400; font-size: 30px; line-height: 1; color: var(--violet); }
+  .counter span { display: block; font-size: 11px; font-weight: 600; line-height: 1.2; }
+  .btn.small { font-size: 13px; padding: 8px 10px; }
 
+  .hero { align-items: center; text-align: center; }
   .portrait {
-    width: 100%; max-width: 230px; aspect-ratio: 5 / 6;
-    background: #f3d98a; border: 3px solid var(--wood); border-radius: 8px;
-    overflow: hidden; display: flex;
+    width: 100%; aspect-ratio: 5 / 6; overflow: hidden;
+    background: #cdeccb; border: 4px solid var(--ink); border-radius: 14px;
+    box-shadow: inset 0 0 0 3px #ffffff88;
   }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .status-line { font-size: 9px; }
-  .status-line .active { color: var(--active); }
-  .loc { font-size: 7.5px; color: #8a6a3e; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 3%; }
+  .status-line { margin: 4px 0 0; font-family: var(--font-head); font-size: 23px; letter-spacing: .06em; }
+  .status-line .ok { color: #1f9d38; }
+  .status-sub { margin: 0; font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.4; }
 
+  .item { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: center; }
   .slot {
-    width: 54px; height: 54px; position: relative;
-    background: var(--cream-deep); border: 3px solid var(--wood);
-    border-radius: 9px; display: flex; align-items: center; justify-content: center;
-    font-size: 24px; cursor: help;
-    font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+    width: 52px; height: 52px; display: grid; place-items: center;
+    background: #e7d6a8; border: 3px solid var(--ink); border-radius: 10px; box-shadow: 2px 2px 0 var(--ink);
   }
-  .slot:hover { background: #f7e7b9; }
-  .slot::after {
-    content: attr(data-tip);
-    position: absolute; left: 50%; top: -8px; transform: translate(-85%, -100%);
-    background: #221a10f0; color: #ffe9b8; border: 2px solid var(--wood-light);
-    border-radius: 6px; padding: 7px 9px;
-    font-family: 'Press Start 2P', monospace; font-size: 7.5px; line-height: 1.6;
-    white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .12s;
-    z-index: 9;
+  .slot svg { width: 36px; height: 36px; }
+  .item-name {
+    background: var(--screen); color: #f4f4f4; border: 2.5px solid var(--ink); border-radius: 8px;
+    padding: 6px 9px; font-size: 13.5px; font-weight: 600; line-height: 1.3;
   }
-  .slot:hover::after { opacity: 1; }
+  .item-name small { display: block; font-size: 10.5px; letter-spacing: .08em; color: var(--portal); }
 
-  .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
-  .act {
-    text-decoration: none; font-size: 9px; color: var(--ink);
-    background: var(--pill); border: 3px solid var(--wood); border-radius: 8px;
-    padding: 10px 13px; transition: transform .1s, background .1s;
-  }
-  .act:hover { transform: translateY(-2px); background: #fff4d6; }
-  .act.primary { background: #f2c24b; border-color: var(--wood-dark); }
-  .act.primary:hover { background: #ffd35e; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
+  .auth { margin: 10px 0 0; text-align: center; font-size: 12.5px; font-weight: 500; color: #222c34; }
 
-  #bgm {
-    position: fixed; top: 12px; right: 12px; z-index: 20;
-    font-family: inherit; font-size: 9px; cursor: pointer;
-    background: #221a10d9; color: #f2c24b; border: 3px solid #f2c24b;
-    border-radius: 7px; padding: 7px 10px;
+  /* ---------- mission board ---------- */
+  .board { grid-column: 1; grid-row: 1 / span 2; margin-top: 8px; background: var(--screen); padding: 16px 14px 20px; }
+  .board-head { margin: 0; text-align: center; font-size: 31px; color: var(--portal); text-shadow: 0 0 10px #97e34a88; }
+  .board-hint { margin: 0 0 14px; text-align: center; color: #c9cdf0; font-size: 13px; }
+  .missions { display: flex; flex-direction: column; gap: 16px; }
+  .mission {
+    position: relative; display: flex; flex-direction: column; gap: 4px; text-align: left;
+    font: inherit; color: var(--ink); cursor: pointer;
+    background: var(--c); border: 3px solid var(--ink); border-radius: 6px 9px 7px 10px;
+    box-shadow: 3px 3px 0 var(--ink); padding: 15px 12px 10px;
+    transform: rotate(var(--r, 0deg)); transition: transform .12s ease, box-shadow .12s ease;
   }
-  #bgm:hover { background: #f2c24b; color: #221a10; }
-
-  footer {
-    max-width: 1180px; margin: 18px auto 0; text-align: center;
-    font-size: 7.5px; line-height: 1.9; color: #fff7e6;
-    text-shadow: 0 1px 3px #000000cc;
+  .mission::before {
+    content: ''; position: absolute; top: -10px; left: 50%; width: 56px; height: 17px; margin-left: -28px;
+    background: #ffffffb3; border: 2px solid #14141433; transform: rotate(-3deg);
   }
-  footer a { color: #ffe9b8; }
+  .mission:hover, .mission:focus-visible { transform: rotate(0deg) scale(1.04); box-shadow: 5px 6px 0 var(--ink); outline: none; }
+  .m-name { font-size: 22px; line-height: 1; }
+  .m-teaser { font-size: 13.5px; line-height: 1.35; }
+  .m-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 5px; }
+  .reward { font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+  .stamp {
+    flex-shrink: 0; font-family: var(--font-head); font-size: 15px; letter-spacing: .08em;
+    padding: 1px 7px; border: 2.5px solid currentColor; border-radius: 6px;
+    transform: rotate(-8deg); background: #ffffff8c;
+  }
+  .stamp.cleared { color: #17803a; }
+  .stamp.ongoing { color: var(--violet); }
+  .stamp.daily { color: #d1333f; }
 
-  @media (max-width: 920px) {
-    .wrap { flex-direction: column-reverse; }
-    .qboard { width: 100%; min-width: 0; }
-    .qb-face { display: grid; grid-template-columns: 1fr 1fr; }
-    .status-win { margin-top: 30px; width: 100%; }
-    .win-cols { flex-wrap: wrap; }
-    .col.equip { width: 100%; flex-direction: row; flex-wrap: wrap; justify-content: center; }
-    .col.equip .col-label { width: 100%; }
-    .slot::after { white-space: normal; width: 150px; transform: translate(-50%, -100%); }
+  /* ---------- portal to hooWorld, directly under the status window ---------- */
+  .portal-row { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; align-items: center; padding-top: 14px; }
+  .portal-sub { margin: 6px 0 0; color: #fffbe9; text-shadow: 0 2px 4px #000a; font-weight: 600; }
+
+  /* modal content specific to the profile */
+  .inv { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 10px 0 0; }
+  .inv dt { font-weight: 700; }
+  .inv dd { margin: 0; }
+
+  @media (max-width: 980px) {
+    .stage { grid-template-columns: 1fr; padding-top: 74px; }
+    .status { grid-column: 1; grid-row: 1; }
+    .portal-row { grid-column: 1; grid-row: 2; }
+    .board { grid-column: 1; grid-row: 3; }
+    .missions { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+  }
+  @media (max-width: 680px) {
+    .status-inner { grid-template-columns: 1fr; }
+    .hero { order: -1; }
+    .portrait { max-width: 280px; }
+    .missions { grid-template-columns: 1fr; }
+    .inv { grid-template-columns: 1fr; gap: 2px; }
+    .inv dd { margin-bottom: 8px; }
   }
 </style>
 </head>
-<body>
+<body class="profile">
 
-<button id="bgm" title="toggle music">&#9834; ON</button>
+<button class="bgm" id="bgm" type="button">&#9834; MUSIC: ON</button>
 
-<main class="wrap">
+<main class="stage">
 
-  <aside class="qboard">
-    <div class="qb-roof"><span class="qb-sign">QUEST BOARD</span></div>
-    <div class="qb-face">
+  <section class="status toon" aria-label="Character status">
+    <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+    <h1 class="nameplate head">YOUNGHOO &ldquo;WHOISHOO&rdquo; CHO</h1>
 
-      <a class="quest" style="--r:-1.2deg" href="resume.html#demeter">
-        <h3>FORGE THE LEDGER OF TRUTH</h3>
-        <p>Build DEMETER: organizations share data while a shared ledger proves origin and transformation.</p>
-        <div class="reward">REWARD: PH.D. (2026)</div>
-        <span class="stamp cleared">CLEARED</span>
-      </a>
-
-      <a class="quest" style="--r:1.1deg" href="resume.html#experience">
-        <h3>SERVE THE FOGBOUND DOMINION</h3>
-        <p>Operate, develop, and analyze connected-car data for Hyundai, Kia, and Genesis across North America, on Kubernetes.</p>
-        <div class="reward">REWARD: [REDACTED]</div>
-        <span class="stamp ongoing">ONGOING</span>
-      </a>
-
-      <a class="quest" style="--r:-0.8deg" href="resume.html#aquaculture">
-        <h3>TEACH MACHINES TO WATCH THE SEA</h3>
-        <p>Vision models read fish feeding activity to set feed amount and timing in a production feeding system.</p>
-        <div class="reward">REWARD: 1 PATENT GRANTED, 1 PENDING</div>
-        <span class="stamp cleared">CLEARED</span>
-      </a>
-
-      <a class="quest" style="--r:1.4deg" href="resume.html#publications">
-        <h3>CHRONICLE THE FINDINGS</h3>
-        <p>Author the record of verifiable agricultural data sharing, from field studies to infrastructure papers.</p>
-        <div class="reward">REWARD: 10 SCROLLS (PAPERS)</div>
-        <span class="stamp ongoing">ONGOING</span>
-      </a>
-
-      <a class="quest" style="--r:-1.5deg" href="resume.html#reviewing">
-        <h3>JUDGE THE MANUSCRIPTS</h3>
-        <p>Peer reviewer for five journals across Springer Nature and Elsevier, since 2024.</p>
-        <div class="reward">REWARD: SHARPER STANDARDS</div>
-        <span class="stamp ongoing">ONGOING</span>
-      </a>
-
-      <a class="quest" style="--r:0.9deg" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">
-        <h3>TRAIN AT THE ALGORITHM DOJO</h3>
-        <p>Daily drills in data structures, algorithms, and system patterns. Python and Java.</p>
-        <div class="reward">REWARD: +INT</div>
-        <span class="stamp daily">DAILY</span>
-      </a>
-
-    </div>
-  </aside>
-
-  <section class="status-win">
-    <div class="name-ribbon">YOUNGHOO &quot;WHOISHOO&quot; CHO</div>
-
-    <div class="win-cols">
+    <div class="status-inner">
 
       <div class="col stats">
-        <div class="col-label">STATS &amp; ATTRIBUTES</div>
-        <div class="pill">LEVEL: 7 <small>YEARS IN THE FIELD</small></div>
-        <div class="pill">CLASS: ENGINEER <small>AI &middot; DATA INFRA &middot; SYSTEMS</small></div>
-        <div class="pill barrow">&#10084; <div class="track"><i class="hp"></i></div> 100/100</div>
-        <div class="pill barrow">&#9889; <div class="track"><i class="mp"></i></div> 100/100</div>
-        <div class="pill">&#128220; PAPERS: 10</div>
-        <div class="pill">&#9881; PATENTS: 2 <small>1 GRANTED &middot; 1 PENDING</small></div>
-        <div class="pill">&#9878; JOURNALS REVIEWED: 5</div>
+        <h2 class="col-head head">STATS &amp; ATTRIBUTES</h2>
+        <div class="stat"><b>LEVEL 7</b><span>years in the field</span></div>
+        <div class="stat"><b>CLASS: ENGINEER</b><span>multiclass: AI &middot; data infrastructure &middot; systems</span></div>
+        <div class="bar-row">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 41S7 30 7 18a8.5 8.5 0 0 1 17-3 8.5 8.5 0 0 1 17 3c0 12-17 23-17 23z" fill="#ff5c7a" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/></svg>
+          <span>HP</span><span class="bar"><i style="--v:100%"></i></span><span>100/100</span>
+        </div>
+        <div class="bar-row">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 17h25v12a10 10 0 0 1-10 10h-5A10 10 0 0 1 8 29z" fill="#c98d52" stroke="#141414" stroke-width="3.5" stroke-linejoin="round"/><path d="M33 21h4a5 5 0 0 1 0 10h-4" fill="none" stroke="#141414" stroke-width="3.5"/><path d="M15 6c-2 3 2 5 0 8M23 6c-2 3 2 5 0 8" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"/></svg>
+          <span>CAFFEINE</span><span class="bar coffee"><i style="--v:92%"></i></span><span>92/100</span>
+        </div>
+        <div class="counters">
+          <button class="counter" type="button" data-modal="m-papers"><b>10</b><span>papers</span></button>
+          <button class="counter" type="button" data-modal="m-patents"><b>2</b><span>patents</span></button>
+          <button class="counter" type="button" data-modal="m-reviews"><b>7</b><span>journals reviewed</span></button>
+        </div>
+        <button class="btn small" type="button" data-modal="m-education">EDUCATION &#9656;</button>
       </div>
 
-      <div class="col mid">
-        <div class="col-label">RANK: PH.D. (2026)</div>
-        <div class="portrait"><img src="assets/img/prof_pic.jpeg" alt="Younghoo Cho"></div>
-        <div class="status-line">STATUS: <span class="active">ACTIVE</span></div>
-        <div class="loc">DULUTH, GA &middot; US</div>
+      <div class="col hero">
+        <h2 class="col-head head">RANK: PH.D.</h2>
+        <div class="portrait"><img src="assets/img/avatar.webp" alt="Cartoon avatar of Younghoo Cho in a lab coat with a giant wrench over his shoulder"></div>
+        <p class="status-line">STATUS: <span class="ok">ACTIVE</span></p>
+        <p class="status-sub">System Engineer, connected-car platform<br>Base: Duluth, GA</p>
       </div>
 
       <div class="col equip">
-        <div class="col-label">EQUIP</div>
-        <div class="slot" data-tip="MAIN HAND: PYTHON &amp; JAVA">&#9876;</div>
-        <div class="slot" data-tip="SHIELD: KUBERNETES">&#128737;</div>
-        <div class="slot" data-tip="ARMOR: HYPERLEDGER FABRIC &amp; GO">&#9939;</div>
-        <div class="slot" data-tip="ARTIFACT: DEMETER, VERIFIABLE DATA PLATFORM">&#128302;</div>
-        <div class="slot" data-tip="RING: CI/CD, GITHUB ACTIONS">&#128141;</div>
+        <h2 class="col-head head">EQUIPMENT</h2>
+        <div class="item">
+          <span class="slot"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M33 4a10 10 0 0 0-9.6 12.8L6.5 33.7a4.5 4.5 0 0 0 0 6.4l1.4 1.4a4.5 4.5 0 0 0 6.4 0l16.9-16.9A10 10 0 0 0 43.8 15L37 21.8l-6.6-2.2-2.2-6.6L35 6.2A10 10 0 0 0 33 4z" fill="#b8c2cc" stroke="#141414" stroke-width="3.2" stroke-linejoin="round"/></svg></span>
+          <span class="item-name"><small>MAIN WEAPON</small>Python &middot; Java &middot; Go</span>
+        </div>
+        <div class="item">
+          <span class="slot"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l16 6v12c0 10.5-7 18.5-16 22-9-3.5-16-11.5-16-22V10z" fill="#3ad0f0" stroke="#141414" stroke-width="3.2" stroke-linejoin="round"/><path d="M24 13l7.5 4.3v8.6L24 30.2l-7.5-4.3v-8.6z" fill="#fff" stroke="#141414" stroke-width="2.6" stroke-linejoin="round"/></svg></span>
+          <span class="item-name"><small>SHIELD</small>Kubernetes &middot; Docker</span>
+        </div>
+        <div class="item">
+          <span class="slot"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 7l5 3.5h10L34 7l9 5.5-4.5 10-3.5-1.2V42H13V21.3L9.5 22.5 5 12.5z" fill="#c9a0ff" stroke="#141414" stroke-width="3.2" stroke-linejoin="round"/><path d="M19 10.5c1 4.5 3 6.5 5 6.5s4-2 5-6.5M18 27h12M18 33h12" fill="none" stroke="#141414" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+          <span class="item-name"><small>ARMOR</small>Spring &middot; Django &middot; REST</span>
+        </div>
+        <div class="item">
+          <span class="slot"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3l12 13-12 29L12 16z" fill="#97e34a" stroke="#141414" stroke-width="3.2" stroke-linejoin="round"/><path d="M12 16h24M24 3l-5 13 5 29 5-29z" fill="none" stroke="#141414" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
+          <span class="item-name"><small>ARTIFACT</small>Hyperledger Fabric</span>
+        </div>
+        <div class="item">
+          <span class="slot"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="30" r="12" fill="none" stroke="#141414" stroke-width="8"/><circle cx="24" cy="30" r="12" fill="none" stroke="#f2c24b" stroke-width="3.5"/><path d="M24 5l7 7.5-7 7.5-7-7.5z" fill="#ff6fae" stroke="#141414" stroke-width="3" stroke-linejoin="round"/></svg></span>
+          <span class="item-name"><small>RING</small>PyTorch &middot; OpenCV &middot; LLMs</span>
+        </div>
+        <button class="btn small" type="button" data-modal="m-inventory">FULL INVENTORY &#9656;</button>
       </div>
 
     </div>
 
     <div class="actions">
-      <a class="act primary" href="resume.html">&#128220; FULL RESUME</a>
-      <a class="act" href="hooworld.html">&#10022; HOOWORLD</a>
-      <a class="act" href="https://github.com/WhoisHOO" target="_blank" rel="noopener">&#9874; GITHUB</a>
-      <a class="act" href="mailto:younghoocho39@gmail.com">&#9993; CONTACT</a>
+      <a class="btn primary" href="assets/pdf/CV_Yc.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      <a class="btn" href="https://github.com/WhoisHOO" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/younghoo-cho-362161206/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="mailto:younghoocho39@gmail.com">Email</a>
     </div>
+    <p class="auth">Work authorization: F-1 OPT with STEM extension (36 months total), no sponsorship needed.</p>
   </section>
+
+  <div class="portal-row">
+    <a class="portal" href="hooworld.html" data-warp>
+      <span class="portal-swirl" aria-hidden="true"></span>
+      <span class="portal-label">ENTER HOOWORLD</span>
+    </a>
+    <p class="portal-sub">every repository is a planet</p>
+  </div>
+
+  <aside class="board toon" aria-label="Mission board">
+    <h2 class="board-head head">MISSION BOARD</h2>
+    <p class="board-hint">click a mission for the full briefing</p>
+    <div class="missions">
+      <button class="mission" type="button" data-modal="m-demeter" style="--r:-1.4deg; --c:#ffe36e">
+        <span class="m-name head">FORGE THE LEDGER OF TRUTH</span>
+        <span class="m-teaser">Make shared farm data verifiable across organizations.</span>
+        <span class="m-foot"><span class="reward">REWARD: PH.D. + 4 PAPERS</span><span class="stamp cleared">CLEARED</span></span>
+      </button>
+      <button class="mission" type="button" data-modal="m-ccs" style="--r:1.2deg; --c:#a6ecff">
+        <span class="m-name head">SERVE THE FOGBOUND DOMINION</span>
+        <span class="m-teaser">Keep connected cars talking to their brands across North America.</span>
+        <span class="m-foot"><span class="reward">REWARD: [REDACTED]</span><span class="stamp ongoing">ONGOING</span></span>
+      </button>
+      <button class="mission" type="button" data-modal="m-sea" style="--r:-0.9deg; --c:#ccf58f">
+        <span class="m-name head">TEACH MACHINES TO WATCH THE SEA</span>
+        <span class="m-teaser">Let vision models decide when the fish get fed.</span>
+        <span class="m-foot"><span class="reward">REWARD: 2 PATENTS</span><span class="stamp cleared">CLEARED</span></span>
+      </button>
+      <button class="mission" type="button" data-modal="m-papers" style="--r:1.5deg; --c:#ffb4d4">
+        <span class="m-name head">CHRONICLE THE FINDINGS</span>
+        <span class="m-teaser">Write it down so others can build on it.</span>
+        <span class="m-foot"><span class="reward">REWARD: 10 SCROLLS</span><span class="stamp ongoing">ONGOING</span></span>
+      </button>
+      <button class="mission" type="button" data-modal="m-reviews" style="--r:-1.6deg; --c:#d9c6ff">
+        <span class="m-name head">JUDGE THE MANUSCRIPTS</span>
+        <span class="m-teaser">Decide what deserves to be published.</span>
+        <span class="m-foot"><span class="reward">REWARD: 7 JOURNALS</span><span class="stamp ongoing">ONGOING</span></span>
+      </button>
+      <button class="mission" type="button" data-modal="m-dojo" style="--r:0.8deg; --c:#ffc98a">
+        <span class="m-name head">TRAIN AT THE ALGORITHM DOJO</span>
+        <span class="m-teaser">Daily reps until patterns answer in seconds.</span>
+        <span class="m-foot"><span class="reward">REWARD: +INT</span><span class="stamp daily">DAILY</span></span>
+      </button>
+    </div>
+  </aside>
 
 </main>
 
-<footer>
-  every quest, stat, and item is a real line from the CV &middot; &copy; 2026 Younghoo Henry Cho<br>
-  music: "Video Game Soldiers" by Twin Musicom (twinmusicom.org) &middot; "Death of Kings 2" by Kevin MacLeod (incompetech.com) &middot;
-  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &middot; scenery: AI-generated
+<footer class="credits">
+  every mission, stat, and item is a line from the CV &middot; &copy; 2026 Younghoo Henry Cho<br>
+  music: &ldquo;Galactic Rap,&rdquo; &ldquo;Phantom from Space,&rdquo; and &ldquo;Graveyard Shift&rdquo; by Kevin MacLeod (incompetech.com),
+  licensed under Creative Commons: <a href="https://creativecommons.org/licenses/by/4.0/">By Attribution 4.0</a> &middot; artwork: AI-generated
 </footer>
 
-<script>
-'use strict';
-/* background music: shared playlist, default on, starts at first gesture */
-let musicOn = true, trackIdx = 0;
-const bgmBtn = document.getElementById('bgm');
-const PLAYLIST = [
-  'assets/audio/Video Game Soldiers - Twin Musicom.mp3',
-  'assets/audio/Death of Kings 2 - Kevin MacLeod.mp3',
-];
-const bgm = new Audio();
-bgm.volume = 0.35;
-bgm.addEventListener('ended', () => {
-  trackIdx = (trackIdx + 1) % PLAYLIST.length;
-  bgm.src = PLAYLIST[trackIdx];
-  bgm.play();
-});
-function startMusic() {
-  if (!bgm.src) bgm.src = PLAYLIST[0];
-  return bgm.play();
-}
-function armAutoplay() {
-  const kick = () => {
-    if (musicOn && bgm.paused) startMusic().catch(() => {});
-    document.removeEventListener('pointerdown', kick);
-    document.removeEventListener('keydown', kick);
-  };
-  document.addEventListener('pointerdown', kick);
-  document.addEventListener('keydown', kick);
-}
-startMusic().catch(armAutoplay);
-bgmBtn.addEventListener('click', () => {
-  musicOn = !musicOn;
-  bgmBtn.innerHTML = musicOn ? '&#9834; ON' : '&#9834; OFF';
-  if (musicOn) startMusic(); else bgm.pause();
-});
-</script>
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <article class="modal-card toon" role="dialog" aria-modal="true" aria-label="Details">
+    <button class="modal-x" type="button" data-close aria-label="Close">&times;</button>
+    <div class="modal-body"></div>
+  </article>
+</div>
+
+<!-- ===================== mission and stat details ===================== -->
+
+<template id="m-demeter">
+  <p class="m-kicker">MISSION &middot; CLEARED</p>
+  <h2 class="m-title">Forge the Ledger of Truth</h2>
+  <p class="m-meta">DEMETER &middot; Ph.D. research, University of Florida &middot; Aug 2022 &ndash; Aug 2026</p>
+  <h3 class="m-section">BRIEFING</h3>
+  <p>When agricultural data files move between organizations, the receiving party cannot check whether a file still matches what its source recorded. Healthcare and finance solved this under regulatory mandates. Agriculture has no such mandate, so a solution has to work when participation is voluntary.</p>
+  <h3 class="m-section">ACTIONS</h3>
+  <ul>
+    <li>Designed and built DEMETER, a platform where each organization records a file&rsquo;s identity and handoffs on a shared ledger under its own credentials, with no central operator. Files stay on each organization&rsquo;s own systems.</li>
+    <li>Built the core in Go on Hyperledger Fabric with a REST API, and ran the multi-organization network on Docker with CI-driven build and test.</li>
+    <li>Added an LLM assistant for plain-language queries behind a write-confirmation gate: it reads freely but cannot change ledger state without explicit approval.</li>
+  </ul>
+  <figure class="m-fig">
+    <img src="assets/img/demeter-2.png" alt="DEMETER architecture: LLM interface on top, a shared Hyperledger Fabric ledger with origin, transformation, integration, and tracing, and files kept off-chain" loading="lazy">
+    <figcaption>The ledger holds origin, transformation, and integration records; the files themselves stay off-chain.</figcaption>
+  </figure>
+  <h3 class="m-section">LOOT</h3>
+  <ul>
+    <li>Verified on soil-carbon data: catches altered files, blocks records that cite unregistered sources, and tells apart two records that share a sample ID but hold different data.</li>
+    <li>Research output: a cross-sectoral review in <em>Precision Agriculture</em> (2026) and three infrastructure papers under review.</li>
+  </ul>
+  <p class="m-note">Code stays private until the papers are published.</p>
+</template>
+
+<template id="m-ccs">
+  <p class="m-kicker">MISSION &middot; ONGOING</p>
+  <h2 class="m-title">Serve the Fogbound Dominion</h2>
+  <p class="m-meta">System Engineer, Solomon America (Duluth, GA) &middot; System Engineer, Hyundai AutoEver America &middot; Sep 2026 &ndash; present</p>
+  <h3 class="m-section">BRIEFING</h3>
+  <p>The connected-car services (CCS) platform connects Hyundai, Kia, and Genesis vehicles in the U.S., Canada, and Mexico to each brand&rsquo;s services.</p>
+  <h3 class="m-section">ACTIONS</h3>
+  <ul>
+    <li>Manage, develop, operate, and analyze the CCS platform across vehicle factory, carrier network, vehicle-control, and remote-command data, from ingestion to application services, on Kubernetes.</li>
+    <li>Diagnose production incidents to root cause in the platform&rsquo;s Java/Spring services and implement the fixes; review the code for security weaknesses and ship hardening changes.</li>
+    <li>Build and operate carrier integrations (Verizon, Bell) that provision and bill vehicle connectivity.</li>
+    <li>Develop and operate five internal data platforms (Python/Django) and 10+ automation tools for monitoring, analyzing, correcting, and reporting CCS data across North America.</li>
+    <li>Define integration designs and scope estimates for new in-vehicle data products.</li>
+  </ul>
+  <h3 class="m-section">LOOT</h3>
+  <p><span class="redacted">[REDACTED BY THE DOMINION]</span></p>
+  <p class="m-note">Ask me about it in an interview.</p>
+</template>
+
+<template id="m-sea">
+  <p class="m-kicker">MISSION &middot; CLEARED</p>
+  <h2 class="m-title">Teach Machines to Watch the Sea</h2>
+  <p class="m-meta">AI Engineer, Billion21 &middot; Dec 2019 &ndash; Aug 2022</p>
+  <h3 class="m-section">BRIEFING</h3>
+  <p>Fish farms set feed amount and timing by manual observation, which is labor-intensive, inconsistent, and does not scale across species and tanks.</p>
+  <h3 class="m-section">ACTIONS</h3>
+  <ul>
+    <li>Built computer-vision and machine-learning models in Python that read fish feeding activity from camera and sensor input to set feed amount and timing per species in an automated feeding system.</li>
+    <li>Co-invented a computer-vision method for seaweed spore selection that replaced manual microscope inspection.</li>
+    <li>Co-invented a blockchain system that records each handoff of seaweed from farm to buyer so any party can verify its path.</li>
+  </ul>
+  <h3 class="m-section">LOOT</h3>
+  <ul>
+    <li>Patent KR102034354B1, spore selection method (granted). <a href="https://patents.google.com/patent/KR20190055413A/en" target="_blank" rel="noopener">Google Patents</a></li>
+    <li>Patent application KR10-2024-0011399, seaweed supply-chain tracking (pending).</li>
+  </ul>
+  <h3 class="m-section">SIDE QUEST</h3>
+  <p>AI Consultant, Global BioAg Linkages (Jan &ndash; Dec 2020): planned AI/ML adoption for agriculture and aquaculture companies, assessing technical feasibility and market viability for each.</p>
+</template>
+
+<template id="m-papers">
+  <p class="m-kicker">MISSION &middot; ONGOING</p>
+  <h2 class="m-title">Chronicle the Findings</h2>
+  <p class="m-meta">10 papers in total, including those under review</p>
+  <h3 class="m-section">SELECTED SCROLLS</h3>
+  <ul>
+    <li>Cho, Y., Yu, Z., Ampatzidis, Y., Nam, J.-S. <em>Facilitating a Future Agricultural Data Ecosystem: A Cross-Sectoral Review of Blockchain Application in Data Sharing.</em> Precision Agriculture, 27, 138 (2026).</li>
+    <li>Cho, Y. et al. <em>DEMETER: An Integrated Trust Infrastructure for Shared Agricultural Data.</em> Under review.</li>
+    <li>Cho, Y. et al. <em>An Enabling Infrastructure Layer for Origin Verification and Transfer Tracing of Shared Agricultural Data Files.</em> Under review.</li>
+    <li>Cho, Y. et al. <em>An Infrastructure Layer for Tracing Transformed Agricultural Data Back to Its Sources.</em> Under review.</li>
+  </ul>
+  <div class="m-links"><a class="btn" href="https://orcid.org/0009-0009-7406-1782" target="_blank" rel="noopener">Full list on ORCID &#9656;</a></div>
+</template>
+
+<template id="m-patents">
+  <p class="m-kicker">ATTRIBUTE</p>
+  <h2 class="m-title">Patents: 2</h2>
+  <ul>
+    <li><em>Methods for Selecting Spores from Laver Farm Devices.</em> KR102034354B1, 2019 (granted). <a href="https://patents.google.com/patent/KR20190055413A/en" target="_blank" rel="noopener">Google Patents</a></li>
+    <li><em>Blockchain-Based Seaweed Farming Data Management and Smart Supply Chain Tracking System.</em> KR10-2024-0011399 (pending).</li>
+  </ul>
+</template>
+
+<template id="m-reviews">
+  <p class="m-kicker">MISSION &middot; ONGOING</p>
+  <h2 class="m-title">Judge the Manuscripts</h2>
+  <p class="m-meta">Peer reviewer for 7 journals &middot; 2024 &ndash; present</p>
+  <ul>
+    <li><em>Carbon Management</em> (Taylor &amp; Francis)</li>
+    <li><em>Discover Agriculture</em> (Springer Nature)</li>
+    <li><em>Discover Applied Mathematics</em> (Springer Nature)</li>
+    <li><em>Environment, Development and Sustainability</em> (Springer Nature)</li>
+    <li><em>Humanities and Social Sciences Communications</em> (Springer Nature)</li>
+    <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature)</li>
+    <li><em>Sustainable Futures</em> (Elsevier)</li>
+  </ul>
+</template>
+
+<template id="m-dojo">
+  <p class="m-kicker">MISSION &middot; DAILY</p>
+  <h2 class="m-title">Train at the Algorithm Dojo</h2>
+  <p class="m-meta">code_assessment &middot; Python, Java</p>
+  <h3 class="m-section">ACTIONS</h3>
+  <ul>
+    <li>Built a study tool for big-tech coding assessments: a local web app with a spaced-repetition daily queue, pattern flashcards, multiple-choice drills, and timed problems. Python standard library, no dependencies.</li>
+    <li>Each missed timed problem is logged by cause (misread statement, unknown pattern, slow recall, implementation bug), so practice targets the weakest skill.</li>
+  </ul>
+  <div class="m-links"><a class="btn" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
+</template>
+
+<template id="m-education">
+  <p class="m-kicker">ORIGIN STORY</p>
+  <h2 class="m-title">Training Arcs</h2>
+  <div class="m-entry"><b>University of Florida</b><span>Aug 2022 &ndash; Aug 2026</span></div>
+  <p>Ph.D., Agricultural and Biological Engineering &middot; GPA 3.95/4.0</p>
+  <div class="m-entry"><b>Texas Tech University</b><span>Aug 2015 &ndash; Aug 2022</span></div>
+  <p>B.S., Computer Science, Minor in Mathematics &middot; GPA 3.8/4.0</p>
+</template>
+
+<template id="m-inventory">
+  <p class="m-kicker">FULL INVENTORY</p>
+  <h2 class="m-title">Skills</h2>
+  <dl class="inv">
+    <dt>Languages</dt><dd>Python, Java, Go, SQL, JavaScript, C, C++, R</dd>
+    <dt>Data engineering</dt><dd>Apache Airflow, Apache Spark, Apache Kafka</dd>
+    <dt>Databases</dt><dd>PostgreSQL, MongoDB</dd>
+    <dt>Distributed systems &amp; backend</dt><dd>Django (Python), Spring (Java), Node.js, Express, REST APIs, gRPC, Hyperledger Fabric</dd>
+    <dt>Cloud &amp; DevOps</dt><dd>AWS, Azure, Docker, Kubernetes, CI/CD (GitHub Actions), Git, Linux</dd>
+    <dt>ML &amp; AI</dt><dd>PyTorch, TensorFlow, OpenCV, YOLO, SAM, XGBoost, LightGBM, LSTM, Phi-3, LangChain, Ollama</dd>
+  </dl>
+</template>
+
+<script src="assets/js/hoo.js"></script>
 </body>
 </html>
