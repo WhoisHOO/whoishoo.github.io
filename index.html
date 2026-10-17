@@ -26,6 +26,9 @@
   <link rel="apple-touch-icon" href="assets/img/prof_pic.jpeg">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,8 +43,10 @@
         <div class="sidebar-name">
           <h1>Younghoo Henry Cho</h1>
           <p class="subtitle">Data Infrastructure Engineer</p>
+          <p class="aka">a.k.a. whoIsHoo</p>
         </div>
         <nav>
+          <a href="hooworld.html" class="nav-world">&#10022; hooWorld</a>
           <a href="#about">About</a>
           <a href="#education">Education</a>
           <a href="#experience">Experience</a>
@@ -74,6 +79,12 @@
               <div class="chip-group" id="chip-leaf"></div>
               <div id="explore-results"></div>
             </div>
+
+            <a href="hooworld.html" class="world-card">
+              <img src="assets/img/hooworld-map.png" alt="hooWorld, a fantasy atlas of this portfolio" loading="lazy">
+              <span class="world-card-ribbon">ENTER HOO WORLD</span>
+              <span class="world-card-sub">This portfolio is also a world: every repo is a country, main is its capital, branches are provinces.</span>
+            </a>
 
             <h3 id="skills">Technical Skills</h3>
             <table>
@@ -572,7 +583,7 @@
   </div>
 
   <footer>
-    &copy; 2026 Younghoo Henry Cho
+    &copy; 2026 Younghoo Henry Cho &middot; <a href="hooworld.html">&#10022; hooWorld</a>
   </footer>
 
   <script src="assets/js/explore.js"></script>
