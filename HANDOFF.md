@@ -44,11 +44,15 @@
 
 ## 현재 상태
 
-- 작업은 `hooworld` 브랜치에 있다. 라이브 사이트(main)에는 아직 반영 전.
+- 2026-10-16 `hooworld`를 `main`에 fast-forward 머지해서 라이브 반영 완료.
+  GitHub Pages는 `main` 브랜치 루트(`/`)에서 배포된다.
+- 이후 작업도 `hooworld` 브랜치에서 하고, 확인되면 `main`에 fast-forward 머지한다.
 - 로컬 미리보기: 레포 폴더에서 `python -m http.server` 실행 후 `/index.html`.
+  기본 서버는 캐시 금지 헤더를 안 보내서 브라우저가 예전 화면을 보여줄 수 있다.
+  수정이 안 보이면 Ctrl+F5(강력 새로고침).
 
 ## 다음 할 일
 
-- [ ] 사용자 확인 후 `hooworld` → `main` 머지로 라이브 반영.
+- [x] `hooworld` → `main` 머지로 라이브 반영 (2026-10-16).
 - [ ] 새 BGM 3곡을 들어보고 유지할지 결정.
 - [ ] 프로필의 work authorization 문구가 정확한지 확인.
