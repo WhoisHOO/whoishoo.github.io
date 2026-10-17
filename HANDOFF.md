@@ -28,10 +28,25 @@
 - v0.1 도트 타일맵 → v0.2 레포=나라 구조 → v0.3 회화풍 지도 + 배너 (git 히스토리에 전부 보존).
 - 로컬 미리보기: 레포 폴더에서 `python -m http.server` 후 `/hooworld.html`.
 
+## 페이지 3종 구조 (2026-10-16 확정)
+
+1. `index.html` — whoIsHoo 레주메 (전문성 유지, RPG 토큰만: 골드 악센트,
+   Cinzel h2 + ✦ 장식, 금테 초상, hooWorld/Quest Board 진입 배너·지도 카드.
+   인쇄 시 RPG 요소 자동 숨김). 소개 타이틀은 어디서든 "Engineer" 단일.
+2. `tavern.html` — Quest Board: AI 생성 태버냐 씬(`assets/img/tavern.png`,
+   빈 보드+빈 액자) 위에 HTML 오버레이. 퀘스트 6장 = CV 핵심 사실
+   (DEMETER/PhD, CCS 시스템 엔지니어[REDACTED], Billion21 특허 1 granted
+   1 pending, 논문 10, 저널 리뷰어 5, code_assessment). 호버 확대, 클릭 시
+   index 해당 섹션으로. 액자 = prof_pic, 명판 = ADVENTURER/CLASS/STATUS.
+3. `hooworld.html` — 세계지도 (나라=레포).
+   상호 링크: index 사이드바 배너 2개, 각 페이지 헤더 링크.
+
 ## 다음 할 일
 
-- [ ] 배너 % 좌표 검수 (섬 위에 정확히 앉았는지 육안 확인 후 미세조정).
-- [ ] index(whoIsHoo)에 도트/일러스트 캐릭터 프로필 — 컨셉: 이세계 엔지니어.
-- [ ] index ↔ hooworld 상호 링크 배치 결정.
-- [ ] 모바일 레이아웃 점검 (배너 크기 clamp는 넣어둠).
-- [ ] 완성 후 main 머지 → https://whoishoo.github.io/hooworld.html 공개.
+- [ ] tavern 오버레이 좌표 육안 검수 (퀘스트 카드가 보드 판자 안에, 사진이
+      액자 안에 정확히 앉았는지) — 숫자는 tavern.html의 style/left·top %.
+- [ ] hooworld 배너 % 좌표 검수.
+- [ ] index Experience 섹션이 CV보다 구버전 (Solomon America 항목 없음) —
+      CV 기준으로 갱신할지 결정.
+- [ ] 모바일 레이아웃 점검.
+- [ ] 완성 후 main 머지 → 공개.

@@ -28,7 +28,8 @@
     padding: 6px 10px;
   }
   #bgm:hover { background: var(--gold); color: #000; }
-  header a { color: #7fd4ff; text-decoration: none; margin-left: auto; }
+  .links { margin-left: auto; display: flex; gap: 14px; }
+  header a { color: #7fd4ff; text-decoration: none; }
   header a:hover { color: #fff; }
   .stage { max-width: 1080px; margin: 0 auto; padding: 8px 10px 24px; }
 
@@ -93,7 +94,10 @@
   <h1>HOO WORLD</h1>
   <span class="sub">every repo is a country &middot; main is the capital &middot; branches are provinces</span>
   <button id="bgm" title="toggle music">&#9834; ON</button>
-  <a href="index.html">&larr; whoIsHoo</a>
+  <span class="links">
+    <a href="tavern.html">&#9876; quest board</a>
+    <a href="index.html">&larr; whoIsHoo</a>
+  </span>
 </header>
 
 <div class="stage">
