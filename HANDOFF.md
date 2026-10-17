@@ -28,25 +28,25 @@
 - v0.1 도트 타일맵 → v0.2 레포=나라 구조 → v0.3 회화풍 지도 + 배너 (git 히스토리에 전부 보존).
 - 로컬 미리보기: 레포 폴더에서 `python -m http.server` 후 `/hooworld.html`.
 
-## 페이지 3종 구조 (2026-10-16 확정)
+## 페이지 3종 구조 (2026-10-16 재확정)
 
-1. `index.html` — whoIsHoo 레주메 (전문성 유지, RPG 토큰만: 골드 악센트,
-   Cinzel h2 + ✦ 장식, 금테 초상, hooWorld/Quest Board 진입 배너·지도 카드.
-   인쇄 시 RPG 요소 자동 숨김). 소개 타이틀은 어디서든 "Engineer" 단일.
-2. `tavern.html` — Quest Board: AI 생성 태버냐 씬(`assets/img/tavern.png`,
-   빈 보드+빈 액자) 위에 HTML 오버레이. 퀘스트 6장 = CV 핵심 사실
-   (DEMETER/PhD, CCS 시스템 엔지니어[REDACTED], Billion21 특허 1 granted
-   1 pending, 논문 10, 저널 리뷰어 5, code_assessment). 호버 확대, 클릭 시
-   index 해당 섹션으로. 액자 = prof_pic, 명판 = ADVENTURER/CLASS/STATUS.
+1. `index.html` — **게임 프로필 (메인/랜딩)**: 밝은 카툰 마을 배경
+   (`assets/img/village.png`, AI 생성, 글자 없음) 위에 **전부 CSS로 만든 UI**:
+   좌측 QUEST BOARD(퀘스트 6장 = CV 핵심 사실, 호버 확대, 클릭 시 resume
+   해당 섹션), 중앙 상태창(이름 리본, RANK: PH.D., 초상, LEVEL 7/CLASS
+   ENGINEER/논문 10/특허 2/리뷰 5 스탯, HP·MP 바는 순수 장식, EQUIP 슬롯
+   5개 = 실제 스택 툴팁), 액션 버튼(FULL RESUME가 최우선 골드 버튼).
+   다크 태버냐 버전(tavern.html)은 스타일 기각으로 삭제됨(히스토리에 있음).
+2. `resume.html` — 구 index 전문 레주메 전체 (explore/leaflet 포함, 인쇄
+   스타일 유지). 게임 프로필의 퀘스트·버튼이 여기 앵커로 연결.
 3. `hooworld.html` — 세계지도 (나라=레포).
-   상호 링크: index 사이드바 배너 2개, 각 페이지 헤더 링크.
+   소개 타이틀은 어디서든 "Engineer" 단일 (제너럴리스트 원칙).
 
 ## 다음 할 일
 
-- [ ] tavern 오버레이 좌표 육안 검수 (퀘스트 카드가 보드 판자 안에, 사진이
-      액자 안에 정확히 앉았는지) — 숫자는 tavern.html의 style/left·top %.
+- [ ] 게임 프로필 육안 검수 (상태창/보드 비율, 모바일 스택 레이아웃).
 - [ ] hooworld 배너 % 좌표 검수.
-- [ ] index Experience 섹션이 CV보다 구버전 (Solomon America 항목 없음) —
-      CV 기준으로 갱신할지 결정.
-- [ ] 모바일 레이아웃 점검.
+- [ ] resume.html Experience 섹션이 CV보다 구버전 (Solomon America 항목
+      없음) — CV 기준으로 갱신할지 결정.
+- [ ] 초상화를 도트 아바타로 교체할지 결정 (현재는 실제 사진).
 - [ ] 완성 후 main 머지 → 공개.
