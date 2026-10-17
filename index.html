@@ -63,6 +63,7 @@
     background: linear-gradient(170deg, #faf0d2, #f0ddae);
     border: 2px solid #c9a86b; border-radius: 3px;
     padding: 10px 10px 8px; box-shadow: 2px 3px 6px #00000055;
+    transform: rotate(var(--r, 0deg));
     transition: transform .14s ease, box-shadow .14s ease;
   }
   .quest::before {
@@ -71,7 +72,7 @@
     background: radial-gradient(circle at 35% 35%, #e8e8e8, #555);
     box-shadow: 0 2px 3px #00000088;
   }
-  .quest:hover { transform: scale(1.38); z-index: 6; box-shadow: 0 10px 24px #000000aa; }
+  .quest:hover { transform: rotate(0deg) scale(1.38); z-index: 6; box-shadow: 0 10px 24px #000000aa; }
   .quest h3 { margin: 0 0 5px; font-size: 8.5px; line-height: 1.5; letter-spacing: 0.3px; }
   .quest p {
     margin: 0 0 6px; font-family: Georgia, serif; font-style: italic;
@@ -203,42 +204,42 @@
     <div class="qb-roof"><span class="qb-sign">QUEST BOARD</span></div>
     <div class="qb-face">
 
-      <a class="quest" style="transform:rotate(-1.2deg)" href="resume.html#demeter">
+      <a class="quest" style="--r:-1.2deg" href="resume.html#demeter">
         <h3>FORGE THE LEDGER OF TRUTH</h3>
         <p>Build DEMETER: organizations share data while a shared ledger proves origin and transformation.</p>
         <div class="reward">REWARD: PH.D. (2026)</div>
         <span class="stamp cleared">CLEARED</span>
       </a>
 
-      <a class="quest" style="transform:rotate(1.1deg)" href="resume.html#experience">
+      <a class="quest" style="--r:1.1deg" href="resume.html#experience">
         <h3>SERVE THE FOGBOUND DOMINION</h3>
         <p>Operate, develop, and analyze connected-car data for Hyundai, Kia, and Genesis across North America, on Kubernetes.</p>
         <div class="reward">REWARD: [REDACTED]</div>
         <span class="stamp ongoing">ONGOING</span>
       </a>
 
-      <a class="quest" style="transform:rotate(-0.8deg)" href="resume.html#aquaculture">
+      <a class="quest" style="--r:-0.8deg" href="resume.html#aquaculture">
         <h3>TEACH MACHINES TO WATCH THE SEA</h3>
         <p>Vision models read fish feeding activity to set feed amount and timing in a production feeding system.</p>
         <div class="reward">REWARD: 1 PATENT GRANTED, 1 PENDING</div>
         <span class="stamp cleared">CLEARED</span>
       </a>
 
-      <a class="quest" style="transform:rotate(1.4deg)" href="resume.html#publications">
+      <a class="quest" style="--r:1.4deg" href="resume.html#publications">
         <h3>CHRONICLE THE FINDINGS</h3>
         <p>Author the record of verifiable agricultural data sharing, from field studies to infrastructure papers.</p>
         <div class="reward">REWARD: 10 SCROLLS (PAPERS)</div>
         <span class="stamp ongoing">ONGOING</span>
       </a>
 
-      <a class="quest" style="transform:rotate(-1.5deg)" href="resume.html#reviewing">
+      <a class="quest" style="--r:-1.5deg" href="resume.html#reviewing">
         <h3>JUDGE THE MANUSCRIPTS</h3>
         <p>Peer reviewer for five journals across Springer Nature and Elsevier, since 2024.</p>
         <div class="reward">REWARD: SHARPER STANDARDS</div>
         <span class="stamp ongoing">ONGOING</span>
       </a>
 
-      <a class="quest" style="transform:rotate(0.9deg)" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">
+      <a class="quest" style="--r:0.9deg" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">
         <h3>TRAIN AT THE ALGORITHM DOJO</h3>
         <p>Daily drills in data structures, algorithms, and system patterns. Python and Java.</p>
         <div class="reward">REWARD: +INT</div>
