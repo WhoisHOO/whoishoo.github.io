@@ -54,11 +54,14 @@
     padding: 16px; display: grid; grid-template-columns: 1.1fr 1fr 1.15fr; gap: 16px;
   }
   .motto {
-    grid-column: 1 / -1; margin: 0; padding: 9px 14px 11px; text-align: center;
+    grid-column: 1 / -1; padding: 10px 16px 12px; text-align: center;
     background: var(--screen); color: #fff; border: 3px solid var(--ink); border-radius: 10px;
-    font-size: 16.5px; font-weight: 600; line-height: 1.45;
   }
-  .motto-label { display: block; font-size: 16px; color: var(--portal); letter-spacing: .12em; }
+  .motto p { margin: 0; }
+  .motto-label { display: block; font-size: 16px; color: var(--portal); letter-spacing: .14em; }
+  .vision { font-size: clamp(18px, 2vw, 22px); font-weight: 600; line-height: 1.3; }
+  .vision-src { margin-top: 2px !important; font-size: 12px; color: #aab0dd; letter-spacing: .02em; }
+  .mission-line { margin-top: 8px !important; padding-top: 8px; border-top: 1px dashed #ffffff33; font-size: 14.5px; color: #dfe2ff; line-height: 1.4; }
   .col { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
   .col-head { margin: 0 0 2px; font-size: 21px; text-align: center; }
 
@@ -183,7 +186,12 @@
 
     <div class="status-inner">
 
-      <p class="motto"><span class="motto-label head">MAIN OBJECTIVE</span>I build the systems that carry data from where it is produced to where it is used, and make it trustworthy along the way.</p>
+      <div class="motto">
+        <span class="motto-label head">VISION</span>
+        <p class="vision">&ldquo;To a future intelligence, raised on data worth trusting.&rdquo;</p>
+        <p class="vision-src">dedication of my Ph.D. dissertation, 2026</p>
+        <p class="mission-line">I build the systems that carry data from where it is produced to where it is used, and make it trustworthy along the way.</p>
+      </div>
 
       <div class="col stats">
         <h2 class="col-head head">STATS &amp; ATTRIBUTES</h2>
@@ -258,7 +266,7 @@
 
   <aside class="board toon" aria-label="Mission board">
     <h2 class="board-head head">MISSION BOARD</h2>
-    <p class="board-hint">one objective, three classes &middot; click a mission for the full briefing</p>
+    <p class="board-hint">one vision, three classes &middot; click a mission for the full briefing</p>
     <div class="missions">
       <button class="mission" type="button" data-modal="m-ccs" style="--r:-1deg; --c:#a6ecff">
         <span class="m-top"><span class="m-class">MAIN QUEST &middot; SYSTEMS</span><span class="stamp ongoing">ONGOING</span></span>

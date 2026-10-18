@@ -15,9 +15,11 @@
   카드 구조: 클래스 태그, 역량을 말하는 제목, 직함·회사·기간 평문, 한 줄 요약, LOOT.
   논문·특허·리뷰는 상태창 카운터가 담당하고, 코드 레포는 hooWorld가 담당한다.
 - 이름 표기는 "Younghoo Henry Cho". whoIsHoo는 이름에 넣지 않는다.
-- 페이지가 전달하는 한 문장(MAIN OBJECTIVE, 상태창 맨 위): "I build the systems
-  that carry data from where it is produced to where it is used, and make it
-  trustworthy along the way." 세 미션은 이 문장의 증거다.
+- 상태창 맨 위 VISION 배너: 학위논문 헌정 문구를 원문 그대로 인용
+  ("To a future intelligence, raised on data worth trusting.", 논문 3쪽).
+  그 아래 작은 글씨로 하는 일 한 문장: "I build the systems that carry data from
+  where it is produced to where it is used, and make it trustworthy along the way."
+  비전(왜)과 하는 일(무엇)을 함께 보여주는 구조. 세 미션은 이 문장의 증거다.
 - 미션 상세 구조: BRIEFING(문제) → WHAT I BUILT / WHAT I OWN(한 일) →
   KEY DECISIONS(무엇을 왜 그렇게 설계했는지, 면접관이 CV에서 못 보는 판단) →
   LOOT(결과와 근거). CCS는 설계 세부가 기밀이라 KEY DECISIONS 없음.
@@ -73,5 +75,5 @@
 - [ ] (제안, 사용자 결정 대기) QUEST LOG 버튼: 전체 이력 한 줄씩 (MAFRA 연구원,
       강의·초청 강연, 학회 발표). 미션 보드는 3장 유지. Undergrad RA는 넣지 않음
       (CV에서도 뺐고 Billion21 재직 기간과 겹침).
-- [ ] 보드 재구성과 MAIN OBJECTIVE 반영분(47d44f9, acb5d8b)은 아직 main 미반영.
-      사용자 확인 후 fast-forward 머지.
+- [ ] hooWorld 행성 구성 업데이트: 어떤 프로젝트를 행성으로 넣을지 사용자와 정하기
+      (지금은 공개 레포 9개 전부 + DEMETER + NDA Empire + 예약석 1개).
