@@ -67,3 +67,11 @@
 - [x] `hooworld` → `main` 머지로 라이브 반영 (2026-10-16).
 - [ ] 새 BGM 3곡을 들어보고 유지할지 결정.
 - [ ] 프로필의 work authorization 문구가 정확한지 확인.
+- [ ] (제안, 사용자 결정 대기) DEMETER 상세에 SUB-QUESTS 추가: 출처 검증(DV),
+      변환 추적(TI), 접근·재사용 관리, 대용량 이미지 확장. 근거는 예전 레주메
+      (git 히스토리의 index.html).
+- [ ] (제안, 사용자 결정 대기) QUEST LOG 버튼: 전체 이력 한 줄씩 (MAFRA 연구원,
+      강의·초청 강연, 학회 발표). 미션 보드는 3장 유지. Undergrad RA는 넣지 않음
+      (CV에서도 뺐고 Billion21 재직 기간과 겹침).
+- [ ] 보드 재구성과 MAIN OBJECTIVE 반영분(47d44f9, acb5d8b)은 아직 main 미반영.
+      사용자 확인 후 fast-forward 머지.
