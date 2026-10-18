@@ -17,9 +17,8 @@
 - 이름 표기는 "Younghoo Henry Cho". whoIsHoo는 이름에 넣지 않는다.
 - 상태창 맨 위 VISION 배너: 학위논문 헌정 문구를 원문 그대로 인용
   ("To a future intelligence, raised on data worth trusting.", 논문 3쪽).
-  그 아래 작은 글씨로 하는 일 한 문장: "I build the systems that carry data from
-  where it is produced to where it is used, and make it trustworthy along the way."
-  비전(왜)과 하는 일(무엇)을 함께 보여주는 구조. 세 미션은 이 문장의 증거다.
+  출처 표기나 부연 문장은 넣지 않는다 (사용자 결정: 군더더기). 검색·공유
+  미리보기 설명도 같은 문구. 세 미션은 이 비전의 증거다.
 - 미션 상세 구조: BRIEFING(문제) → WHAT I BUILT / WHAT I OWN(한 일) →
   KEY DECISIONS(무엇을 왜 그렇게 설계했는지, 면접관이 CV에서 못 보는 판단) →
   LOOT(결과와 근거). CCS는 설계 세부가 기밀이라 KEY DECISIONS 없음.
