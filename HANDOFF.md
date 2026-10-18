@@ -41,6 +41,10 @@
 - `assets/img/avatar.webp`, `profile-bg.webp`, `galaxy.webp`: AI 생성 원화.
   고해상도 원본은 Figma 파일 "hooWorld assets"에 있다.
 - `favicon.png`, `og.jpg`: avatar에서 잘라낸 것.
+- `tobby-fly.webp`(투명 배경), `tobby.webp`: 사용자의 고양이 Tobby 카툰. 콘셉트는 AI 조수이고,
+  사용자가 만들고 있는 자체 AI의 가칭도 Tobby다. 나는 버전은 마젠타 단색 배경으로 생성한 뒤
+  배경을 지운 것(원본은 Figma 파일). 프로필 배경 들판을 패널 뒤로 왕복 비행하고, 클릭하면
+  COMPANION 소개 창이 열린다.
 - `assets/pdf/CV_Yc.pdf`: 최신 CV. CV를 갱신하면 이 파일도 같이 교체.
 - 음악: Kevin MacLeod "Galactic Rap", "Phantom from Space", "Graveyard Shift"
   (incompetech.com, CC BY 4.0). **두 페이지 푸터의 음악 크레딧은 라이선스

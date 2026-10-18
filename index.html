@@ -149,6 +149,41 @@
   .portal-row { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; align-items: center; padding-top: 14px; }
   .portal-sub { margin: 6px 0 0; color: #fffbe9; text-shadow: 0 2px 4px #000a; font-weight: 600; }
 
+  /* ---------- Tobby: rockets across the field behind the panels ---------- */
+  .stage, .credits { position: relative; z-index: 2; }
+  .tobby {
+    position: fixed; left: 0; bottom: 5vh; z-index: 1;
+    width: clamp(96px, 11vw, 170px); padding: 0; border: 0; background: none; cursor: pointer;
+    animation: tobby-path 28s linear -6s infinite;
+  }
+  .tobby-flight { display: block; animation: tobby-face 28s linear -6s infinite; }
+  .tobby-flight img { width: 100%; filter: drop-shadow(0 8px 6px #0005); animation: tobby-bob 1.2s ease-in-out infinite; }
+  .tobby-tag {
+    position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
+    white-space: nowrap; font: 600 11px/1 var(--font-ui); color: var(--portal);
+    background: var(--screen); border: 2.5px solid var(--ink); border-radius: 999px;
+    padding: 5px 9px; opacity: 0; transition: opacity .15s;
+  }
+  .tobby:hover .tobby-tag, .tobby:focus-visible .tobby-tag { opacity: 1; }
+  .tobby:hover, .tobby:hover .tobby-flight { animation-play-state: paused; }
+  @keyframes tobby-path {
+    0%   { transform: translate(-30vw, 0); }
+    46%  { transform: translate(115vw, -14vh); }
+    50%  { transform: translate(115vw, -22vh); }
+    96%  { transform: translate(-30vw, -8vh); }
+    100% { transform: translate(-30vw, 0); }
+  }
+  @keyframes tobby-face {
+    0%, 47.9%  { transform: scaleX(1); }
+    48%, 97.9% { transform: scaleX(-1); }
+    98%, 100%  { transform: scaleX(1); }
+  }
+  @keyframes tobby-bob { 50% { transform: translateY(-8px) rotate(-3deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .tobby { animation: none; left: auto; right: 2vw; }
+    .tobby-flight, .tobby-flight img { animation: none; }
+  }
+
   /* modal content specific to the profile */
   .decisions b { color: var(--violet); }
   .inv { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 10px 0 0; }
@@ -291,6 +326,11 @@
 
 </main>
 
+<button class="tobby" type="button" data-modal="m-tobby" aria-label="Tobby, my AI assistant">
+  <span class="tobby-flight"><img src="assets/img/tobby-fly.webp" alt="" draggable="false"></span>
+  <span class="tobby-tag">TOBBY &middot; AI ASSISTANT</span>
+</button>
+
 <footer class="credits">
   every mission, stat, and item is a line from the CV &middot; &copy; 2026 Younghoo Henry Cho<br>
   music: &ldquo;Galactic Rap,&rdquo; &ldquo;Phantom from Space,&rdquo; and &ldquo;Graveyard Shift&rdquo; by Kevin MacLeod (incompetech.com),
@@ -421,6 +461,13 @@
     <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature)</li>
     <li><em>Sustainable Futures</em> (Elsevier)</li>
   </ul>
+</template>
+
+<template id="m-tobby">
+  <p class="m-kicker">COMPANION</p>
+  <h2 class="m-title">Tobby</h2>
+  <figure class="m-fig"><img src="assets/img/tobby.webp" alt="Cartoon of Tobby the cat wearing a headset" loading="lazy"></figure>
+  <p>The working name of the AI assistant I am building, named after my cat.</p>
 </template>
 
 <template id="m-education">
