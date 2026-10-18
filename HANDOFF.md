@@ -10,6 +10,11 @@
   (CSS 궤도 애니메이션). 행성 클릭 시 상세 모달, 아래에 인덱스 칩.
 - `assets/css/hoo.css`: 공용 디자인 시스템 (토큰, 버튼, 포털, 모달, 크레딧).
 - `assets/js/hoo.js`: 공용 동작 (BGM, 모달, 포털 워프, 딥링크).
+- 미션 보드는 경력 카드 3장이다. "Engineer" 멀티클래스 정체성에 맞춰 클래스마다
+  한 장: SYSTEMS(현재 직장, MAIN QUEST), DATA INFRASTRUCTURE(DEMETER), AI(Billion21).
+  카드 구조: 클래스 태그, 역량을 말하는 제목, 직함·회사·기간 평문, 한 줄 요약, LOOT.
+  논문·특허·리뷰는 상태창 카운터가 담당하고, 코드 레포는 hooWorld가 담당한다.
+- 이름 표기는 "Younghoo Henry Cho". whoIsHoo는 이름에 넣지 않는다.
 - 상세 내용은 각 페이지의 `<template id="...">` 안에 있다. 내용 수정은 그
   템플릿만 고치면 된다. `페이지#템플릿id`로 딥링크 (예: `index.html#m-demeter`).
 - 예전 레주메 페이지(resume.html, style.css 등)는 폐기됨. git 히스토리에 보존.

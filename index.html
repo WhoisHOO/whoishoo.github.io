@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Younghoo Cho &middot; Engineer</title>
-<meta name="description" content="Younghoo (whoIsHoo) Cho, engineer across AI, data infrastructure, and systems. A game-style profile: every mission, stat, and item is a line from the CV.">
+<title>Younghoo Henry Cho &middot; Engineer</title>
+<meta name="description" content="Younghoo Henry Cho, engineer across AI, data infrastructure, and systems. A game-style profile: every mission, stat, and item is a line from the CV.">
 <meta name="author" content="Younghoo Henry Cho">
-<meta property="og:title" content="Younghoo Cho &middot; Engineer">
+<meta property="og:title" content="Younghoo Henry Cho &middot; Engineer">
 <meta property="og:description" content="Engineer across AI, data infrastructure, and systems. Every mission, stat, and item is a line from the CV.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whoishoo.github.io/">
@@ -122,10 +122,12 @@
     background: #ffffffb3; border: 2px solid #14141433; transform: rotate(-3deg);
   }
   .mission:hover, .mission:focus-visible { transform: rotate(0deg) scale(1.04); box-shadow: 5px 6px 0 var(--ink); outline: none; }
-  .m-name { font-size: 22px; line-height: 1; }
+  .m-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .m-class { font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+  .m-name { font-size: 23px; line-height: 1.02; margin-top: 2px; }
+  .m-role { font-size: 12px; font-weight: 600; color: #3d3a32; line-height: 1.3; }
   .m-teaser { font-size: 13.5px; line-height: 1.35; }
-  .m-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 5px; }
-  .reward { font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+  .reward { margin-top: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
   .stamp {
     flex-shrink: 0; font-family: var(--font-head); font-size: 15px; letter-spacing: .08em;
     padding: 1px 7px; border: 2.5px solid currentColor; border-radius: 6px;
@@ -169,7 +171,7 @@
 
   <section class="status toon" aria-label="Character status">
     <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
-    <h1 class="nameplate head">YOUNGHOO &ldquo;WHOISHOO&rdquo; CHO</h1>
+    <h1 class="nameplate head">YOUNGHOO HENRY CHO</h1>
 
     <div class="status-inner">
 
@@ -195,7 +197,7 @@
 
       <div class="col hero">
         <h2 class="col-head head">RANK: PH.D.</h2>
-        <div class="portrait"><img src="assets/img/avatar.webp" alt="Cartoon avatar of Younghoo Cho in a lab coat with a giant wrench over his shoulder"></div>
+        <div class="portrait"><img src="assets/img/avatar.webp" alt="Cartoon avatar of Younghoo Henry Cho in a lab coat with a giant wrench over his shoulder"></div>
         <p class="status-line">STATUS: <span class="ok">ACTIVE</span></p>
         <p class="status-sub">System Engineer, connected-car platform<br>Base: Duluth, GA</p>
       </div>
@@ -246,37 +248,28 @@
 
   <aside class="board toon" aria-label="Mission board">
     <h2 class="board-head head">MISSION BOARD</h2>
-    <p class="board-hint">click a mission for the full briefing</p>
+    <p class="board-hint">one engineer, three classes &middot; click a mission for the full briefing</p>
     <div class="missions">
-      <button class="mission" type="button" data-modal="m-demeter" style="--r:-1.4deg; --c:#ffe36e">
-        <span class="m-name head">FORGE THE LEDGER OF TRUTH</span>
-        <span class="m-teaser">Make shared farm data verifiable across organizations.</span>
-        <span class="m-foot"><span class="reward">REWARD: PH.D. + 4 PAPERS</span><span class="stamp cleared">CLEARED</span></span>
+      <button class="mission" type="button" data-modal="m-ccs" style="--r:-1deg; --c:#a6ecff">
+        <span class="m-top"><span class="m-class">MAIN QUEST &middot; SYSTEMS</span><span class="stamp ongoing">ONGOING</span></span>
+        <span class="m-name head">OWN THE CONNECTED-CAR PLATFORM</span>
+        <span class="m-role">System Engineer &middot; Solomon America / Hyundai AutoEver America &middot; 2026 &ndash; now</span>
+        <span class="m-teaser">Manage, develop, operate, and analyze the platform end to end, from data ingestion to application services, on Kubernetes.</span>
+        <span class="reward">LOOT: 3 BRANDS &middot; 3 COUNTRIES &middot; 2 CARRIERS</span>
       </button>
-      <button class="mission" type="button" data-modal="m-ccs" style="--r:1.2deg; --c:#a6ecff">
-        <span class="m-name head">SERVE THE FOGBOUND DOMINION</span>
-        <span class="m-teaser">Keep connected cars talking to their brands across North America.</span>
-        <span class="m-foot"><span class="reward">REWARD: [REDACTED]</span><span class="stamp ongoing">ONGOING</span></span>
+      <button class="mission" type="button" data-modal="m-demeter" style="--r:1.1deg; --c:#ffe36e">
+        <span class="m-top"><span class="m-class">DATA INFRASTRUCTURE</span><span class="stamp cleared">CLEARED</span></span>
+        <span class="m-name head">MAKE SHARED DATA VERIFIABLE</span>
+        <span class="m-role">Ph.D. research &middot; University of Florida &middot; 2022 &ndash; 2026</span>
+        <span class="m-teaser">Built DEMETER, a shared ledger that proves where a data file came from and how it changed, with no central operator.</span>
+        <span class="reward">LOOT: PH.D. &middot; 4 PAPERS</span>
       </button>
-      <button class="mission" type="button" data-modal="m-sea" style="--r:-0.9deg; --c:#ccf58f">
-        <span class="m-name head">TEACH MACHINES TO WATCH THE SEA</span>
-        <span class="m-teaser">Let vision models decide when the fish get fed.</span>
-        <span class="m-foot"><span class="reward">REWARD: 2 PATENTS</span><span class="stamp cleared">CLEARED</span></span>
-      </button>
-      <button class="mission" type="button" data-modal="m-papers" style="--r:1.5deg; --c:#ffb4d4">
-        <span class="m-name head">CHRONICLE THE FINDINGS</span>
-        <span class="m-teaser">Write it down so others can build on it.</span>
-        <span class="m-foot"><span class="reward">REWARD: 10 SCROLLS</span><span class="stamp ongoing">ONGOING</span></span>
-      </button>
-      <button class="mission" type="button" data-modal="m-reviews" style="--r:-1.6deg; --c:#d9c6ff">
-        <span class="m-name head">JUDGE THE MANUSCRIPTS</span>
-        <span class="m-teaser">Decide what deserves to be published.</span>
-        <span class="m-foot"><span class="reward">REWARD: 7 JOURNALS</span><span class="stamp ongoing">ONGOING</span></span>
-      </button>
-      <button class="mission" type="button" data-modal="m-dojo" style="--r:0.8deg; --c:#ffc98a">
-        <span class="m-name head">TRAIN AT THE ALGORITHM DOJO</span>
-        <span class="m-teaser">Daily reps until patterns answer in seconds.</span>
-        <span class="m-foot"><span class="reward">REWARD: +INT</span><span class="stamp daily">DAILY</span></span>
+      <button class="mission" type="button" data-modal="m-sea" style="--r:-1.2deg; --c:#ccf58f">
+        <span class="m-top"><span class="m-class">AI</span><span class="stamp cleared">CLEARED</span></span>
+        <span class="m-name head">PUT VISION MODELS INTO PRODUCTION</span>
+        <span class="m-role">AI Engineer &middot; Billion21 &middot; 2019 &ndash; 2022</span>
+        <span class="m-teaser">Computer-vision models that set feed amount and timing per species in an automated feeding system.</span>
+        <span class="reward">LOOT: 2 PATENTS (1 GRANTED, 1 PENDING)</span>
       </button>
     </div>
   </aside>
@@ -300,8 +293,8 @@
 <!-- ===================== mission and stat details ===================== -->
 
 <template id="m-demeter">
-  <p class="m-kicker">MISSION &middot; CLEARED</p>
-  <h2 class="m-title">Forge the Ledger of Truth</h2>
+  <p class="m-kicker">MISSION &middot; DATA INFRASTRUCTURE &middot; CLEARED</p>
+  <h2 class="m-title">Make Shared Data Verifiable</h2>
   <p class="m-meta">DEMETER &middot; Ph.D. research, University of Florida &middot; Aug 2022 &ndash; Aug 2026</p>
   <h3 class="m-section">BRIEFING</h3>
   <p>When agricultural data files move between organizations, the receiving party cannot check whether a file still matches what its source recorded. Healthcare and finance solved this under regulatory mandates. Agriculture has no such mandate, so a solution has to work when participation is voluntary.</p>
@@ -324,8 +317,8 @@
 </template>
 
 <template id="m-ccs">
-  <p class="m-kicker">MISSION &middot; ONGOING</p>
-  <h2 class="m-title">Serve the Fogbound Dominion</h2>
+  <p class="m-kicker">MAIN QUEST &middot; SYSTEMS &middot; ONGOING</p>
+  <h2 class="m-title">Own the Connected-Car Platform</h2>
   <p class="m-meta">System Engineer, Solomon America (Duluth, GA) &middot; System Engineer, Hyundai AutoEver America &middot; Sep 2026 &ndash; present</p>
   <h3 class="m-section">BRIEFING</h3>
   <p>The connected-car services (CCS) platform connects Hyundai, Kia, and Genesis vehicles in the U.S., Canada, and Mexico to each brand&rsquo;s services.</p>
@@ -338,13 +331,16 @@
     <li>Define integration designs and scope estimates for new in-vehicle data products.</li>
   </ul>
   <h3 class="m-section">LOOT</h3>
-  <p><span class="redacted">[REDACTED BY THE DOMINION]</span></p>
-  <p class="m-note">Ask me about it in an interview.</p>
+  <ul>
+    <li>Scope: Hyundai, Kia, and Genesis vehicles in 3 countries (U.S., Canada, Mexico), with 2 carrier integrations (Verizon, Bell).</li>
+    <li>Five internal data platforms and 10+ automation tools, built and operated.</li>
+  </ul>
+  <p><span class="redacted">[REDACTED]</span> Everything else. Ask me about it in an interview.</p>
 </template>
 
 <template id="m-sea">
-  <p class="m-kicker">MISSION &middot; CLEARED</p>
-  <h2 class="m-title">Teach Machines to Watch the Sea</h2>
+  <p class="m-kicker">MISSION &middot; AI &middot; CLEARED</p>
+  <h2 class="m-title">Put Vision Models into Production</h2>
   <p class="m-meta">AI Engineer, Billion21 &middot; Dec 2019 &ndash; Aug 2022</p>
   <h3 class="m-section">BRIEFING</h3>
   <p>Fish farms set feed amount and timing by manual observation, which is labor-intensive, inconsistent, and does not scale across species and tanks.</p>
@@ -364,8 +360,8 @@
 </template>
 
 <template id="m-papers">
-  <p class="m-kicker">MISSION &middot; ONGOING</p>
-  <h2 class="m-title">Chronicle the Findings</h2>
+  <p class="m-kicker">STAT</p>
+  <h2 class="m-title">Papers: 10</h2>
   <p class="m-meta">10 papers in total, including those under review</p>
   <h3 class="m-section">SELECTED SCROLLS</h3>
   <ul>
@@ -378,7 +374,7 @@
 </template>
 
 <template id="m-patents">
-  <p class="m-kicker">ATTRIBUTE</p>
+  <p class="m-kicker">STAT</p>
   <h2 class="m-title">Patents: 2</h2>
   <ul>
     <li><em>Methods for Selecting Spores from Laver Farm Devices.</em> KR102034354B1, 2019 (granted). <a href="https://patents.google.com/patent/KR20190055413A/en" target="_blank" rel="noopener">Google Patents</a></li>
@@ -387,8 +383,8 @@
 </template>
 
 <template id="m-reviews">
-  <p class="m-kicker">MISSION &middot; ONGOING</p>
-  <h2 class="m-title">Judge the Manuscripts</h2>
+  <p class="m-kicker">STAT</p>
+  <h2 class="m-title">Journals Reviewed: 7</h2>
   <p class="m-meta">Peer reviewer for 7 journals &middot; 2024 &ndash; present</p>
   <ul>
     <li><em>Carbon Management</em> (Taylor &amp; Francis)</li>
@@ -399,18 +395,6 @@
     <li><em>Mitigation and Adaptation Strategies for Global Change</em> (Springer Nature)</li>
     <li><em>Sustainable Futures</em> (Elsevier)</li>
   </ul>
-</template>
-
-<template id="m-dojo">
-  <p class="m-kicker">MISSION &middot; DAILY</p>
-  <h2 class="m-title">Train at the Algorithm Dojo</h2>
-  <p class="m-meta">code_assessment &middot; Python, Java</p>
-  <h3 class="m-section">ACTIONS</h3>
-  <ul>
-    <li>Built a study tool for big-tech coding assessments: a local web app with a spaced-repetition daily queue, pattern flashcards, multiple-choice drills, and timed problems. Python standard library, no dependencies.</li>
-    <li>Each missed timed problem is logged by cause (misread statement, unknown pattern, slow recall, implementation bug), so practice targets the weakest skill.</li>
-  </ul>
-  <div class="m-links"><a class="btn" href="https://github.com/WhoisHOO/code_assessment" target="_blank" rel="noopener">Visit repo &#9656;</a></div>
 </template>
 
 <template id="m-education">
