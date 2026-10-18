@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Younghoo Henry Cho &middot; Engineer</title>
-<meta name="description" content="Younghoo Henry Cho, engineer across AI, data infrastructure, and systems. A game-style profile: every mission, stat, and item is a line from the CV.">
+<meta name="description" content="Younghoo Henry Cho, engineer. I build the systems that carry data from where it is produced to where it is used, and make it trustworthy along the way.">
 <meta name="author" content="Younghoo Henry Cho">
 <meta property="og:title" content="Younghoo Henry Cho &middot; Engineer">
-<meta property="og:description" content="Engineer across AI, data infrastructure, and systems. Every mission, stat, and item is a line from the CV.">
+<meta property="og:description" content="I build the systems that carry data from where it is produced to where it is used, and make it trustworthy along the way.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whoishoo.github.io/">
 <meta property="og:image" content="https://whoishoo.github.io/assets/img/og.jpg">
@@ -53,6 +53,12 @@
     background: var(--paper); border: 3px solid var(--ink); border-radius: 12px;
     padding: 16px; display: grid; grid-template-columns: 1.1fr 1fr 1.15fr; gap: 16px;
   }
+  .motto {
+    grid-column: 1 / -1; margin: 0; padding: 9px 14px 11px; text-align: center;
+    background: var(--screen); color: #fff; border: 3px solid var(--ink); border-radius: 10px;
+    font-size: 16.5px; font-weight: 600; line-height: 1.45;
+  }
+  .motto-label { display: block; font-size: 16px; color: var(--portal); letter-spacing: .12em; }
   .col { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
   .col-head { margin: 0 0 2px; font-size: 21px; text-align: center; }
 
@@ -142,6 +148,7 @@
   .portal-sub { margin: 6px 0 0; color: #fffbe9; text-shadow: 0 2px 4px #000a; font-weight: 600; }
 
   /* modal content specific to the profile */
+  .decisions b { color: var(--violet); }
   .inv { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 10px 0 0; }
   .inv dt { font-weight: 700; }
   .inv dd { margin: 0; }
@@ -155,6 +162,7 @@
   }
   @media (max-width: 680px) {
     .status-inner { grid-template-columns: 1fr; }
+    .motto { order: -2; }
     .hero { order: -1; }
     .portrait { max-width: 280px; }
     .missions { grid-template-columns: 1fr; }
@@ -174,6 +182,8 @@
     <h1 class="nameplate head">YOUNGHOO HENRY CHO</h1>
 
     <div class="status-inner">
+
+      <p class="motto"><span class="motto-label head">MAIN OBJECTIVE</span>I build the systems that carry data from where it is produced to where it is used, and make it trustworthy along the way.</p>
 
       <div class="col stats">
         <h2 class="col-head head">STATS &amp; ATTRIBUTES</h2>
@@ -248,7 +258,7 @@
 
   <aside class="board toon" aria-label="Mission board">
     <h2 class="board-head head">MISSION BOARD</h2>
-    <p class="board-hint">one engineer, three classes &middot; click a mission for the full briefing</p>
+    <p class="board-hint">one objective, three classes &middot; click a mission for the full briefing</p>
     <div class="missions">
       <button class="mission" type="button" data-modal="m-ccs" style="--r:-1deg; --c:#a6ecff">
         <span class="m-top"><span class="m-class">MAIN QUEST &middot; SYSTEMS</span><span class="stamp ongoing">ONGOING</span></span>
@@ -297,12 +307,19 @@
   <h2 class="m-title">Make Shared Data Verifiable</h2>
   <p class="m-meta">DEMETER &middot; Ph.D. research, University of Florida &middot; Aug 2022 &ndash; Aug 2026</p>
   <h3 class="m-section">BRIEFING</h3>
-  <p>When agricultural data files move between organizations, the receiving party cannot check whether a file still matches what its source recorded. Healthcare and finance solved this under regulatory mandates. Agriculture has no such mandate, so a solution has to work when participation is voluntary.</p>
-  <h3 class="m-section">ACTIONS</h3>
+  <p>When agricultural data files move between organizations, the receiving party cannot check whether a file still matches what its source recorded. Healthcare and finance solved this under regulatory mandates. Agriculture has no such mandate, so the solution has to work when participation is voluntary and earlier parties may be offline.</p>
+  <h3 class="m-section">WHAT I BUILT</h3>
   <ul>
-    <li>Designed and built DEMETER, a platform where each organization records a file&rsquo;s identity and handoffs on a shared ledger under its own credentials, with no central operator. Files stay on each organization&rsquo;s own systems.</li>
-    <li>Built the core in Go on Hyperledger Fabric with a REST API, and ran the multi-organization network on Docker with CI-driven build and test.</li>
-    <li>Added an LLM assistant for plain-language queries behind a write-confirmation gate: it reads freely but cannot change ledger state without explicit approval.</li>
+    <li>DEMETER, a platform where each organization records a file&rsquo;s fingerprint and handoffs on a shared Hyperledger Fabric ledger under its own credentials, with no central operator.</li>
+    <li>Two checks behind one query: whether a file matches what its source registered, and whether a file built from other files matches the inputs its source declared.</li>
+    <li>The core in Go with a REST API, a multi-organization network on Docker with CI-driven build and test, and an LLM assistant for plain-language queries.</li>
+  </ul>
+  <h3 class="m-section">KEY DECISIONS</h3>
+  <ul class="decisions">
+    <li><b>Files stay off-chain.</b> The ledger holds only fingerprints and linked records, so each organization keeps its data on its own systems and no single party owns the shared record.</li>
+    <li><b>Verify without calling back.</b> A receiver checks a file&rsquo;s origin and history from the ledger alone, without any earlier organization needing to be online.</li>
+    <li><b>Report gaps, never guess.</b> If a transformation step was never declared, tracing stops there and reports the gap instead of guessing across it.</li>
+    <li><b>The AI reads but does not write.</b> A confirmation gate blocks every ledger write until a person approves it, so correctness never depends on the model being right.</li>
   </ul>
   <figure class="m-fig">
     <img src="assets/img/demeter-2.png" alt="DEMETER architecture: LLM interface on top, a shared Hyperledger Fabric ledger with origin, transformation, integration, and tracing, and files kept off-chain" loading="lazy">
@@ -311,7 +328,7 @@
   <h3 class="m-section">LOOT</h3>
   <ul>
     <li>Verified on soil-carbon data: catches altered files, blocks records that cite unregistered sources, and tells apart two records that share a sample ID but hold different data.</li>
-    <li>Research output: a cross-sectoral review in <em>Precision Agriculture</em> (2026) and three infrastructure papers under review.</li>
+    <li>A cross-sectoral review in <em>Precision Agriculture</em> (2026) and three infrastructure papers under review.</li>
   </ul>
   <p class="m-note">Code stays private until the papers are published.</p>
 </template>
@@ -322,7 +339,7 @@
   <p class="m-meta">System Engineer, Solomon America (Duluth, GA) &middot; System Engineer, Hyundai AutoEver America &middot; Sep 2026 &ndash; present</p>
   <h3 class="m-section">BRIEFING</h3>
   <p>The connected-car services (CCS) platform connects Hyundai, Kia, and Genesis vehicles in the U.S., Canada, and Mexico to each brand&rsquo;s services.</p>
-  <h3 class="m-section">ACTIONS</h3>
+  <h3 class="m-section">WHAT I OWN</h3>
   <ul>
     <li>Manage, develop, operate, and analyze the CCS platform across vehicle factory, carrier network, vehicle-control, and remote-command data, from ingestion to application services, on Kubernetes.</li>
     <li>Diagnose production incidents to root cause in the platform&rsquo;s Java/Spring services and implement the fixes; review the code for security weaknesses and ship hardening changes.</li>
@@ -344,16 +361,20 @@
   <p class="m-meta">AI Engineer, Billion21 &middot; Dec 2019 &ndash; Aug 2022</p>
   <h3 class="m-section">BRIEFING</h3>
   <p>Fish farms set feed amount and timing by manual observation, which is labor-intensive, inconsistent, and does not scale across species and tanks.</p>
-  <h3 class="m-section">ACTIONS</h3>
+  <h3 class="m-section">WHAT I BUILT</h3>
   <ul>
-    <li>Built computer-vision and machine-learning models in Python that read fish feeding activity from camera and sensor input to set feed amount and timing per species in an automated feeding system.</li>
-    <li>Co-invented a computer-vision method for seaweed spore selection that replaced manual microscope inspection.</li>
-    <li>Co-invented a blockchain system that records each handoff of seaweed from farm to buyer so any party can verify its path.</li>
+    <li>Computer-vision and machine-learning models in Python that read fish feeding activity from camera and sensor input to set feed amount and timing per species in an automated feeding system.</li>
+    <li>My part was the vision signals. Other teams built the feeding control logic, edge hardware, and feeder mechanisms that depended on them.</li>
+  </ul>
+  <h3 class="m-section">KEY DECISIONS</h3>
+  <ul class="decisions">
+    <li><b>One model per scale.</b> YOLO tracked feeding behavior across the whole tank; SAM segmented individual fish for size estimates.</li>
+    <li><b>Train for the farm, not the benchmark.</b> Both models were tuned for farm imaging conditions rather than research-grade datasets.</li>
   </ul>
   <h3 class="m-section">LOOT</h3>
   <ul>
-    <li>Patent KR102034354B1, spore selection method (granted). <a href="https://patents.google.com/patent/KR20190055413A/en" target="_blank" rel="noopener">Google Patents</a></li>
-    <li>Patent application KR10-2024-0011399, seaweed supply-chain tracking (pending).</li>
+    <li>Co-invented a computer-vision method for seaweed spore selection that replaced manual microscope inspection: patent KR102034354B1 (granted). <a href="https://patents.google.com/patent/KR20190055413A/en" target="_blank" rel="noopener">Google Patents</a></li>
+    <li>Co-invented a blockchain system that records each seaweed handoff from farm to buyer: application KR10-2024-0011399 (pending).</li>
   </ul>
   <h3 class="m-section">SIDE QUEST</h3>
   <p>AI Consultant, Global BioAg Linkages (Jan &ndash; Dec 2020): planned AI/ML adoption for agriculture and aquaculture companies, assessing technical feasibility and market viability for each.</p>

@@ -137,6 +137,7 @@ body.modal-open { overflow: hidden; }
 .modal-body li { margin: 0 0 7px; }
 .modal-body a:not(.btn) { color: var(--violet); font-weight: 600; }
 .m-fig { margin: 12px 0 6px; padding: 8px; background: #fff; border: 3px solid var(--ink); border-radius: 10px; }
+.m-fig img { max-height: 340px; width: auto; margin: 0 auto; }
 .m-fig figcaption { margin-top: 4px; font-size: 13px; color: var(--muted); }
 .m-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .m-note { color: var(--muted); font-size: 14px !important; }

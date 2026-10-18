@@ -15,6 +15,12 @@
   카드 구조: 클래스 태그, 역량을 말하는 제목, 직함·회사·기간 평문, 한 줄 요약, LOOT.
   논문·특허·리뷰는 상태창 카운터가 담당하고, 코드 레포는 hooWorld가 담당한다.
 - 이름 표기는 "Younghoo Henry Cho". whoIsHoo는 이름에 넣지 않는다.
+- 페이지가 전달하는 한 문장(MAIN OBJECTIVE, 상태창 맨 위): "I build the systems
+  that carry data from where it is produced to where it is used, and make it
+  trustworthy along the way." 세 미션은 이 문장의 증거다.
+- 미션 상세 구조: BRIEFING(문제) → WHAT I BUILT / WHAT I OWN(한 일) →
+  KEY DECISIONS(무엇을 왜 그렇게 설계했는지, 면접관이 CV에서 못 보는 판단) →
+  LOOT(결과와 근거). CCS는 설계 세부가 기밀이라 KEY DECISIONS 없음.
 - 상세 내용은 각 페이지의 `<template id="...">` 안에 있다. 내용 수정은 그
   템플릿만 고치면 된다. `페이지#템플릿id`로 딥링크 (예: `index.html#m-demeter`).
 - 예전 레주메 페이지(resume.html, style.css 등)는 폐기됨. git 히스토리에 보존.
