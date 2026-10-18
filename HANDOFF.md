@@ -60,7 +60,7 @@
 
 ## 현재 상태
 
-- 2026-10-16 `hooworld`를 `main`에 fast-forward 머지해서 라이브 반영 완료.
+- 최근 라이브 반영: 2026-10-17 (Dr. 표기, VISION 배너, 미션 보드 3장, Tobby). `hooworld`를 `main`에 fast-forward 머지.
   GitHub Pages는 `main` 브랜치 루트(`/`)에서 배포된다.
 - 이후 작업도 `hooworld` 브랜치에서 하고, 확인되면 `main`에 fast-forward 머지한다.
 - 로컬 미리보기: 레포 폴더에서 `python -m http.server` 실행 후 `/index.html`.
